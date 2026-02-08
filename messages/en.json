@@ -1,4 +1,5 @@
 {
-  "$schema": "https://inlang.com/schema/inlang-message-format",
-  "example_message": "Hello world {username}"
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"svm_schema_mustBeString": "Must be a string",
+	"svm_schema_mustBeHexOrDecimal": "Must be a 4-digit hexadecimal or a 5-digit decimal number"
 }
