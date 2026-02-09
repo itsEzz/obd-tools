@@ -12,6 +12,8 @@
 	"bc_schema_backup_min_length": "Must be at least {minLength} characters long",
 	"bc_schema_backup_max_length": "Must be at most {maxLength} characters long",
 	"language_select_error_title": "Unsupported language",
-	"language_select_error_description": "The language code '{locale}' is not yet supported.",
-	"language_select_label": "Change language"
+	"language_select_error_description": "The language code '{locale}' is not yet supported",
+	"language_select_label": "Change language",
+	"theme_switch_to_light_mode": "Switch to light mode",
+	"theme_switch_to_dark_mode": "Switch to dark mode"
 }
