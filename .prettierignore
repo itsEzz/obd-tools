@@ -7,3 +7,6 @@ bun.lockb
 
 # Miscellaneous
 /static/
+src/lib/components/ui/**
+src/lib/paraglide/**
+project.inlang/**
