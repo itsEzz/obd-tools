@@ -1,5 +1,14 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"svm_schema_mustBeString": "Must be a string",
-	"svm_schema_mustBeHexOrDecimal": "Must be a 4-digit hexadecimal or a 5-digit decimal number"
+	"schema_mustBeString": "Must be a string",
+	"schema_mustBeBoolean": "Must be a boolean",
+	"schema_mustBeEvenHexadecimal": "Must be an even-length hexadecimal string (0-9, A-F)",
+	"svm_schema_mustBeHexOrDecimal": "Must be a 4-digit hexadecimal or a 5-digit decimal number",
+	"cc_schema_mustBeSameLength": "Both values must have the same length",
+	"prl_schema_mustBeNonEmptyArray": "Must be a array with at least one element",
+	"prl_schema_mustBeValidPrcode": "Each element must be a valid PR code (3-digit string)",
+	"bc_schema_delimiterMustBeOneCharacter": "Must be exactly one character long",
+	"bc_schema_formatMustBeValid": "Must be one of '{format1}', '{format2}', or '{format3}'",
+	"bc_schema_backupMinLength": "Must be at least {minLength} characters long",
+	"bc_schema_backupMaxLength": "Must be at most {maxLength} characters long"
 }
