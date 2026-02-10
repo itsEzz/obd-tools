@@ -15,5 +15,14 @@
 	"language_select_error_description": "The language code '{locale}' is not yet supported",
 	"language_select_label": "Change language",
 	"theme_switch_to_light_mode": "Switch to light mode",
-	"theme_switch_to_dark_mode": "Switch to dark mode"
+	"theme_switch_to_dark_mode": "Switch to dark mode",
+	"navbar_svm_label": "SVM",
+	"navbar_coding_compare_label": "Coding Compare",
+	"navbar_hex_to_binary_label": "Hex 2 Binary",
+	"navbar_pr_codes_lookup_label": "PR Codes Lookup",
+	"navbar_backup_converter_label": "Backup Converter",
+	"navbar_api_docs_label": "API Docs",
+	"navbar_open_menu_label": "Open navigation menu",
+	"navbar_close_menu_label": "Close navigation menu",
+	"skip_to_main_content_label": "Skip to main content"
 }
