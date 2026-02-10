@@ -35,12 +35,16 @@
 		<GlobeIcon aria-hidden="true" />
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content align="end">
-		<DropdownMenu.RadioGroup value={currentLocale} onValueChange={handleChangeLocale}>
-			{#each availableLanguages as language (language.code)}
-				<DropdownMenu.RadioItem value={language.code}>
-					{language.label}
-				</DropdownMenu.RadioItem>
-			{/each}
-		</DropdownMenu.RadioGroup>
+		<DropdownMenu.Group>
+			<DropdownMenu.Label>{m.language_select_label()}</DropdownMenu.Label>
+			<DropdownMenu.Separator />
+			<DropdownMenu.RadioGroup value={currentLocale} onValueChange={handleChangeLocale}>
+				{#each availableLanguages as language (language.code)}
+					<DropdownMenu.RadioItem value={language.code}>
+						{language.label}
+					</DropdownMenu.RadioItem>
+				{/each}
+			</DropdownMenu.RadioGroup>
+		</DropdownMenu.Group>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>
