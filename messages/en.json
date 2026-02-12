@@ -24,5 +24,7 @@
 	"navbar_api_docs_label": "API Docs",
 	"navbar_open_menu_label": "Open navigation menu",
 	"navbar_close_menu_label": "Close navigation menu",
-	"skip_to_main_content_label": "Skip to main content"
+	"skip_to_main_content_label": "Skip to main content",
+	"copy_button_toast_success_title": "Value copied to clipboard",
+	"copy_button_toast_failure_title": "Failed to copy value to clipboard"
 }
