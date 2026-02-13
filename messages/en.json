@@ -26,5 +26,8 @@
 	"navbar_close_menu_label": "Close navigation menu",
 	"skip_to_main_content_label": "Skip to main content",
 	"copy_button_toast_success_title": "Value copied to clipboard",
-	"copy_button_toast_failure_title": "Failed to copy value to clipboard"
+	"copy_button_toast_failure_title": "Failed to copy value to clipboard",
+	"share_page_dialog_title": "Share OBD Tools link",
+	"share_page_dialog_description": "Copy the link below to share the current page with others.",
+	"share_page_dialog_include_params_label": "Include parameters in URL"
 }
