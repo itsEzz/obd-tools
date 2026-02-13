@@ -31,7 +31,7 @@
 		<div class="inline-flex w-1/2 justify-start">
 			<DropdownMenu.Root bind:open={isNavMenuOpen}>
 				<DropdownMenu.Trigger
-					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'lg:hidden')}
+					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'mr-2 lg:hidden')}
 					aria-label={isNavMenuOpen ? m.navbar_close_menu_label() : m.navbar_open_menu_label()}
 				>
 					<MenuIcon
