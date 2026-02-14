@@ -92,7 +92,9 @@
 					<h1 class="text-4xl font-bold">{title}</h1>
 				</div>
 			{/if}
-			{@render body()}
+			<div class="p-4">
+				{@render body()}
+			</div>
 		</div>
 	</div>
 </div>
