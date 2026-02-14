@@ -75,7 +75,7 @@
 	{/snippet}
 </DialogDrawer>
 
-<div class="mockup-window relative w-fit max-w-3xl border">
+<div class="mockup-window relative m-2 w-fit max-w-3xl border">
 	<Button
 		class="absolute top-1.5 right-2"
 		size="icon"

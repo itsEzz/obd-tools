@@ -24,6 +24,9 @@
 
 <Navbar />
 
-<main id="main-content" class="container mx-auto mt-8 flex justify-center">
+<main
+	id="main-content"
+	class="container mx-auto mt-4 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+>
 	{@render children()}
 </main>
