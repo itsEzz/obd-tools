@@ -85,7 +85,7 @@
 	>
 		<Share2Icon aria-hidden="true" />
 	</Button>
-	<div class="flex justify-center border-t p-2">
+	<div class="flex justify-center border-t px-4 py-5">
 		<div class="grid grid-cols-1">
 			{#if title && title.length > 0}
 				<div class="mb-4 text-center">
