@@ -3,7 +3,7 @@
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import { m } from '$lib/paraglide/messages';
-	import { ModeWatcher } from 'mode-watcher';
+	import { mode, ModeWatcher } from 'mode-watcher';
 	import './layout.css';
 
 	let { children } = $props();
@@ -13,7 +13,17 @@
 
 <ModeWatcher />
 
-<Toaster duration={6000} closeButton position="bottom-right" />
+<Toaster
+	theme={mode.current}
+	duration={6000}
+	closeButton
+	position="top-right"
+	toastOptions={{
+		classes: {
+			closeButton: 'pointer-events-auto'
+		}
+	}}
+/>
 
 <a
 	href="#main-content"
