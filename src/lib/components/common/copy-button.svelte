@@ -58,6 +58,7 @@
 
 <Button
 	{...buttonProps}
+	size={text ? buttonProps.size || 'default' : buttonProps.size || 'icon'}
 	onclick={handleClick}
 	class={cn(classes, copyStatus !== 'idle' && 'cursor-default')}
 	aria-label={text}
