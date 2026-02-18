@@ -23,7 +23,7 @@
 
 	// Variables & States
 	let openShareDialog = $state<boolean>(false);
-	let includeParams: boolean = $state(true);
+	let includeParams = $state(true);
 
 	const id = $props.id();
 	const shareLinkId = `share-link-${id}`;
@@ -84,13 +84,13 @@
 		<Share2Icon aria-hidden="true" />
 	</Button>
 	<div class="flex justify-center border-t px-4 py-5">
-		<div class="grid grid-cols-1">
+		<div class="flex flex-col">
 			{#if title && title.length > 0}
-				<div class="mb-4 text-center">
+				<div class="text-center">
 					<h1 class="text-4xl font-bold">{title}</h1>
 				</div>
 			{/if}
-			<div class="p-4">
+			<div class="m-4">
 				{@render body()}
 			</div>
 		</div>
