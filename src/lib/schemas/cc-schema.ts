@@ -5,8 +5,10 @@ export const ccSchema = z
 	.object({
 		value1: z
 			.string(m.schema_string_invalid())
-			.regex(/^(?:[0-9A-F]{2})+$/i, m.schema_hex_invalid()),
-		value2: z.string(m.schema_string_invalid()).regex(/^(?:[0-9A-F]{2})+$/i, m.schema_hex_invalid())
+			.regex(/^(?:[0-9A-Fa-f]{2})+$/, m.schema_hex_invalid()),
+		value2: z
+			.string(m.schema_string_invalid())
+			.regex(/^(?:[0-9A-Fa-f]{2})+$/, m.schema_hex_invalid())
 	})
 	.check((ctx) => {
 		if (ctx.value.value1.length !== ctx.value.value2.length) {
