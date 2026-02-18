@@ -122,7 +122,7 @@
 			</Drawer.Header>
 			<div
 				id={!description ? descriptionId : undefined}
-				class={cn('mx-4 flex-1 overflow-y-auto', !footer && 'mb-4')}
+				class={cn('flex-1 overflow-y-auto px-4 pt-1', !footer && 'pb-4')}
 			>
 				{@render body?.()}
 			</div>
