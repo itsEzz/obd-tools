@@ -9,6 +9,7 @@
 
 	// Variables & States
 	let currentLocale = $state<Locale>(getLocale());
+	// ! Add new languages here
 	const availableLanguages: LanguageOption[] = [
 		{ code: 'en', label: 'English' }
 		// { code: 'de', label: 'Deutsch' }
