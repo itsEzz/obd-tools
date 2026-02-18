@@ -61,9 +61,7 @@
 		<div class="flex flex-col gap-2">
 			<div class="flex items-center gap-2">
 				<Input value={shareLink} readonly id={shareLinkId} />
-				<div>
-					<CopyButton copyFn={handleCopyLink} variant="outline" />
-				</div>
+				<CopyButton copyFn={handleCopyLink} variant="outline" />
 			</div>
 			{#if urlSearchParamsSchema && params.size > 0}
 				<div class="flex items-center space-x-2">
