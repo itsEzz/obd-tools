@@ -27,8 +27,8 @@
 
 	const id = $props.id();
 	const shareLinkId = `share-link-${id}`;
+	const searchParams = useSearchParams(urlSearchParamsSchema).toURLSearchParams();
 	const params = $derived.by(() => {
-		const searchParams = useSearchParams(urlSearchParamsSchema).toURLSearchParams();
 		searchParams.forEach((value, key) => {
 			if (!value) searchParams.delete(key);
 		});
