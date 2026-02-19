@@ -61,7 +61,7 @@
 	size={text ? buttonProps.size || 'default' : buttonProps.size || 'icon'}
 	onclick={handleClick}
 	class={cn(classes, copyStatus !== 'idle' && 'cursor-default')}
-	aria-label={text}
+	aria-label={text || m.copy_button_aria_label()}
 	disabled={buttonProps.disabled || copyStatus !== 'idle'}
 	aria-disabled={buttonProps.disabled || copyStatus !== 'idle'}
 >
