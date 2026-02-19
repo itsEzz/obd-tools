@@ -1,5 +1,6 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
+	import Footer from '$lib/components/layout/footer.svelte';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import { m } from '$lib/paraglide/messages';
@@ -36,7 +37,9 @@
 
 <main
 	id="main-content"
-	class="container mx-auto mt-4 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+	class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
 >
 	{@render children()}
 </main>
+
+<Footer />
