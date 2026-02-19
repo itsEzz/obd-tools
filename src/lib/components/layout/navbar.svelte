@@ -27,7 +27,7 @@
 </script>
 
 <div class="sticky top-0 z-50 w-full p-2" id="top">
-	<div class="flex min-h-16 items-center rounded-xl border px-4">
+	<div class="flex min-h-16 items-center rounded-xl border bg-background px-4">
 		<div class="inline-flex w-1/2 justify-start">
 			<DropdownMenu.Root bind:open={isNavMenuOpen}>
 				<DropdownMenu.Trigger
