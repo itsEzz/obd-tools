@@ -27,12 +27,13 @@
 
 	const id = $props.id();
 	const shareLinkId = `share-link-${id}`;
-	const searchParams = useSearchParams(urlSearchParamsSchema).toURLSearchParams();
+	const searchParams = useSearchParams(urlSearchParamsSchema);
 	const params = $derived.by(() => {
-		searchParams.forEach((value, key) => {
-			if (!value) searchParams.delete(key);
+		const _params = searchParams.toURLSearchParams();
+		_params.forEach((value, key) => {
+			if (!value) _params.delete(key);
 		});
-		return searchParams;
+		return _params;
 	});
 
 	let shareLink = $derived.by<string>(() => {
@@ -90,7 +91,7 @@
 					<h1 class="text-4xl font-bold">{title}</h1>
 				</div>
 			{/if}
-			<div class="m-4">
+			<div class="mt-4">
 				{@render body()}
 			</div>
 		</div>
