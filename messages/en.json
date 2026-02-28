@@ -1,5 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"form_generic_error_message": "Something went wrong. Please try again.",
 	"schema_string_invalid": "Must be a string",
 	"schema_boolean_invalid": "Must be a boolean",
 	"schema_hex_invalid": "Must be an even-length hexadecimal string (0-9, A-F)",
@@ -35,5 +36,19 @@
 	"home_welcome_gif_img_alt": "Animated GIF of an owl",
 	"home_welcome_title": "Welcome!",
 	"home_welcome_subtitle": "Glad you found your way here!",
-	"home_welcome_description": "Built with passion by a car enthusiast for the automotive community, this site brings together practical tools designed to simplify OBD related tasks.<br/>Have feedback or ideas? Feel free to connect withe me through the footer links."
+	"home_welcome_description": "Built with passion by a car enthusiast for the automotive community, this site brings together practical tools designed to simplify OBD related tasks.<br/>Have feedback or ideas? Feel free to connect withe me through the footer links.",
+	"svm_step_by_step_label": "Step by step guide",
+	"svm_step_by_step_description": "Follow these simple steps to get rid of your SVM fault code.",
+	"svm_step_1": "Open OBDeleven and connect to your vehicle",
+	"svm_step_2": "Open control unit <b>5F</b>",
+	"svm_step_3": "Get your key from either the <b>Confirmation of installation change</b> adaptation channel or from adaptation channel <b>15</b> depending on your vehicle",
+	"svm_step_4": "Enter your key from the adaptation channel in the input field on this website and click the button below to calculate your new key",
+	"svm_step_5": "Open your adaptation channel again",
+	"svm_step_6": "Enter your newly generated key from the website into the adaptation channel and hit save",
+	"svm_step_7": "Clear the fault code from the control unit",
+	"svm_step_8": "Profit",
+	"svm_description": "Easily get rid of your<br /><b>Software Version Management (1555 / B201A)</b><br />fault code.",
+	"svm_input_label": "Key",
+	"svm_submit_label": "Calculate New Key",
+	"svm_result_label": "Your new key"
 }
