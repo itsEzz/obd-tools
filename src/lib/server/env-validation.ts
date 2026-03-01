@@ -1,5 +1,4 @@
 import * as privateEnv from '$env/dynamic/private';
-import * as publicEnv from '$env/dynamic/public';
 import { serverEnvSchema } from '$lib/schemas/env-schema';
 import { emptyStringsToUndefined, formatValidationError } from '$lib/utils/env';
 import { isError, tc } from '@itsezz/try-catch';
