@@ -24,7 +24,7 @@
 	let newKey = $state<string | null>(null);
 	const params = useSearchParams(svmSchema);
 
-	const form = superForm(defaults({ key: params.key }, zod4(svmSchema)), {
+	const form = superForm(defaults({ key: params.key || '' }, zod4(svmSchema)), {
 		SPA: true,
 		resetForm: false,
 		validators: zod4(svmSchema),
