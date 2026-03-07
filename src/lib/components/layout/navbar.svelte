@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
@@ -59,7 +60,9 @@
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
-			<a class={cn(buttonVariants({ variant: 'ghost' }), 'text-xl')} href="/">OBD Tools</a>
+			<a class={cn(buttonVariants({ variant: 'ghost' }), 'text-xl')} href={resolve('/')}
+				>OBD Tools</a
+			>
 		</div>
 		<div class="hidden shrink-0 lg:flex">
 			<NavigationMenu.Root viewport={isMobile.current}>

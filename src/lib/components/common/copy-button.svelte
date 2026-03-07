@@ -11,22 +11,12 @@
 	// Props
 	interface Props extends Omit<ButtonProps, 'onclick'> {
 		text?: string;
-		copySuccessText?: string;
-		copyFailedText?: string;
 		copyTimeout?: number;
 		copyFn: () => Promise<boolean>;
 		class?: string;
 	}
 
-	let {
-		text,
-		copySuccessText,
-		copyFailedText,
-		copyTimeout = 2500,
-		copyFn,
-		class: classes,
-		...buttonProps
-	}: Props = $props();
+	let { text, copyTimeout = 2500, copyFn, class: classes, ...buttonProps }: Props = $props();
 
 	// Variables & States
 	let timeout = $state<NodeJS.Timeout | null>(null);

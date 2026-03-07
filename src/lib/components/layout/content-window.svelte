@@ -10,6 +10,7 @@
 	import Share2Icon from '@lucide/svelte/icons/share-2';
 	import { useSearchParams, type StandardSchemaV1 } from 'runed/kit';
 	import type { Snippet } from 'svelte';
+	import { SvelteURL } from 'svelte/reactivity';
 	import CopyButton from '../common/copy-button.svelte';
 	import DialogDrawer from '../common/dialog-drawer.svelte';
 
@@ -37,7 +38,7 @@
 	});
 
 	let shareLink = $derived.by<string>(() => {
-		const newUrl = new URL(page.url.pathname, page.url.origin);
+		const newUrl = new SvelteURL(page.url.pathname, page.url.origin);
 		if (includeParams && params.size > 0) newUrl.search = params.toString();
 		return newUrl.toString();
 	});
