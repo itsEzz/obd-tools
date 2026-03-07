@@ -9,7 +9,7 @@
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import { svmXor } from '$lib/logic/svm';
 	import { m } from '$lib/paraglide/messages';
-	import { svmSchema, svmSchemaWithDefault } from '$lib/schemas/svm';
+	import { svmSchemaWithDefault } from '$lib/schemas/svm';
 	import { copyText } from '$lib/utils/copy';
 	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
 	import CalculatorIcon from '@lucide/svelte/icons/calculator';
@@ -24,7 +24,7 @@
 	let newKey = $state<string | null>(null);
 	const params = useSearchParams(svmSchemaWithDefault);
 
-	const form = superForm(defaults({ value: params.value || '' }, zod4(svmSchemaWithDefault)), {
+	const form = superForm(defaults({ value: params.value }, zod4(svmSchemaWithDefault)), {
 		SPA: true,
 		resetForm: false,
 		validators: zod4(svmSchemaWithDefault),
@@ -58,7 +58,7 @@
 	} = form;
 
 	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
-	const showNewKey = $derived<boolean>(
+	const showResult = $derived<boolean>(
 		newKey !== null && $allErrors.length === 0 && !$submitting && !isTainted()
 	);
 
@@ -104,7 +104,7 @@
 	{/snippet}
 </DialogDrawer>
 
-<ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmSchema}>
+<ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmSchemaWithDefault}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
@@ -138,7 +138,7 @@
 					><CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}</Form.Button
 				>
 			</form>
-			{#if showNewKey}
+			{#if showResult}
 				<Item.Root variant="outline" class="p-2">
 					<Item.Media><BadgeCheckIcon class="size-6" /></Item.Media>
 					<Item.Content>
