@@ -24,7 +24,7 @@
 	let newKey = $state<string | null>(null);
 	const params = useSearchParams(svmSchemaWithDefault);
 
-	const form = superForm(defaults({ key: params.key || '' }, zod4(svmSchemaWithDefault)), {
+	const form = superForm(defaults({ value: params.value || '' }, zod4(svmSchemaWithDefault)), {
 		SPA: true,
 		resetForm: false,
 		validators: zod4(svmSchemaWithDefault),
@@ -32,9 +32,9 @@
 		onUpdate({ form }) {
 			if (!form.valid) return;
 
-			const result = svmXor(form.data.key);
+			const result = svmXor(form.data.value);
 			if (!result.ok) {
-				setError(form, 'key', m.form_generic_error_message());
+				setError(form, 'value', m.form_generic_error_message());
 				newKey = null;
 				return;
 			}
@@ -42,7 +42,7 @@
 			newKey = result.data;
 		},
 		onUpdated({ form }) {
-			params.key = form.data.key;
+			params.value = form.data.value;
 		}
 	});
 
@@ -118,16 +118,16 @@
 			</div>
 			<Separator />
 			<form method="POST" use:enhance>
-				<Form.Field {form} name="key">
+				<Form.Field {form} name="value">
 					<Form.Control>
 						{#snippet children({ props })}
 							<Form.Label>{m.svm_input_label()}</Form.Label>
 							<Input
 								{...props}
-								{...$constraints.key}
+								{...$constraints.value}
 								minlength={4}
 								maxlength={5}
-								bind:value={$formData.key}
+								bind:value={$formData.value}
 							/>
 						{/snippet}
 					</Form.Control>

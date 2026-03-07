@@ -17,10 +17,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ status: 400 }
 		);
 
-	const svmResult = svmXor(validationResult.data.key);
+	const svmResult = svmXor(validationResult.data.value);
 	if (!svmResult.ok) {
 		logger.error(
-			{ key: validationResult.data.key, error: svmResult.error },
+			{ value: validationResult.data.value, error: svmResult.error },
 			'SVM XOR calculation failed'
 		);
 		return json({ error: 'SVM XOR calculation failed' }, { status: 500 });
