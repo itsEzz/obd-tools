@@ -50,5 +50,9 @@
 	"svm_description": "Easily get rid of your<br /><b>Software Version Management (1555 / B201A)</b><br />fault code.",
 	"svm_input_label": "Key",
 	"svm_submit_label": "Calculate New Key",
-	"svm_result_label": "Your new key"
+	"svm_result_label": "Your new key",
+	"coding_compare_description": "Compare hex values instantly and highlight their differences with this simple side-by-side comparison tool.",
+	"coding_compare_input1_label": "Hex value 1",
+	"coding_compare_input2_label": "Hex value 2",
+	"coding_compare_submit_label": "Compare hex values"
 }
