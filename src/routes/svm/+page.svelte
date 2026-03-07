@@ -9,7 +9,7 @@
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import { svmXor } from '$lib/logic/svm';
 	import { m } from '$lib/paraglide/messages';
-	import { svmSchema } from '$lib/schemas/svm-schema';
+	import { svmSchema, svmSchemaWithDefault } from '$lib/schemas/svm';
 	import { copyText } from '$lib/utils/copy';
 	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
 	import CalculatorIcon from '@lucide/svelte/icons/calculator';
@@ -22,12 +22,12 @@
 	// Variables & States
 	let openTutorial = $state<boolean>(false);
 	let newKey = $state<string | null>(null);
-	const params = useSearchParams(svmSchema);
+	const params = useSearchParams(svmSchemaWithDefault);
 
-	const form = superForm(defaults({ key: params.key || '' }, zod4(svmSchema)), {
+	const form = superForm(defaults({ key: params.key || '' }, zod4(svmSchemaWithDefault)), {
 		SPA: true,
 		resetForm: false,
-		validators: zod4(svmSchema),
+		validators: zod4(svmSchemaWithDefault),
 		validationMethod: 'oninput',
 		onUpdate({ form }) {
 			if (!form.valid) return;

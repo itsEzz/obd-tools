@@ -1,5 +1,5 @@
 import { svmXor } from '$lib/logic/svm';
-import { svmSchema } from '$lib/schemas/svm-schema';
+import { svmSchema } from '$lib/schemas/svm';
 import { createChildLogger } from '$lib/server/logger';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

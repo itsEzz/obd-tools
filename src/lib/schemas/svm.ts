@@ -7,4 +7,6 @@ export const svmSchema = z.object({
 		.regex(/^[0-9A-Fa-f]{4}$|^[0-9]{5}$/, m.svm_schema_key_invalid())
 });
 
-export type SvmSchema = z.infer<typeof svmSchema>;
+export const svmSchemaWithDefault = svmSchema.extend({
+	key: svmSchema.shape.key.default('')
+});
