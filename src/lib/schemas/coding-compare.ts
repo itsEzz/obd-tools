@@ -7,24 +7,25 @@ const hexSchema = z
 
 const codingCompareBaseSchema = z.object({
 	value1: hexSchema,
-	value2: hexSchema
+	value2: hexSchema,
+	onlyDiff: z.boolean().default(false)
 });
 
-export const codingCompareSchema = codingCompareBaseSchema.check((ctx) => {
+export const codingCompareApiSchema = codingCompareBaseSchema.check((ctx) => {
 	if (ctx.value.value1.length !== ctx.value.value2.length) {
 		ctx.issues.push({
 			code: 'custom',
 			message: m.cc_schema_lengths_invalid(),
 			input: ctx.value.value1,
-			path: [ctx.value.value1.length < ctx.value.value2.length ? 'value1' : 'value2']
+			path: ['value1', 'value2']
 		});
 	}
 });
 
-export const codingCompareSchemaWithDefault = codingCompareBaseSchema
+export const codingCompareFormSchema = codingCompareBaseSchema
 	.extend({
-		value1: codingCompareSchema.shape.value1.default(''),
-		value2: codingCompareSchema.shape.value2.default('')
+		value1: codingCompareApiSchema.shape.value1.default(''),
+		value2: codingCompareApiSchema.shape.value2.default('')
 	})
 	.check((ctx) => {
 		if (ctx.value.value1.length !== ctx.value.value2.length) {
@@ -32,13 +33,13 @@ export const codingCompareSchemaWithDefault = codingCompareBaseSchema
 				code: 'custom',
 				message: m.cc_schema_lengths_invalid(),
 				input: ctx.value.value1,
-				path: ['value1']
-			});
-			ctx.issues.push({
-				code: 'custom',
-				message: m.cc_schema_lengths_invalid(),
-				input: ctx.value.value1,
-				path: ['value2']
+				path: [ctx.value.value1.length < ctx.value.value2.length ? 'value1' : 'value2']
 			});
 		}
 	});
+
+export const codingCompareParamsSchema = z.object({
+	value1: z.string().default(''),
+	value2: z.string().default(''),
+	onlyDiff: z.boolean().default(false)
+});

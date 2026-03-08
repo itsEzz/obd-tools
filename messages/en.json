@@ -54,5 +54,12 @@
 	"coding_compare_description": "Compare hex values instantly and highlight their differences with this simple side-by-side comparison tool.",
 	"coding_compare_input1_label": "Hex value 1",
 	"coding_compare_input2_label": "Hex value 2",
-	"coding_compare_submit_label": "Compare hex values"
+	"coding_compare_only_diff_label": "Only show bytes that differ",
+	"coding_compare_submit_label": "Compare hex values",
+	"coding_compare_copy_bbcode_label": "Copy table as BBCode",
+	"coding_compare_table_header_value1": "Hex value 1",
+	"coding_compare_table_header_value2": "Hex value 2",
+	"coding_compare_table_header_byte_number": "Byte No.",
+	"coding_compare_table_header_hex": "HEX",
+	"coding_compare_table_header_binary": "Bits"
 }

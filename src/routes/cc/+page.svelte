@@ -1,13 +1,19 @@
 <script lang="ts">
+	import CopyButton from '$lib/components/common/copy-button.svelte';
 	import ContentWindow from '$lib/components/layout/content-window.svelte';
 	import * as Form from '$lib/components/ui/form/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
-	import { codingCompare } from '$lib/logic/coding-compare';
+	import { Switch } from '$lib/components/ui/switch/index.js';
+	import * as Table from '$lib/components/ui/table/index.js';
+	import { codingCompare, generateCodingCompareBBCodeTable } from '$lib/logic/coding-compare';
 	import { m } from '$lib/paraglide/messages';
-	import { codingCompareSchemaWithDefault } from '$lib/schemas/coding-compare';
+	import { codingCompareFormSchema, codingCompareParamsSchema } from '$lib/schemas/coding-compare';
 	import type { CodingCompareResult } from '$lib/types/coding-compare';
-	import CalculatorIcon from '@lucide/svelte/icons/calculator';
+	import { copyText } from '$lib/utils/copy';
+	import { scrollIntoView } from '$lib/utils/scroll';
+	import DiffIcon from '@lucide/svelte/icons/diff';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { defaults, setError, superForm } from 'sveltekit-superforms';
@@ -15,22 +21,28 @@
 
 	// Variables & States
 	let codingCompareResult = $state<CodingCompareResult[] | null>(null);
-	const params = useSearchParams(codingCompareSchemaWithDefault);
+	const params = useSearchParams(codingCompareParamsSchema);
 
 	const form = superForm(
 		defaults(
-			{ value1: params.value1, value2: params.value2 },
-			zod4(codingCompareSchemaWithDefault)
+			{ value1: params.value1, value2: params.value2, onlyDiff: params.onlyDiff },
+			zod4(codingCompareFormSchema)
 		),
 		{
 			SPA: true,
 			resetForm: false,
-			validators: zod4(codingCompareSchemaWithDefault),
+			validators: zod4(codingCompareFormSchema),
 			validationMethod: 'oninput',
+			autoFocusOnError: false,
+			onChange(event) {
+				params.value1 = event.get('value1');
+				params.value2 = event.get('value2');
+				params.onlyDiff = event.get('onlyDiff');
+			},
 			onUpdate({ form }) {
 				if (!form.valid) return;
 
-				const result = codingCompare(form.data.value1, form.data.value2);
+				const result = codingCompare(form.data.value1, form.data.value2, form.data.onlyDiff);
 				if (!result.ok) {
 					setError(form, 'value1', m.form_generic_error_message());
 					setError(form, 'value2', m.form_generic_error_message());
@@ -40,9 +52,8 @@
 
 				codingCompareResult = result.data;
 			},
-			onUpdated({ form }) {
-				params.value1 = form.data.value1;
-				params.value2 = form.data.value2;
+			onUpdated() {
+				scrollIntoView('coding-compare-result');
 			}
 		}
 	);
@@ -63,6 +74,19 @@
 		codingCompareResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
 	);
 
+	// Handlers
+	async function handleCopyBBCode() {
+		if (!codingCompareResult) return false;
+		return await copyText(
+			generateCodingCompareBBCodeTable(
+				codingCompareResult,
+				$formData.value1,
+				$formData.value2,
+				$formData.onlyDiff
+			)
+		);
+	}
+
 	// Lifecycle
 	onMount(async () => {
 		const result = await validateForm({ update: true });
@@ -72,7 +96,7 @@
 
 <ContentWindow
 	title={m.navbar_coding_compare_label()}
-	urlSearchParamsSchema={codingCompareSchemaWithDefault}
+	urlSearchParamsSchema={codingCompareParamsSchema}
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
@@ -111,12 +135,77 @@
 
 					<Form.FieldErrors class="mb-2" />
 				</Form.Field>
-				<Form.Button class="w-full" disabled={!canSubmit}
-					><CalculatorIcon aria-hidden="true" />{m.coding_compare_submit_label()}</Form.Button
-				>
+				<Form.Field {form} name="onlyDiff">
+					<Form.Control>
+						{#snippet children({ props })}
+							<div class="flex items-center space-x-2">
+								<Switch {...props} {...$constraints.onlyDiff} bind:checked={$formData.onlyDiff} />
+								<Label for={props.id}>{m.coding_compare_only_diff_label()}</Label>
+							</div>
+						{/snippet}
+					</Form.Control>
+
+					<Form.FieldErrors class="mb-2" />
+				</Form.Field>
+				<Form.Button class="w-full" disabled={!canSubmit}>
+					<DiffIcon aria-hidden="true" />
+					{m.coding_compare_submit_label()}
+				</Form.Button>
 			</form>
 			{#if showResult}
-				<!-- Result will be displayed here -->
+				<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
+				<Table.Root id="coding-compare-result">
+					<Table.Caption>
+						<CopyButton copyFn={handleCopyBBCode} text={m.coding_compare_copy_bbcode_label()} />
+					</Table.Caption>
+					<Table.Header>
+						<Table.Row>
+							<Table.Row></Table.Row>
+							<Table.Head class="text-center" colspan={2}>
+								{m.coding_compare_table_header_value1()}
+							</Table.Head>
+							<Table.Head class="text-center" colspan={2}>
+								{m.coding_compare_table_header_value2()}
+							</Table.Head>
+						</Table.Row>
+						<Table.Row>
+							<Table.Head class="text-center">
+								{m.coding_compare_table_header_byte_number()}
+							</Table.Head>
+							<Table.Head class="text-center">{m.coding_compare_table_header_hex()}</Table.Head>
+							<Table.Head class="text-center">
+								{m.coding_compare_table_header_binary()}<br />7 6 5 4 3 2 1 0
+							</Table.Head>
+							<Table.Head class="text-center">{m.coding_compare_table_header_hex()}</Table.Head>
+							<Table.Head class="text-center">
+								{m.coding_compare_table_header_binary()}<br />7 6 5 4 3 2 1 0
+							</Table.Head>
+						</Table.Row>
+					</Table.Header>
+					<Table.Body>
+						{#each codingCompareResult as result (result)}
+							<Table.Row>
+								<Table.Cell class="text-center font-bold">{result.byteNo}</Table.Cell>
+								<Table.Cell class="text-center">{result.hex1}</Table.Cell>
+								<Table.Cell class="text-center text-nowrap">
+									{#each Object.values(result.bits1).reverse() as bin (bin)}
+										<span class:text-destructive={bin.differs}>
+											{bin.set ? '1 ' : '0 '}
+										</span>
+									{/each}
+								</Table.Cell>
+								<Table.Cell class="text-center">{result.hex2}</Table.Cell>
+								<Table.Cell class="text-center">
+									{#each Object.values(result.bits2).reverse() as bin (bin)}
+										<span class:text-destructive={bin.differs}>
+											{bin.set ? '1 ' : '0 '}
+										</span>
+									{/each}
+								</Table.Cell>
+							</Table.Row>
+						{/each}
+					</Table.Body>
+				</Table.Root>
 			{/if}
 		</div>
 	{/snippet}
