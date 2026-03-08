@@ -11,6 +11,7 @@
 	import { m } from '$lib/paraglide/messages';
 	import { svmFormSchema, svmParamsSchema } from '$lib/schemas/svm';
 	import { copyText } from '$lib/utils/copy';
+	import { scrollIntoView } from '$lib/utils/scroll';
 	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
 	import CalculatorIcon from '@lucide/svelte/icons/calculator';
 	import InfoIcon from '@lucide/svelte/icons/info';
@@ -43,6 +44,9 @@
 			}
 
 			newKey = result.data;
+		},
+		onUpdated() {
+			scrollIntoView('svm-result');
 		}
 	});
 
@@ -134,12 +138,12 @@
 
 					<Form.FieldErrors class="mb-2" />
 				</Form.Field>
-				<Form.Button class="w-full" disabled={!canSubmit}
-					><CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}</Form.Button
-				>
+				<Form.Button class="w-full" disabled={!canSubmit}>
+					<CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}
+				</Form.Button>
 			</form>
 			{#if showResult}
-				<Item.Root variant="outline" class="p-2">
+				<Item.Root variant="outline" class="p-2" id="svm-result">
 					<Item.Media><BadgeCheckIcon class="size-6" /></Item.Media>
 					<Item.Content>
 						<Item.Title>{m.svm_result_label()}:<b>{newKey}</b></Item.Title>
