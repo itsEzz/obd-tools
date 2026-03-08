@@ -9,7 +9,7 @@
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import { svmXor } from '$lib/logic/svm';
 	import { m } from '$lib/paraglide/messages';
-	import { svmSchemaWithDefault } from '$lib/schemas/svm';
+	import { svmFormSchema, svmParamsSchema } from '$lib/schemas/svm';
 	import { copyText } from '$lib/utils/copy';
 	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
 	import CalculatorIcon from '@lucide/svelte/icons/calculator';
@@ -22,13 +22,16 @@
 	// Variables & States
 	let openTutorial = $state<boolean>(false);
 	let newKey = $state<string | null>(null);
-	const params = useSearchParams(svmSchemaWithDefault);
+	const params = useSearchParams(svmParamsSchema);
 
-	const form = superForm(defaults({ value: params.value }, zod4(svmSchemaWithDefault)), {
+	const form = superForm(defaults({ value: params.value }, zod4(svmFormSchema)), {
 		SPA: true,
 		resetForm: false,
-		validators: zod4(svmSchemaWithDefault),
+		validators: zod4(svmFormSchema),
 		validationMethod: 'oninput',
+		onChange(event) {
+			params.value = event.get('value');
+		},
 		onUpdate({ form }) {
 			if (!form.valid) return;
 
@@ -40,9 +43,6 @@
 			}
 
 			newKey = result.data;
-		},
-		onUpdated({ form }) {
-			params.value = form.data.value;
 		}
 	});
 
@@ -104,7 +104,7 @@
 	{/snippet}
 </DialogDrawer>
 
-<ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmSchemaWithDefault}>
+<ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmParamsSchema}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">

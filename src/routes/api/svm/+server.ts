@@ -1,5 +1,5 @@
 import { svmXor } from '$lib/logic/svm';
-import { svmSchema } from '$lib/schemas/svm';
+import { svmApiSchema } from '$lib/schemas/svm';
 import { createChildLogger } from '$lib/server/logger';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -9,7 +9,7 @@ const logger = createChildLogger('api.svm');
 export const POST: RequestHandler = async ({ request }) => {
 	const body = await request.json();
 
-	const validationResult = svmSchema.safeParse(body);
+	const validationResult = svmApiSchema.safeParse(body);
 
 	if (!validationResult.success)
 		return json(
