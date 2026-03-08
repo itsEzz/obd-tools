@@ -55,14 +55,14 @@
 	disabled={buttonProps.disabled || copyStatus !== 'idle'}
 	aria-disabled={buttonProps.disabled || copyStatus !== 'idle'}
 >
-	{#if text}
-		<span>{text}</span>
-	{/if}
 	{#if copyStatus === 'idle'}
 		<Copy aria-hidden="true" />
 	{:else if copyStatus === 'copied'}
 		<CircleCheck aria-hidden="true" />
 	{:else if copyStatus === 'failed'}
 		<CircleX aria-hidden="true" />
+	{/if}
+	{#if text}
+		<span>{text}</span>
 	{/if}
 </Button>
