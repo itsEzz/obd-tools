@@ -8,7 +8,7 @@ const hexSchema = z
 const codingCompareBaseSchema = z.object({
 	value1: hexSchema,
 	value2: hexSchema,
-	onlyDiff: z.boolean().default(false)
+	onlyDiff: z.boolean(m.schema_boolean_invalid()).default(false)
 });
 
 export const codingCompareApiSchema = codingCompareBaseSchema.check((ctx) => {
