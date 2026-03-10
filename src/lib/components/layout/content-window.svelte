@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Button } from '$lib/components/ui/button/index.js';
+	import { buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { emptySchema } from '$lib/schemas/empty-schema';
+	import { cn } from '$lib/utils';
 	import { copyText } from '$lib/utils/copy';
 	import Share2Icon from '@lucide/svelte/icons/share-2';
 	import { useSearchParams, type StandardSchemaV1 } from 'runed/kit';
@@ -76,15 +78,19 @@
 </DialogDrawer>
 
 <div class="mockup-window relative m-2 w-fit max-w-3xl border">
-	<Button
-		class="absolute top-1.5 right-2"
-		size="icon"
-		variant="outline"
-		onclick={handleOpenShareDialog}
-		aria-label={m.share_page_dialog_title()}
-	>
-		<Share2Icon aria-hidden="true" />
-	</Button>
+	<Tooltip.Root>
+		<Tooltip.Trigger
+			class={cn('absolute top-1.5 right-2', buttonVariants({ variant: 'outline', size: 'icon' }))}
+			aria-label={m.share_page_dialog_title()}
+			onclick={handleOpenShareDialog}
+		>
+			<Share2Icon aria-hidden="true" />
+		</Tooltip.Trigger>
+		<Tooltip.Content>
+			<p>{m.share_page_dialog_title()}</p>
+		</Tooltip.Content>
+	</Tooltip.Root>
+
 	<div class="flex justify-center border-t px-4 py-5">
 		<div class="flex flex-col">
 			{#if title && title.length > 0}

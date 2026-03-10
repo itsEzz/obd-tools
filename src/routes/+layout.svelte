@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/layout/footer.svelte';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import './layout.css';
@@ -33,13 +34,15 @@
 	{m.skip_to_main_content_label()}
 </a>
 
-<Navbar />
+<Tooltip.Provider>
+	<Navbar />
 
-<main
-	id="main-content"
-	class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
->
-	{@render children()}
-</main>
+	<main
+		id="main-content"
+		class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+	>
+		{@render children()}
+	</main>
 
-<Footer />
+	<Footer />
+</Tooltip.Provider>
