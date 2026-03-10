@@ -1,7 +1,8 @@
+import { page } from '$app/state';
 import type { HexToBinaryResult } from '$lib/types/hex-to-binary';
 import { tc, type Result } from '@itsezz/try-catch';
 
-export function hexToBinary(value: string): Result<HexToBinaryResult[]> {
+export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToBinaryResult[]> {
 	const results: HexToBinaryResult[] = [];
 	const byteCount = value.length / 2;
 
@@ -10,6 +11,8 @@ export function hexToBinary(value: string): Result<HexToBinaryResult[]> {
 			const startIdx = i * 2;
 			const hex = value.slice(startIdx, startIdx + 2).toUpperCase();
 			const byte = parseInt(hex, 16);
+
+			if (byte === 0 && onlySetBytes) continue;
 
 			const binary = byte.toString(2).padStart(8, '0');
 
@@ -34,4 +37,49 @@ export function hexToBinary(value: string): Result<HexToBinaryResult[]> {
 
 		return results;
 	});
+}
+
+export function generateHexToBinaryBBCodeTable(
+	hexToBinaryResult: HexToBinaryResult[],
+	hexVal: string
+): string {
+	const origin = page.url.origin;
+	let code = `
+		[table]
+			[tbody0]
+				[tr bgcolor="#D9D9D9"]
+					[td][center][font color="#000CFA"][b]Byte No[/b][/font][/center][/td]
+					[td][center][b]HEX[/b][/center][/td]
+					[td][center][b]Bit 7[/b][/center][/td]
+					[td][center][b]Bit 6[/b][/center][/td]
+					[td][center][b]Bit 5[/b][/center][/td]
+					[td][center][b]Bit 4[/b][/center][/td]
+					[td][center][b]Bit 3[/b][/center][/td]
+					[td][center][b]Bit 2[/b][/center][/td]
+					[td][center][b]Bit 1[/b][/center][/td]
+					[td][center][b]Bit 0[/b][/center][/td]
+				[/tr]`;
+
+	hexToBinaryResult.forEach((byte, idx) => {
+		if (idx % 2 === 0) {
+			code += '[tr bgcolor="#FFE699"]';
+		} else {
+			code += '[tr]';
+		}
+
+		code += `[td][center][font color="#000CFA"][b]${byte.byteNo}[/b][/font][/center][/td]`;
+		code += `[td][center]${byte.hex}[/center][/td]`;
+		Object.values(byte.bits)
+			.reverse()
+			.forEach((bitValue) => {
+				if (bitValue) code += '[td][center][b]1[/b][/center][/td]';
+				else code += '[td][center]0[/center][/td]';
+			});
+		code += '[/tr]';
+	});
+	code += `
+	[/tbody0]
+	[/table]
+	[a href="${origin}/htb?hexValue=${hexVal}"]Made with OBD Tools[/a]`;
+	return code;
 }
