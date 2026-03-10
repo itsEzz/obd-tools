@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button, type ButtonProps } from '$lib/components/ui/button/index.js';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { cn } from '$lib/utils';
 	import CircleCheck from '@lucide/svelte/icons/circle-check';
@@ -46,23 +47,41 @@
 	});
 </script>
 
-<Button
-	{...buttonProps}
-	size={text ? buttonProps.size || 'default' : buttonProps.size || 'icon'}
-	onclick={handleClick}
-	class={cn(classes, copyStatus !== 'idle' && 'cursor-default')}
-	aria-label={text || m.copy_button_aria_label()}
-	disabled={buttonProps.disabled || copyStatus !== 'idle'}
-	aria-disabled={buttonProps.disabled || copyStatus !== 'idle'}
->
-	{#if copyStatus === 'idle'}
-		<Copy aria-hidden="true" />
-	{:else if copyStatus === 'copied'}
-		<CircleCheck aria-hidden="true" />
-	{:else if copyStatus === 'failed'}
-		<CircleX aria-hidden="true" />
-	{/if}
-	{#if text}
-		<span>{text}</span>
-	{/if}
-</Button>
+{#snippet button(props?: Record<string, unknown>)}
+	<Button
+		{...props}
+		{...buttonProps}
+		size={text ? buttonProps.size || 'default' : buttonProps.size || 'icon'}
+		onclick={handleClick}
+		class={cn(classes, copyStatus !== 'idle' && 'cursor-default')}
+		aria-label={text || m.copy_button_aria_label()}
+		disabled={buttonProps.disabled || copyStatus !== 'idle'}
+		aria-disabled={buttonProps.disabled || copyStatus !== 'idle'}
+	>
+		{#if copyStatus === 'idle'}
+			<Copy aria-hidden="true" />
+		{:else if copyStatus === 'copied'}
+			<CircleCheck aria-hidden="true" />
+		{:else if copyStatus === 'failed'}
+			<CircleX aria-hidden="true" />
+		{/if}
+		{#if text}
+			<span>{text}</span>
+		{/if}
+	</Button>
+{/snippet}
+
+{#if text}
+	{@render button()}
+{:else}
+	<Tooltip.Root>
+		<Tooltip.Trigger>
+			{#snippet child({ props })}
+				{@render button(props)}
+			{/snippet}
+		</Tooltip.Trigger>
+		<Tooltip.Content>
+			<p>{m.copy_button_aria_label()}</p>
+		</Tooltip.Content>
+	</Tooltip.Root>
+{/if}
