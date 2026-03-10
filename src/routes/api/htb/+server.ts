@@ -25,7 +25,10 @@ export const POST: RequestHandler = async ({ request }) => {
 		);
 	}
 
-	const hexToBinaryResult = hexToBinary(validationResult.data.value);
+	const hexToBinaryResult = hexToBinary(
+		validationResult.data.value,
+		validationResult.data.onlySetBytes
+	);
 	if (!hexToBinaryResult.ok) {
 		logger.error(
 			{ value: validationResult.data.value, error: hexToBinaryResult.error },
