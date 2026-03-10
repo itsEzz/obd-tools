@@ -22,7 +22,7 @@
 
 	// Variables & States
 	let openTutorial = $state<boolean>(false);
-	let newKey = $state<string | null>(null);
+	let svmResult = $state<string | null>(null);
 	const params = useSearchParams(svmParamsSchema);
 
 	const form = superForm(defaults({ value: params.value }, zod4(svmFormSchema)), {
@@ -39,11 +39,11 @@
 			const result = svmXor(form.data.value);
 			if (!result.ok) {
 				setError(form, 'value', m.form_generic_error_message());
-				newKey = null;
+				svmResult = null;
 				return;
 			}
 
-			newKey = result.data;
+			svmResult = result.data;
 		},
 		onUpdated() {
 			scrollIntoView('svm-result');
@@ -63,13 +63,13 @@
 
 	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
 	const showResult = $derived<boolean>(
-		newKey !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+		svmResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
 	);
 
 	// Handlers
 	async function handleCopyNewKey() {
-		if (!newKey) return false;
-		return await copyText(newKey);
+		if (!svmResult) return false;
+		return await copyText(svmResult);
 	}
 
 	function handleOpenTutorial() {
@@ -146,7 +146,7 @@
 				<Item.Root variant="outline" class="p-2" id="svm-result">
 					<Item.Media><BadgeCheckIcon class="size-6" /></Item.Media>
 					<Item.Content>
-						<Item.Title>{m.svm_result_label()}:<b>{newKey}</b></Item.Title>
+						<Item.Title>{m.svm_result_label()}:<b>{svmResult}</b></Item.Title>
 					</Item.Content>
 					<Item.Actions>
 						<CopyButton copyFn={handleCopyNewKey} variant="outline" size="icon-sm" />
