@@ -1,21 +1,29 @@
 import { svmXor } from '$lib/logic/svm';
 import { svmApiSchema } from '$lib/schemas/svm';
 import { createChildLogger } from '$lib/server/logger';
+import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 const logger = createChildLogger('api.svm');
 
 export const POST: RequestHandler = async ({ request }) => {
-	const body = await request.json();
+	const body = await tca(request.json());
 
-	const validationResult = svmApiSchema.safeParse(body);
+	if (!body.ok) {
+		logger.error('Failed to parse JSON body');
+		return json({ error: 'Invalid JSON body' }, { status: 400 });
+	}
 
-	if (!validationResult.success)
+	const validationResult = svmApiSchema.safeParse(body.data);
+
+	if (!validationResult.success) {
+		logger.error('JSON Body validation failed');
 		return json(
-			{ error: 'Body validation failed', issues: validationResult.error.issues },
+			{ error: 'JSON Body validation failed', issues: validationResult.error.issues },
 			{ status: 400 }
 		);
+	}
 
 	const svmResult = svmXor(validationResult.data.value);
 	if (!svmResult.ok) {
