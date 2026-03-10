@@ -156,7 +156,7 @@
 				<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
 				<Table.Root id="coding-compare-result">
 					<Table.Caption>
-						<CopyButton copyFn={handleCopyBBCode} text={m.coding_compare_copy_bbcode_label()} />
+						<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
 					</Table.Caption>
 					<Table.Header>
 						<Table.Row>
@@ -183,12 +183,12 @@
 						</Table.Row>
 					</Table.Header>
 					<Table.Body>
-						{#each codingCompareResult as result (result)}
+						{#each codingCompareResult as result (result.byteNo)}
 							<Table.Row>
 								<Table.Cell class="text-center font-bold">{result.byteNo}</Table.Cell>
 								<Table.Cell class="text-center">{result.hex1}</Table.Cell>
 								<Table.Cell class="text-center text-nowrap">
-									{#each Object.values(result.bits1).reverse() as bin (bin)}
+									{#each Object.values(result.bits1).reverse() as bin, index (`bin1-${index}-${String(bin)}`)}
 										<span class:text-destructive={bin.differs}>
 											{bin.set ? '1 ' : '0 '}
 										</span>
@@ -196,7 +196,7 @@
 								</Table.Cell>
 								<Table.Cell class="text-center">{result.hex2}</Table.Cell>
 								<Table.Cell class="text-center">
-									{#each Object.values(result.bits2).reverse() as bin (bin)}
+									{#each Object.values(result.bits2).reverse() as bin, index (`bin2-${index}-${String(bin)}`)}
 										<span class:text-destructive={bin.differs}>
 											{bin.set ? '1 ' : '0 '}
 										</span>
