@@ -1,6 +1,6 @@
 import { building } from '$app/environment';
 import * as privateEnv from '$env/dynamic/private';
-import { serverEnvSchema, type ServerEnv } from '$lib/schemas/env-schema';
+import { serverEnvSchema, type ServerEnv } from '$lib/schemas/env';
 import { emptyStringsToUndefined } from '$lib/utils/env';
 
 const result = serverEnvSchema.safeParse(

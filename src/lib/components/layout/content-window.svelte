@@ -6,7 +6,7 @@
 	import { Switch } from '$lib/components/ui/switch/index.js';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
-	import { emptySchema } from '$lib/schemas/empty-schema';
+	import { emptySchema } from '$lib/schemas/empty';
 	import { cn } from '$lib/utils';
 	import { copyText } from '$lib/utils/copy';
 	import Share2Icon from '@lucide/svelte/icons/share-2';
