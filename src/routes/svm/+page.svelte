@@ -131,6 +131,7 @@
 								{...$constraints.value}
 								minlength={4}
 								maxlength={5}
+								placeholder="e.g. 16835 or A9CD"
 								bind:value={$formData.value}
 							/>
 						{/snippet}

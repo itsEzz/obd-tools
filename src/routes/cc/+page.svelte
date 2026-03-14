@@ -113,6 +113,7 @@
 								{...props}
 								{...$constraints.value1}
 								minlength={2}
+								placeholder="e.g. 72C3B9E3BB836A8BD2E5E968D075EAE8"
 								bind:value={$formData.value1}
 							/>
 						{/snippet}
@@ -128,6 +129,7 @@
 								{...props}
 								{...$constraints.value2}
 								minlength={2}
+								placeholder="e.g. DF88FF7C14BEEDC185CCBBAEDE6D82AB"
 								bind:value={$formData.value2}
 							/>
 						{/snippet}

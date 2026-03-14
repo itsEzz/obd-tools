@@ -104,6 +104,7 @@
 								{...props}
 								{...$constraints.value}
 								minlength={2}
+								placeholder="e.g. 72C3B9E3BB836A8BD2E5E968D075EAE8"
 								bind:value={$formData.value}
 							/>
 						{/snippet}
