@@ -6,16 +6,16 @@ export const bcFormatValues = ['compact', 'extended', 'full'] as const;
 export const bcSchema = z.object({
 	backup: z
 		.string(m.schema_string_invalid())
-		.min(400, m.bc_schema_backup_min_length({ minLength: 400 }))
-		.max(500000, m.bc_schema_backup_max_length({ maxLength: 500000 })),
+		.min(400, m.backup_converter_schema_backup_min_length({ minLength: 400 }))
+		.max(500000, m.backup_converter_schema_backup_max_length({ maxLength: 500000 })),
 	delimiter: z
 		.string(m.schema_string_invalid())
-		.length(1, m.bc_schema_delimiter_invalid())
+		.length(1, m.backup_converter_schema_delimiter_invalid())
 		.default(';'),
 	format: z
 		.enum(
 			bcFormatValues,
-			m.bc_schema_format_invalid({
+			m.backup_converter_schema_format_invalid({
 				format1: bcFormatValues[0],
 				format2: bcFormatValues[1],
 				format3: bcFormatValues[2]

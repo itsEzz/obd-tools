@@ -15,7 +15,7 @@ export const codingCompareApiSchema = codingCompareBaseSchema.check((ctx) => {
 	if (ctx.value.value1.length !== ctx.value.value2.length) {
 		ctx.issues.push({
 			code: 'custom',
-			message: m.cc_schema_lengths_invalid(),
+			message: m.coding_compare_schema_lengths_invalid(),
 			input: ctx.value.value1,
 			path: ['value1', 'value2']
 		});
@@ -31,7 +31,7 @@ export const codingCompareFormSchema = codingCompareBaseSchema
 		if (ctx.value.value1.length !== ctx.value.value2.length) {
 			ctx.issues.push({
 				code: 'custom',
-				message: m.cc_schema_lengths_invalid(),
+				message: m.coding_compare_schema_lengths_invalid(),
 				input: ctx.value.value1,
 				path: [ctx.value.value1.length < ctx.value.value2.length ? 'value1' : 'value2']
 			});
