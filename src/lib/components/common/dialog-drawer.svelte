@@ -9,7 +9,7 @@
 	interface Props {
 		open: boolean;
 		onOpenChange?: (open: boolean) => void;
-		title: string | Snippet;
+		title?: string | Snippet;
 		description?: string | Snippet;
 		body: Snippet;
 		footer?: Snippet;
@@ -65,13 +65,15 @@
 			aria-describedby={descriptionId}
 		>
 			<Dialog.Header>
-				<Dialog.Title id={titleId}>
-					{#if typeof title === 'string'}
-						{title}
-					{:else}
-						{@render title()}
-					{/if}
-				</Dialog.Title>
+				{#if title}
+					<Dialog.Title id={titleId}>
+						{#if typeof title === 'string'}
+							{title}
+						{:else}
+							{@render title()}
+						{/if}
+					</Dialog.Title>
+				{/if}
 				{#if description}
 					<Dialog.Description id={descriptionId}>
 						{#if typeof description === 'string'}
@@ -103,13 +105,15 @@
 			aria-describedby={descriptionId}
 		>
 			<Drawer.Header class="text-start">
-				<Drawer.Title id={titleId}>
-					{#if typeof title === 'string'}
-						{title}
-					{:else}
-						{@render title()}
-					{/if}
-				</Drawer.Title>
+				{#if title}
+					<Drawer.Title id={titleId}>
+						{#if typeof title === 'string'}
+							{title}
+						{:else}
+							{@render title()}
+						{/if}
+					</Drawer.Title>
+				{/if}
 				{#if description}
 					<Drawer.Description id={descriptionId}>
 						{#if typeof description === 'string'}
