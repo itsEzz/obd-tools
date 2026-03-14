@@ -1,2 +1,281 @@
 <script lang="ts">
+	import CopyButton from '$lib/components/common/copy-button.svelte';
+	import ContentWindow from '$lib/components/layout/content-window.svelte';
+	import * as Form from '$lib/components/ui/form/index.js';
+	import * as Item from '$lib/components/ui/item/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
+	import { Separator } from '$lib/components/ui/separator/index.js';
+	import { Switch } from '$lib/components/ui/switch/index.js';
+	import * as Table from '$lib/components/ui/table/index.js';
+	import { Textarea } from '$lib/components/ui/textarea/index.js';
+	import { generatePrCodesBBCodeTable, lookupPrCodes } from '$lib/logic/pr-codes';
+	import { m } from '$lib/paraglide/messages';
+	import {
+		prCodesFormInputSchema,
+		prCodesFormOutputSchema,
+		prCodesParamsSchema
+	} from '$lib/schemas/pr-codes';
+	import type { PrCodeResult } from '$lib/types/pr-codes';
+	import { copyText } from '$lib/utils/copy';
+	import { scrollIntoView } from '$lib/utils/scroll';
+	import SearchIcon from '@lucide/svelte/icons/search';
+	import { useSearchParams } from 'runed/kit';
+	import { onMount } from 'svelte';
+	import { defaults, setError, superForm } from 'sveltekit-superforms';
+	import { zod4 } from 'sveltekit-superforms/adapters';
+	import SearchAlertIcon from '@lucide/svelte/icons/search-alert';
+	import Button from '$lib/components/ui/button/button.svelte';
+	import MessageCircleQuestionMark from '@lucide/svelte/icons/message-circle-question-mark';
+	import DialogDrawer from '$lib/components/common/dialog-drawer.svelte';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
+
+	// Variables & States
+	let openFaq = $state<boolean>(false);
+	let prCodesResult = $state<PrCodeResult[] | null>(null);
+	const params = useSearchParams(prCodesParamsSchema);
+
+	const form = superForm(
+		defaults(
+			{ codes: params.codes, onlyFoundCodes: params.onlyFoundCodes },
+			zod4(prCodesFormInputSchema)
+		),
+		{
+			SPA: true,
+			resetForm: false,
+			validators: zod4(prCodesFormInputSchema),
+			validationMethod: 'oninput',
+			onChange(event) {
+				params.codes = event.get('codes');
+				params.onlyFoundCodes = event.get('onlyFoundCodes');
+			},
+			onUpdate({ form }) {
+				if (!form.valid) return;
+
+				const parsedCodes = prCodesFormOutputSchema.safeParse(form.data);
+
+				if (!parsedCodes.success) {
+					setError(form, 'codes', m.form_generic_error_message());
+					prCodesResult = null;
+					return;
+				}
+
+				const result = lookupPrCodes(parsedCodes.data.codes, form.data.onlyFoundCodes);
+				if (!result.ok) {
+					setError(form, 'codes', m.form_generic_error_message());
+					prCodesResult = null;
+					return;
+				}
+
+				prCodesResult = result.data;
+			},
+			onUpdated() {
+				scrollIntoView('pr-codes-result');
+			}
+		}
+	);
+
+	const {
+		form: formData,
+		constraints,
+		allErrors,
+		submitting,
+		isTainted,
+		enhance,
+		validateForm,
+		submit
+	} = form;
+
+	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
+	const showResult = $derived<boolean>(
+		prCodesResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+	);
+
+	// Handlers
+	async function handleCopyBBCode() {
+		if (!prCodesResult) return false;
+		return await copyText(generatePrCodesBBCodeTable(prCodesResult, $formData.codes));
+	}
+
+	function handleOpenFaq() {
+		openFaq = true;
+	}
+
+	// Lifecycle
+	onMount(async () => {
+		const result = await validateForm({ update: true });
+		if (result.valid) submit();
+	});
 </script>
+
+<DialogDrawer bind:open={openFaq}>
+	{#snippet body()}
+		<Tabs.Root value="faq">
+			<Tabs.List class="w-full">
+				<Tabs.Trigger value="faq">{m.pr_codes_faq_label()}</Tabs.Trigger>
+				<Tabs.Trigger value="example">{m.pr_codes_faq_example_label()}</Tabs.Trigger>
+			</Tabs.List>
+			<Tabs.Content value="faq">
+				<div class="chat chat-end">
+					<div class="chat-bubble bg-primary text-primary-foreground">
+						{m.pr_codes_faq_question_1()}
+					</div>
+				</div>
+				<div class="chat chat-start">
+					<div class="chat-bubble bg-secondary text-secondary-foreground">
+						{m.pr_codes_faq_answer_1()}
+					</div>
+				</div>
+				<div class="chat chat-end">
+					<div class="chat-bubble bg-primary text-primary-foreground">
+						{m.pr_codes_faq_question_2()}
+					</div>
+				</div>
+				<div class="chat chat-start">
+					<div class="chat-bubble bg-secondary text-secondary-foreground">
+						{@html m.pr_codes_faq_answer_2()}
+					</div>
+				</div>
+			</Tabs.Content>
+			<Tabs.Content value="example" class="w-full overflow-hidden">
+				<img
+					src="/pr_code_sticker.jpg"
+					class="h-full w-full rounded-lg object-contain"
+					alt={m.pr_codes_faq_example_img_alt()}
+				/>
+			</Tabs.Content>
+		</Tabs.Root>
+	{/snippet}
+</DialogDrawer>
+
+<ContentWindow title={m.navbar_pr_codes_lookup_label()} urlSearchParamsSchema={prCodesParamsSchema}>
+	{#snippet body()}
+		<div class="flex flex-col gap-4">
+			<p class="rounded-lg bg-secondary p-4 text-center">
+				{@html m.pr_codes_description()}
+			</p>
+			<div class="flex justify-center">
+				<Button class="w-fit" variant="outline" onclick={handleOpenFaq}>
+					<MessageCircleQuestionMark aria-hidden="true" />
+					{m.pr_codes_faq_label()}
+				</Button>
+			</div>
+			<Separator />
+			<form method="POST" use:enhance>
+				<Form.Field {form} name="codes">
+					<Form.Control>
+						{#snippet children({ props })}
+							<Form.Label>{m.pr_codes_input_label()}</Form.Label>
+							<Textarea
+								{...props}
+								{...$constraints.codes}
+								minlength={3}
+								placeholder="e.g. QF1 DL1 D9X D7J"
+								bind:value={$formData.codes}
+							/>
+						{/snippet}
+					</Form.Control>
+
+					<Form.FieldErrors class="mb-2" />
+				</Form.Field>
+				<Form.Field {form} name="onlyFoundCodes">
+					<Form.Control>
+						{#snippet children({ props })}
+							<div class="flex items-center space-x-2">
+								<Switch
+									{...props}
+									{...$constraints.onlyFoundCodes}
+									bind:checked={$formData.onlyFoundCodes}
+								/>
+								<Label for={props.id}>{m.pr_codes_only_found_codes_label()}</Label>
+							</div>
+						{/snippet}
+					</Form.Control>
+
+					<Form.FieldErrors class="mb-2" />
+				</Form.Field>
+				<Form.Button class="w-full" disabled={!canSubmit}>
+					<SearchIcon aria-hidden="true" />{m.pr_codes_submit_label()}
+				</Form.Button>
+			</form>
+			{#if showResult}
+				{#if prCodesResult!.length === 0}
+					<Item.Root variant="outline" class="p-2" id="pr-codes-result">
+						<Item.Media><SearchAlertIcon class="size-6" /></Item.Media>
+						<Item.Content>
+							<Item.Title>{m.pr_codes_no_result_title()}</Item.Title>
+							<Item.Description>{m.pr_codes_no_result_description()}</Item.Description>
+						</Item.Content>
+					</Item.Root>
+				{:else}
+					<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
+					<Table.Root id="pr-codes-result">
+						<Table.Caption>
+							<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
+						</Table.Caption>
+						<Table.Header>
+							<Table.Row>
+								<Table.Head class="text-center">
+									{m.pr_codes_table_header_code()}
+								</Table.Head>
+								<Table.Head class="text-center">{m.pr_codes_table_header_code_group()}</Table.Head>
+								<Table.Head>
+									{m.pr_codes_table_header_description()}
+								</Table.Head>
+							</Table.Row>
+						</Table.Header>
+						<Table.Body>
+							{#each prCodesResult as result (result.code)}
+								<Table.Row>
+									<Table.Cell class="text-center font-bold">{result.code}</Table.Cell>
+									<Table.Cell class="text-center">{result.codeGroup}</Table.Cell>
+									<Table.Cell>{result.description}</Table.Cell>
+								</Table.Row>
+							{/each}
+						</Table.Body>
+					</Table.Root>
+				{/if}
+			{/if}
+		</div>
+	{/snippet}
+</ContentWindow>
+
+<style>
+	.chat {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.chat-end {
+		place-items: end;
+		grid-template-columns: 1fr auto;
+	}
+
+	.chat-start {
+		place-items: start;
+		grid-template-columns: auto 1fr;
+	}
+
+	.chat-bubble {
+		position: relative;
+		display: block;
+		width: fit-content;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		max-width: 90%;
+		border-radius: var(--rounded-box, 1rem);
+		min-height: 2.75rem;
+		min-width: 2.75rem;
+	}
+
+	.chat-start .chat-bubble {
+		grid-column-start: 2;
+	}
+
+	.chat-end .chat-bubble {
+		grid-column-start: 1;
+	}
+</style>
