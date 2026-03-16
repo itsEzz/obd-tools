@@ -34,6 +34,7 @@
 			resetForm: false,
 			validators: zod4(hexToBinaryFormSchema),
 			validationMethod: 'oninput',
+			autoFocusOnError: false,
 			onChange(event) {
 				params.value = event.get('value');
 				params.onlySetBytes = event.get('onlySetBytes');

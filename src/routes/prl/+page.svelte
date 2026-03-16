@@ -44,6 +44,7 @@
 			resetForm: false,
 			validators: zod4(prCodesFormInputSchema),
 			validationMethod: 'oninput',
+			autoFocusOnError: false,
 			onChange(event) {
 				params.codes = event.get('codes');
 				params.onlyFoundCodes = event.get('onlyFoundCodes');

@@ -30,6 +30,7 @@
 		resetForm: false,
 		validators: zod4(svmFormSchema),
 		validationMethod: 'oninput',
+		autoFocusOnError: false,
 		onChange(event) {
 			params.value = event.get('value');
 		},
