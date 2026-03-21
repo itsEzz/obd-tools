@@ -39,7 +39,7 @@
 		return _params;
 	});
 
-	let shareLink = $derived.by<string>(() => {
+	const shareLink = $derived.by<string>(() => {
 		const newUrl = new SvelteURL(page.url.pathname, page.url.origin);
 		if (includeParams && params.size > 0) newUrl.search = params.toString();
 		return newUrl.toString();
@@ -91,7 +91,7 @@
 		</Tooltip.Content>
 	</Tooltip.Root>
 
-	<div class="flex justify-center border-t px-4 py-5">
+	<div class="flex justify-center overflow-hidden border-t px-4 py-5">
 		<div class="flex flex-col">
 			{#if title && title.length > 0}
 				<div class="text-center">
