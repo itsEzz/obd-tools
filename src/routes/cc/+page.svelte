@@ -63,15 +63,18 @@
 		constraints,
 		allErrors,
 		submitting,
+		tainted,
 		isTainted,
 		enhance,
 		validateForm,
 		submit
 	} = form;
 
-	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
+	const canSubmit = $derived<boolean>(
+		$allErrors.length === 0 && !$submitting && isTainted($tainted)
+	);
 	const showResult = $derived<boolean>(
-		codingCompareResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+		codingCompareResult !== null && $allErrors.length === 0 && !$submitting && !isTainted($tainted)
 	);
 
 	// Handlers

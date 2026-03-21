@@ -1,12 +1,15 @@
 <script lang="ts">
 	import CopyButton from '$lib/components/common/copy-button.svelte';
+	import DialogDrawer from '$lib/components/common/dialog-drawer.svelte';
 	import ContentWindow from '$lib/components/layout/content-window.svelte';
+	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Form from '$lib/components/ui/form/index.js';
 	import * as Item from '$lib/components/ui/item/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
 	import * as Table from '$lib/components/ui/table/index.js';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import { generatePrCodesBBCodeTable, lookupPrCodes } from '$lib/logic/pr-codes';
 	import { m } from '$lib/paraglide/messages';
@@ -18,16 +21,13 @@
 	import type { PrCodeResult } from '$lib/types/pr-codes';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
+	import MessageCircleQuestionMark from '@lucide/svelte/icons/message-circle-question-mark';
 	import SearchIcon from '@lucide/svelte/icons/search';
+	import SearchAlertIcon from '@lucide/svelte/icons/search-alert';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { defaults, setError, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import SearchAlertIcon from '@lucide/svelte/icons/search-alert';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import MessageCircleQuestionMark from '@lucide/svelte/icons/message-circle-question-mark';
-	import DialogDrawer from '$lib/components/common/dialog-drawer.svelte';
-	import * as Tabs from '$lib/components/ui/tabs/index.js';
 
 	// Variables & States
 	let openFaq = $state<boolean>(false);
@@ -80,15 +80,18 @@
 		constraints,
 		allErrors,
 		submitting,
+		tainted,
 		isTainted,
 		enhance,
 		validateForm,
 		submit
 	} = form;
 
-	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
+	const canSubmit = $derived<boolean>(
+		$allErrors.length === 0 && !$submitting && isTainted($tainted)
+	);
 	const showResult = $derived<boolean>(
-		prCodesResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+		prCodesResult !== null && $allErrors.length === 0 && !$submitting && !isTainted($tainted)
 	);
 
 	// Handlers

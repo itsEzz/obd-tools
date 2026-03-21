@@ -56,15 +56,18 @@
 		constraints,
 		allErrors,
 		submitting,
+		tainted,
 		isTainted,
 		enhance,
 		validateForm,
 		submit
 	} = form;
 
-	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
+	const isFormValid = $derived<boolean>(
+		$allErrors.length === 0 && !$submitting && isTainted($tainted)
+	);
 	const showResult = $derived<boolean>(
-		svmResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+		svmResult !== null && $allErrors.length === 0 && !$submitting && !isTainted($tainted)
 	);
 
 	// Handlers
@@ -140,7 +143,7 @@
 
 					<Form.FieldErrors class="mb-2" />
 				</Form.Field>
-				<Form.Button class="w-full" disabled={!canSubmit}>
+				<Form.Button class="w-full" disabled={!isFormValid}>
 					<CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}
 				</Form.Button>
 			</form>

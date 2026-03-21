@@ -1,8 +1,13 @@
 <script lang="ts">
+	import CopyButton from '$lib/components/common/copy-button.svelte';
 	import ContentWindow from '$lib/components/layout/content-window.svelte';
+	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import * as Form from '$lib/components/ui/form/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { Label } from '$lib/components/ui/label/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
+	import { Switch } from '$lib/components/ui/switch/index.js';
+	import * as Table from '$lib/components/ui/table/index.js';
 	import { generateHexToBinaryBBCodeTable, hexToBinary } from '$lib/logic/hex-to-binary';
 	import { m } from '$lib/paraglide/messages';
 	import { hexToBinaryFormSchema, hexToBinaryParamsSchema } from '$lib/schemas/hex-to-binary';
@@ -14,11 +19,6 @@
 	import { onMount } from 'svelte';
 	import { defaults, setError, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
-	import * as Table from '$lib/components/ui/table/index.js';
-	import CopyButton from '$lib/components/common/copy-button.svelte';
-	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { Switch } from '$lib/components/ui/switch/index.js';
 
 	// Variables & States
 	let hexToBinaryResult = $state<HexToBinaryResult[] | null>(null);
@@ -62,15 +62,18 @@
 		constraints,
 		allErrors,
 		submitting,
+		tainted,
 		isTainted,
 		enhance,
 		validateForm,
 		submit
 	} = form;
 
-	const canSubmit = $derived<boolean>($allErrors.length === 0 && !$submitting && isTainted());
+	const canSubmit = $derived<boolean>(
+		$allErrors.length === 0 && !$submitting && isTainted($tainted)
+	);
 	const showResult = $derived<boolean>(
-		hexToBinaryResult !== null && $allErrors.length === 0 && !$submitting && !isTainted()
+		hexToBinaryResult !== null && $allErrors.length === 0 && !$submitting && !isTainted($tainted)
 	);
 
 	// Handlers
