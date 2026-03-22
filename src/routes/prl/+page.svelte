@@ -164,7 +164,7 @@
 				</Button>
 			</div>
 			<Separator />
-			<form method="POST" use:enhance>
+			<form method="POST" use:enhance class="flex flex-col gap-2">
 				<Form.Field {form} name="codes">
 					<Form.Control>
 						{#snippet children({ props })}
@@ -179,7 +179,7 @@
 						{/snippet}
 					</Form.Control>
 
-					<Form.FieldErrors class="mb-2" />
+					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Field {form} name="onlyFoundCodes">
 					<Form.Control>
@@ -195,7 +195,7 @@
 						{/snippet}
 					</Form.Control>
 
-					<Form.FieldErrors class="mb-2" />
+					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Button class="w-full" disabled={!canSubmit}>
 					<SearchIcon aria-hidden="true" />{m.pr_codes_submit_label()}

@@ -125,7 +125,7 @@
 				</Button>
 			</div>
 			<Separator />
-			<form method="POST" use:enhance>
+			<form method="POST" use:enhance class="flex flex-col gap-2">
 				<Form.Field {form} name="value">
 					<Form.Control>
 						{#snippet children({ props })}
@@ -141,7 +141,7 @@
 						{/snippet}
 					</Form.Control>
 
-					<Form.FieldErrors class="mb-2" />
+					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Button class="w-full" disabled={!isFormValid}>
 					<CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}
