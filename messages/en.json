@@ -32,6 +32,8 @@
 	"copy_button_toast_success_title": "Copied to clipboard",
 	"copy_button_toast_failure_title": "Failed to copy to clipboard",
 	"copy_bbcode_button_label": "Copy table as BBCode",
+	"util_not_supported_toast_title": "Feature not supported",
+	"util_not_supported_toast_description": "Either your browser doesn't support this feature or you're not in a secure context (HTTPS).",
 	"share_page_dialog_title": "Share OBD Tools link",
 	"share_page_dialog_description": "Copy the link below to share the current page with others.",
 	"share_page_dialog_include_params_label": "Include parameters in URL",
