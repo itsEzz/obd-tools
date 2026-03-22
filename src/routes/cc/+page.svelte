@@ -78,7 +78,7 @@
 	);
 
 	// Handlers
-	async function handleCopyBBCode() {
+	async function handleCopyBBCode(): Promise<boolean> {
 		if (!codingCompareResult) return false;
 		return await copyText(
 			generateCodingCompareBBCodeTable(
@@ -159,6 +159,7 @@
 			</form>
 			{#if showResult}
 				<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
+				<Separator />
 				<Table.Root id="coding-compare-result">
 					<Table.Caption>
 						<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />

@@ -71,7 +71,7 @@
 	);
 
 	// Handlers
-	async function handleCopyNewKey() {
+	async function handleCopyNewKey(): Promise<boolean> {
 		if (!svmResult) return false;
 		return await copyText(svmResult);
 	}
@@ -147,7 +147,9 @@
 					<CalculatorIcon aria-hidden="true" />{m.svm_submit_label()}
 				</Form.Button>
 			</form>
+
 			{#if showResult}
+				<Separator />
 				<Item.Root variant="outline" class="p-2" id="svm-result">
 					<Item.Media><BadgeCheckIcon class="size-6" /></Item.Media>
 					<Item.Content>

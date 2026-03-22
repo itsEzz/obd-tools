@@ -95,7 +95,7 @@
 	);
 
 	// Handlers
-	async function handleCopyBBCode() {
+	async function handleCopyBBCode(): Promise<boolean> {
 		if (!prCodesResult) return false;
 		return await copyText(generatePrCodesBBCodeTable(prCodesResult, $formData.codes));
 	}
@@ -202,6 +202,7 @@
 				</Form.Button>
 			</form>
 			{#if showResult}
+				<Separator />
 				{#if prCodesResult!.length === 0}
 					<Item.Root variant="outline" class="p-2" id="pr-codes-result">
 						<Item.Media><SearchAlertIcon class="size-6" /></Item.Media>

@@ -8,6 +8,7 @@
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import './layout.css';
 
+	// Props
 	let { children } = $props();
 </script>
 
