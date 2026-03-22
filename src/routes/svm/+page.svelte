@@ -76,7 +76,7 @@
 		return await copyText(svmResult);
 	}
 
-	function handleOpenTutorial() {
+	function handleClickOpenTutorial() {
 		openTutorial = true;
 	}
 
@@ -119,7 +119,7 @@
 				{@html m.svm_description()}
 			</p>
 			<div class="flex justify-center">
-				<Button class="w-fit" variant="outline" onclick={handleOpenTutorial}>
+				<Button class="w-fit" variant="outline" onclick={handleClickOpenTutorial}>
 					<InfoIcon aria-hidden="true" />
 					{m.svm_step_by_step_label()}
 				</Button>

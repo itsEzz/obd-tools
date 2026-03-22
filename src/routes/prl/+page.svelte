@@ -100,7 +100,7 @@
 		return await copyText(generatePrCodesBBCodeTable(prCodesResult, $formData.codes));
 	}
 
-	function handleOpenFaq() {
+	function handleClickOpenFaq() {
 		openFaq = true;
 	}
 
@@ -158,7 +158,7 @@
 				{@html m.pr_codes_description()}
 			</p>
 			<div class="flex justify-center">
-				<Button class="w-fit" variant="outline" onclick={handleOpenFaq}>
+				<Button class="w-fit" variant="outline" onclick={handleClickOpenFaq}>
 					<MessageCircleQuestionMark aria-hidden="true" />
 					{m.pr_codes_faq_label()}
 				</Button>

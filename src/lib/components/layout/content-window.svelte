@@ -50,7 +50,7 @@
 		return await copyText(shareLink);
 	}
 
-	async function handleOpenShareDialog() {
+	async function handleClickOpenShareDialog() {
 		openShareDialog = true;
 	}
 </script>
@@ -82,7 +82,7 @@
 		<Tooltip.Trigger
 			class={cn('absolute top-1.5 right-2', buttonVariants({ variant: 'outline', size: 'icon' }))}
 			aria-label={m.share_page_dialog_title()}
-			onclick={handleOpenShareDialog}
+			onclick={handleClickOpenShareDialog}
 		>
 			<Share2Icon aria-hidden="true" />
 		</Tooltip.Trigger>

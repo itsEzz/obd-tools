@@ -24,7 +24,7 @@
 	let copyStatus = $state<'idle' | 'copied' | 'failed'>('idle');
 
 	// Handlers
-	async function handleClick() {
+	async function handleClickCopy() {
 		if (copyStatus !== 'idle') return;
 		const copySuccess = await copyFn();
 
@@ -52,7 +52,7 @@
 		{...props}
 		{...buttonProps}
 		size={text ? buttonProps.size || 'default' : buttonProps.size || 'icon'}
-		onclick={handleClick}
+		onclick={handleClickCopy}
 		class={cn(classes, copyStatus !== 'idle' && 'cursor-default')}
 		aria-label={text || m.copy_button_aria_label()}
 		disabled={buttonProps.disabled || copyStatus !== 'idle'}
