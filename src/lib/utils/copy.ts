@@ -1,5 +1,6 @@
 import { browser } from '$app/environment';
-import { isSuccess, tca } from '@itsezz/try-catch';
+import { m } from '$lib/paraglide/messages';
+import { tca } from '@itsezz/try-catch';
 import { toast } from 'svelte-sonner';
 
 /**
@@ -14,9 +15,8 @@ export function isCopySupported(showToast: boolean = false): boolean {
 	const isSupported = window.isSecureContext && 'clipboard' in navigator;
 
 	if (showToast && !isSupported) {
-		toast.info('Feature not supported', {
-			description:
-				"Either your browser doesn't support this feature or you're not in a secure context (HTTPS)."
+		toast.info(m.util_not_supported_toast_title(), {
+			description: m.util_not_supported_toast_description()
 		});
 	}
 
@@ -38,5 +38,5 @@ export async function copyText(text: string): Promise<boolean> {
 
 	const result = await tca(navigator.clipboard.writeText(text));
 
-	return isSuccess(result);
+	return result.ok;
 }
