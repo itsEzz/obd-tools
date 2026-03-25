@@ -10,6 +10,7 @@
 	import { svmXor } from '$lib/logic/svm';
 	import { m } from '$lib/paraglide/messages';
 	import { svmFormSchema, svmParamsSchema } from '$lib/schemas/svm';
+	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
 	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
@@ -23,7 +24,7 @@
 	// Variables & States
 	let openTutorial = $state<boolean>(false);
 	let svmResult = $state<string | null>(null);
-	const params = useSearchParams(svmParamsSchema);
+	const params = useSearchParams(svmParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(defaults({ value: params.value }, zod4(svmFormSchema)), {
 		SPA: true,

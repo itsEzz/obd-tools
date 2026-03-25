@@ -18,6 +18,7 @@
 		prCodesFormOutputSchema,
 		prCodesParamsSchema
 	} from '$lib/schemas/pr-codes';
+	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import type { PrCodeResult } from '$lib/types/pr-codes';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
@@ -32,7 +33,7 @@
 	// Variables & States
 	let openFaq = $state<boolean>(false);
 	let prCodesResult = $state<PrCodeResult[] | null>(null);
-	const params = useSearchParams(prCodesParamsSchema);
+	const params = useSearchParams(prCodesParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(
 		defaults(

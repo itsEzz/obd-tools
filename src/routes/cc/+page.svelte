@@ -10,6 +10,7 @@
 	import { codingCompare, generateCodingCompareBBCodeTable } from '$lib/logic/coding-compare';
 	import { m } from '$lib/paraglide/messages';
 	import { codingCompareFormSchema, codingCompareParamsSchema } from '$lib/schemas/coding-compare';
+	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import type { CodingCompareResult } from '$lib/types/coding-compare';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
@@ -21,7 +22,7 @@
 
 	// Variables & States
 	let codingCompareResult = $state<CodingCompareResult[] | null>(null);
-	const params = useSearchParams(codingCompareParamsSchema);
+	const params = useSearchParams(codingCompareParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(
 		defaults(
