@@ -66,7 +66,7 @@
 		</div>
 		<div class="hidden shrink-0 lg:flex">
 			<NavigationMenu.Root viewport={isMobile.current}>
-				<NavigationMenu.List class="flex-wrap">
+				<NavigationMenu.List class="flex-wrap gap-2">
 					{#each navItems as item (item.href)}
 						<NavigationMenu.Item>
 							<NavigationMenu.Link>
