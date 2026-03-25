@@ -138,7 +138,6 @@
 				</Form.Button>
 			</form>
 			{#if showResult}
-				<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
 				<Separator />
 				<Table.Root id="hex-to-binary-result">
 					<Table.Caption>

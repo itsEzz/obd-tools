@@ -92,7 +92,7 @@
 	</Tooltip.Root>
 
 	<div class="flex justify-center overflow-hidden border-t px-4 py-5">
-		<div class="flex flex-col">
+		<div class="flex flex-col overflow-x-auto">
 			{#if title && title.length > 0}
 				<div class="text-center">
 					<h1 class="text-4xl font-bold">{title}</h1>

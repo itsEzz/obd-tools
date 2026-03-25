@@ -213,7 +213,6 @@
 						</Item.Content>
 					</Item.Root>
 				{:else}
-					<!-- TODO fix horizonal scroll => must be limited to table only and not whole page -->
 					<Table.Root id="pr-codes-result">
 						<Table.Caption>
 							<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
