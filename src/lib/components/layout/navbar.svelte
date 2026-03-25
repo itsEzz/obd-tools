@@ -54,7 +54,7 @@
 					<DropdownMenu.Group class="space-y-1">
 						{#each navItems as item (item.href)}
 							<DropdownMenu.Item class={page.url.pathname === item.href ? 'bg-muted' : ''}>
-								<a href={item.href}>{item.label}</a>
+								<a href={resolve(item.href)}>{item.label}</a>
 							</DropdownMenu.Item>
 						{/each}
 					</DropdownMenu.Group>
@@ -72,7 +72,7 @@
 							<NavigationMenu.Link>
 								{#snippet child()}
 									<a
-										href={item.href}
+										href={resolve(item.href)}
 										class={navigationMenuTriggerStyle()}
 										class:bg-muted={page.url.pathname === item.href}>{item.label}</a
 									>
