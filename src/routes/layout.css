@@ -124,3 +124,43 @@
 		cursor: pointer;
 	}
 }
+
+/* https://github.com/VerisimilitudeX/RoundedScrollbar/blob/main/styles.css */
+.textarea-scrollbar {
+	/* width */
+
+	/* set the width of the scrollbar */
+
+	::-webkit-scrollbar {
+		width: 10px;
+		border-radius: 0px 5px 5px 0px;
+	}
+
+	/* Handle */
+
+	/* set the color of the scrollbar and the radius of its corners */
+
+	::-webkit-scrollbar-thumb {
+		background: rgb(150, 150, 150);
+		border-bottom-left-radius: 5px;
+		border-top-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
+	/* Handle on hover */
+
+	/* set the color of the scrollbar when hovered over */
+
+	::-webkit-scrollbar-thumb:hover {
+		background: rgb(131, 131, 131);
+	}
+
+	/* Handle on active */
+
+	/* set the color of the scrollbar when clicked */
+
+	::-webkit-scrollbar-thumb:active {
+		background: rgb(104, 104, 104);
+	}
+}
