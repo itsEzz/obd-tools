@@ -15,7 +15,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json({ error: 'Invalid JSON body' }, { status: 400 });
 	}
 
-	const validationResult = prCodesApiSchema.safeParse(body.data);
+	const validationResult = await prCodesApiSchema.safeParseAsync(body.data);
 
 	if (!validationResult.success) {
 		logger.error('JSON Body validation failed');
