@@ -31,7 +31,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	);
 	if (!hexToBinaryResult.ok) {
 		logger.error(
-			{ value: validationResult.data.value, error: hexToBinaryResult.error },
+			{ ...validationResult.data, error: hexToBinaryResult.error },
 			'Hex to binary failed'
 		);
 		return json({ error: 'Hex to binary failed' }, { status: 500 });

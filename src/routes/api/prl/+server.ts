@@ -31,7 +31,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	);
 	if (!prCodesResult.ok) {
 		logger.error(
-			{ value: validationResult.data.codes, error: prCodesResult.error },
+			{ ...validationResult.data, error: prCodesResult.error },
 			'PR codes lookup failed'
 		);
 		return json({ error: 'PR codes lookup failed' }, { status: 500 });
