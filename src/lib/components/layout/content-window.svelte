@@ -98,7 +98,7 @@
 					<h1 class="text-4xl font-bold">{title}</h1>
 				</div>
 			{/if}
-			<div class="mt-4">
+			<div class="mt-4 p-1">
 				{@render body()}
 			</div>
 		</div>
