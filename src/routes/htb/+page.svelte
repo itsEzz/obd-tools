@@ -18,7 +18,8 @@
 	import BinaryIcon from '@lucide/svelte/icons/binary';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
-	import { defaults, setError, superForm } from 'sveltekit-superforms';
+	import { toast } from 'svelte-sonner';
+	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 
 	// Variables & States
@@ -45,7 +46,9 @@
 
 				const result = hexToBinary(form.data.value, form.data.onlySetBytes);
 				if (!result.ok) {
-					setError(form, 'value', m.form_generic_error_message());
+					toast.error(m.generic_error_message_title(), {
+						description: m.generic_error_message_description()
+					});
 					hexToBinaryResult = null;
 					return;
 				}

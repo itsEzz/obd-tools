@@ -27,7 +27,8 @@
 	import SearchAlertIcon from '@lucide/svelte/icons/search-alert';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
-	import { defaults, setError, superForm } from 'sveltekit-superforms';
+	import { toast } from 'svelte-sonner';
+	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 
 	// Variables & States
@@ -56,14 +57,18 @@
 				const parsedCodes = prCodesFormOutputSchema.safeParse(form.data);
 
 				if (!parsedCodes.success) {
-					setError(form, 'codes', m.form_generic_error_message());
+					toast.error(m.generic_error_message_title(), {
+						description: m.generic_error_message_description()
+					});
 					prCodesResult = null;
 					return;
 				}
 
 				const result = lookupPrCodes(parsedCodes.data.codes, form.data.onlyFoundCodes);
 				if (!result.ok) {
-					setError(form, 'codes', m.form_generic_error_message());
+					toast.error(m.generic_error_message_title(), {
+						description: m.generic_error_message_description()
+					});
 					prCodesResult = null;
 					return;
 				}

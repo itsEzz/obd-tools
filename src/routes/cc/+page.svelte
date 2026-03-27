@@ -17,7 +17,8 @@
 	import DiffIcon from '@lucide/svelte/icons/diff';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
-	import { defaults, setError, superForm } from 'sveltekit-superforms';
+	import { toast } from 'svelte-sonner';
+	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
 
 	// Variables & States
@@ -45,8 +46,9 @@
 
 				const result = codingCompare(form.data.value1, form.data.value2, form.data.onlyDiff);
 				if (!result.ok) {
-					setError(form, 'value1', m.form_generic_error_message());
-					setError(form, 'value2', m.form_generic_error_message());
+					toast.error(m.generic_error_message_title(), {
+						description: m.generic_error_message_description()
+					});
 					codingCompareResult = null;
 					return;
 				}
