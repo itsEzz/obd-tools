@@ -46,7 +46,7 @@
 	});
 
 	// Handlers
-	async function handleCopyLink() {
+	async function handleCopyLink(): Promise<boolean> {
 		return await copyText(shareLink);
 	}
 
