@@ -10,9 +10,12 @@
 	import * as Table from '$lib/components/ui/table/index.js';
 	import { generateHexToBinaryBBCodeTable, hexToBinary } from '$lib/logic/hex-to-binary';
 	import { m } from '$lib/paraglide/messages';
-	import { hexToBinaryFormSchema, hexToBinaryParamsSchema } from '$lib/schemas/hex-to-binary';
+	import {
+		hexToBinaryFormSchema,
+		hexToBinaryParamsSchema,
+		type HexToBinaryResult
+	} from '$lib/schemas/hex-to-binary';
 	import { defaultSearchParamsOptions } from '$lib/search-params';
-	import type { HexToBinaryResult } from '$lib/types/hex-to-binary';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
 	import BinaryIcon from '@lucide/svelte/icons/binary';
@@ -23,7 +26,7 @@
 	import { zod4 } from 'sveltekit-superforms/adapters';
 
 	// Variables & States
-	let hexToBinaryResult = $state<HexToBinaryResult[] | null>(null);
+	let hexToBinaryResult = $state<HexToBinaryResult | null>(null);
 	const params = useSearchParams(hexToBinaryParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(

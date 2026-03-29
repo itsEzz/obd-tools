@@ -8,7 +8,7 @@ const hexSchema = z
 const codingCompareBaseSchema = z.object({
 	value1: hexSchema,
 	value2: hexSchema,
-	onlyDiff: z.boolean(m.schema_boolean_invalid()).default(false)
+	onlyDiff: z.boolean(m.schema_boolean_invalid()).optional().default(false)
 });
 
 export const codingCompareApiSchema = codingCompareBaseSchema.check((ctx) => {
@@ -43,3 +43,35 @@ export const codingCompareParamsSchema = z.object({
 	value2: z.string().default(''),
 	onlyDiff: z.boolean().default(false)
 });
+
+const bitSchema = z.object({ set: z.boolean(), differs: z.boolean() });
+
+const bitsSchema = z.object({
+	0: bitSchema,
+	1: bitSchema,
+	2: bitSchema,
+	3: bitSchema,
+	4: bitSchema,
+	5: bitSchema,
+	6: bitSchema,
+	7: bitSchema
+});
+
+const codingCompareResultSchema = z.array(
+	z.object({
+		byteNo: z.string(),
+		differs: z.boolean(),
+		hex1: z.string(),
+		hex2: z.string(),
+		bits1: bitsSchema,
+		bits2: bitsSchema
+	})
+);
+
+export type CodingCompareResult = z.infer<typeof codingCompareResultSchema>;
+
+export const codingCompareApiResponseSchema = z.object({
+	result: codingCompareResultSchema
+});
+
+export type CodingCompareApiResponse = z.infer<typeof codingCompareApiResponseSchema>;

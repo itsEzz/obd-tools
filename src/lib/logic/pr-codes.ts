@@ -1,10 +1,10 @@
 import { page } from '$app/state';
 import { m } from '$lib/paraglide/messages';
 import { prCodes } from '$lib/pr-codes';
-import type { PrCodeResult } from '$lib/types/pr-codes';
+import type { PrCodesResult } from '$lib/schemas/pr-codes';
 import { tc, type Result } from '@itsezz/try-catch';
 
-export function lookupPrCodes(codes: string[], onlyFoundCodes: boolean): Result<PrCodeResult[]> {
+export function lookupPrCodes(codes: string[], onlyFoundCodes: boolean): Result<PrCodesResult> {
 	return tc(() =>
 		[...new Set(codes)]
 			.map((code) => {
@@ -24,7 +24,7 @@ export function lookupPrCodes(codes: string[], onlyFoundCodes: boolean): Result<
 	);
 }
 
-export function generatePrCodesBBCodeTable(prCodesResult: PrCodeResult[], codes: string): string {
+export function generatePrCodesBBCodeTable(prCodesResult: PrCodesResult, codes: string): string {
 	const origin = page.url.origin;
 	let code = `
         [table]

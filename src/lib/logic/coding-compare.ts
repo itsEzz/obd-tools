@@ -1,13 +1,13 @@
 import { page } from '$app/state';
-import type { CodingCompareResult } from '$lib/types/coding-compare';
+import type { CodingCompareResult } from '$lib/schemas/coding-compare';
 import { tc, type Result } from '@itsezz/try-catch';
 
 export function codingCompare(
 	value1: string,
 	value2: string,
 	onlyDiff: boolean
-): Result<CodingCompareResult[]> {
-	const results: CodingCompareResult[] = [];
+): Result<CodingCompareResult> {
+	const results: CodingCompareResult = [];
 	const byteCount = value1.length / 2;
 
 	return tc(() => {
@@ -40,8 +40,8 @@ export function codingCompare(
 	});
 }
 
-function createBits(byte: number, compareByte: number): CodingCompareResult['bits1'] {
-	const bits: Partial<CodingCompareResult['bits1']> = {};
+function createBits(byte: number, compareByte: number): CodingCompareResult[0]['bits1'] {
+	const bits: Partial<CodingCompareResult[0]['bits1']> = {};
 
 	for (let bitPos = 0; bitPos < 8; bitPos++) {
 		const mask = 1 << bitPos;
@@ -49,17 +49,17 @@ function createBits(byte: number, compareByte: number): CodingCompareResult['bit
 		const compareIsSet = (compareByte & mask) !== 0;
 		const differs = isSet !== compareIsSet;
 
-		bits[bitPos as keyof CodingCompareResult['bits1']] = {
+		bits[bitPos as keyof CodingCompareResult[0]['bits1']] = {
 			set: isSet,
 			differs
 		};
 	}
 
-	return bits as CodingCompareResult['bits1'];
+	return bits as CodingCompareResult[0]['bits1'];
 }
 
 export function generateCodingCompareBBCodeTable(
-	codingCompareResult: CodingCompareResult[],
+	codingCompareResult: CodingCompareResult,
 	hexVal1: string,
 	hexVal2: string,
 	onlyDiff: boolean

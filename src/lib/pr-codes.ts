@@ -1,6 +1,6 @@
-import type { PrCodeResult } from './types/pr-codes';
+import type { PrCodesResult } from './schemas/pr-codes';
 
-export const prCodes: PrCodeResult[] = [
+export const prCodes: PrCodesResult = [
 	{
 		code: '#38',
 		codeGroup: 'MOT',

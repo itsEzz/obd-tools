@@ -23,8 +23,11 @@ export const maxFileSizeInBytes: { maxSize: number; readable: string } = {
 };
 
 const booleanSchema = z
-	.enum(['true', 'True', 'false', 'False'] as const)
-	.transform((val) => val.toLowerCase() === 'true');
+	.enum(['true', 'false'] as const)
+	.transform((val) => val === 'true')
+	.meta({
+		type: 'boolean'
+	});
 
 export const backupConverterApiSchema = z.object({
 	backup: z
@@ -39,10 +42,15 @@ export const backupConverterApiSchema = z.object({
 				readable_file_size_limit: maxFileSizeInBytes.readable
 			})
 		)
-		.transform(async (file) => await file.text()),
+		.transform(async (file) => await file.text())
+		.meta({
+			type: 'string',
+			format: 'binary'
+		}),
 	delimiter: z
 		.string(m.schema_string_invalid())
 		.length(1, m.backup_converter_schema_delimiter_invalid())
+		.optional()
 		.default(';'),
 	format: z
 		.enum(
@@ -53,13 +61,14 @@ export const backupConverterApiSchema = z.object({
 				format3: backupFormatValues[2]
 			})
 		)
+		.optional()
 		.default('compact'),
-	incBasicBkpInfo: booleanSchema.default(true),
-	incBasicCUInfo: booleanSchema.default(true),
-	incAdapData: booleanSchema.default(true),
-	incAdvIdentData: booleanSchema.default(true),
-	addEmptyLinesBtwCUs: booleanSchema.default(true),
-	addEmptyLinesBtwAdapAndAdvIdentData: booleanSchema.default(true)
+	incBasicBkpInfo: booleanSchema.optional().default(true),
+	incBasicCUInfo: booleanSchema.optional().default(true),
+	incAdapData: booleanSchema.optional().default(true),
+	incAdvIdentData: booleanSchema.optional().default(true),
+	addEmptyLinesBtwCUs: booleanSchema.optional().default(true),
+	addEmptyLinesBtwAdapAndAdvIdentData: booleanSchema.optional().default(true)
 });
 
 export const backupConverterFormSchema = z.object({
@@ -90,3 +99,13 @@ export const backupConverterParamsSchema = z.object({
 	addEmptyLinesBtwCUs: z.boolean(m.schema_boolean_invalid()).default(true),
 	addEmptyLinesBtwAdapAndAdvIdentData: z.boolean(m.schema_boolean_invalid()).default(true)
 });
+
+const backupConverterResultSchema = z.string();
+
+export type BackupConverterResult = z.infer<typeof backupConverterResultSchema>;
+
+export const backupConverterApiResponseSchema = z.object({
+	result: backupConverterResultSchema
+});
+
+export type BackupConverterApiResponse = z.infer<typeof backupConverterApiResponseSchema>;

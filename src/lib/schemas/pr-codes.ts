@@ -9,7 +9,7 @@ export const prCodesApiSchema = z.object({
 	codes: z
 		.array(codeElementSchema, m.schema_array_invalid())
 		.min(1, m.pr_codes_schema_array_empty()),
-	onlyFoundCodes: z.boolean(m.schema_boolean_invalid()).default(true)
+	onlyFoundCodes: z.boolean(m.schema_boolean_invalid()).optional().default(true)
 });
 
 export const prCodesFormInputSchema = z.object({
@@ -30,3 +30,19 @@ export const prCodesParamsSchema = z.object({
 	codes: z.string().default(''),
 	onlyFoundCodes: z.boolean().default(true)
 });
+
+const prCodesResultSchema = z.array(
+	z.object({
+		code: z.string(),
+		codeGroup: z.string(),
+		description: z.string()
+	})
+);
+
+export type PrCodesResult = z.infer<typeof prCodesResultSchema>;
+
+export const prCodesApiResponseSchema = z.object({
+	result: prCodesResultSchema
+});
+
+export type PrCodesApiResponse = z.infer<typeof prCodesApiResponseSchema>;

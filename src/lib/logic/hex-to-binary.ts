@@ -1,9 +1,9 @@
 import { page } from '$app/state';
-import type { HexToBinaryResult } from '$lib/types/hex-to-binary';
+import type { HexToBinaryResult } from '$lib/schemas/hex-to-binary';
 import { tc, type Result } from '@itsezz/try-catch';
 
-export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToBinaryResult[]> {
-	const results: HexToBinaryResult[] = [];
+export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToBinaryResult> {
+	const results: HexToBinaryResult = [];
 	const byteCount = value.length / 2;
 
 	return tc(() => {
@@ -16,7 +16,7 @@ export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToB
 
 			const binary = byte.toString(2).padStart(8, '0');
 
-			const bits: HexToBinaryResult['bits'] = {
+			const bits: HexToBinaryResult[0]['bits'] = {
 				0: (byte & 0x01) !== 0,
 				1: (byte & 0x02) !== 0,
 				2: (byte & 0x04) !== 0,
@@ -40,7 +40,7 @@ export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToB
 }
 
 export function generateHexToBinaryBBCodeTable(
-	hexToBinaryResult: HexToBinaryResult[],
+	hexToBinaryResult: HexToBinaryResult,
 	hexVal: string
 ): string {
 	const origin = page.url.origin;

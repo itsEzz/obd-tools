@@ -12,3 +12,13 @@ export const svmFormSchema = svmApiSchema.extend({
 });
 
 export const svmParamsSchema = z.object({ value: z.string().default('') });
+
+const svmResultSchema = z.string();
+
+export type SvmResult = z.infer<typeof svmResultSchema>;
+
+export const svmApiResponseSchema = z.object({
+	result: svmResultSchema
+});
+
+export type SvmApiResponse = z.infer<typeof svmApiResponseSchema>;

@@ -16,10 +16,10 @@
 	import {
 		prCodesFormInputSchema,
 		prCodesFormOutputSchema,
-		prCodesParamsSchema
+		prCodesParamsSchema,
+		type PrCodesResult
 	} from '$lib/schemas/pr-codes';
 	import { defaultSearchParamsOptions } from '$lib/search-params';
-	import type { PrCodeResult } from '$lib/types/pr-codes';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
 	import MessageCircleQuestionMark from '@lucide/svelte/icons/message-circle-question-mark';
@@ -33,7 +33,7 @@
 
 	// Variables & States
 	let openFaq = $state<boolean>(false);
-	let prCodesResult = $state<PrCodeResult[] | null>(null);
+	let prCodesResult = $state<PrCodesResult | null>(null);
 	const params = useSearchParams(prCodesParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(

@@ -9,7 +9,7 @@
 	import { Separator } from '$lib/components/ui/separator/index.js';
 	import { svmXor } from '$lib/logic/svm';
 	import { m } from '$lib/paraglide/messages';
-	import { svmFormSchema, svmParamsSchema } from '$lib/schemas/svm';
+	import { svmFormSchema, svmParamsSchema, type SvmResult } from '$lib/schemas/svm';
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
@@ -24,7 +24,7 @@
 
 	// Variables & States
 	let openTutorial = $state<boolean>(false);
-	let svmResult = $state<string | null>(null);
+	let svmResult = $state<SvmResult | null>(null);
 	const params = useSearchParams(svmParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(defaults({ value: params.value }, zod4(svmFormSchema)), {

@@ -1,4 +1,7 @@
-import type { BackupConverterFormSchema } from '$lib/schemas/backup-converter';
+import type {
+	BackupConverterFormSchema,
+	BackupConverterResult
+} from '$lib/schemas/backup-converter';
 import {
 	BackupNextLineLevelDetail,
 	type BackupBySection,
@@ -16,7 +19,9 @@ const controlUnitRegex = XRegExp(
 const dashRegex = new RegExp('^-{6,}$', 'i');
 const sectionRegex = new RegExp('^[A-F0-9]{2}\\s.+$', 'i');
 
-export function convertOBDElevenBackup(data: BackupConverterFormSchema): Result<string, null> {
+export function convertOBDElevenBackup(
+	data: BackupConverterFormSchema
+): Result<BackupConverterResult, null> {
 	const { backup, ...options } = data;
 
 	const prepareResult = tc(() => prepareBackup(backup));

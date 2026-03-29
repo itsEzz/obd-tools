@@ -16,7 +16,8 @@
 		backupConverterFormSchema,
 		backupConverterParamsSchema,
 		backupFormatSelectValues,
-		maxFileSizeInBytes
+		maxFileSizeInBytes,
+		type BackupConverterResult
 	} from '$lib/schemas/backup-converter';
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { cn } from '$lib/utils';
@@ -37,7 +38,7 @@
 	// Variables & States
 	let fileInput = $state<HTMLInputElement | null>(null);
 	let openInfo = $state<boolean>(false);
-	let backupConverterResult = $state<string | null>(null);
+	let backupConverterResult = $state<BackupConverterResult | null>(null);
 	const params = useSearchParams(backupConverterParamsSchema, defaultSearchParamsOptions);
 
 	const form = superForm(
@@ -415,7 +416,7 @@ VIN: ....
 				<div class="flex flex-col gap-2" id="backup-converter-result">
 					<Label for="converted-backup">{m.backup_converter_result_label()}</Label>
 					<div
-						class={'textarea-scrollbar relative rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 dark:bg-input/30'}
+						class="textarea-scrollbar relative rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 dark:bg-input/30"
 					>
 						<Textarea
 							id="converted-backup"
