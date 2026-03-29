@@ -1890,8 +1890,8 @@ packages:
     resolution: {integrity: sha512-PlBfpQwiUvGViBNX84Yxwjsdhd1TUlXr6zjX7eoirtCPIr08NAmxwa+fcYBTeRQxHo9YC9wwF3m9i700sHma8g==}
     engines: {node: '>=20'}
 
-  typebox@1.1.8:
-    resolution: {integrity: sha512-H4YFP6q5UtXT5SOEHHrjjEIXL1P3Mg0XQjaG6iLzhccyXoZM/KjQVvXCeMsGH+VeRFAnttocQc4YAnQYvLwZJQ==}
+  typebox@1.1.9:
+    resolution: {integrity: sha512-Bqdf4iLNO4pnVePdQkzkvnEFxz4Htn5g7nVBGIpNC1rDq5ye/qxXytJPgmT+7MRKJ3k03RTNU03wtJj4V9SJzA==}
 
   typescript-eslint@8.57.2:
     resolution: {integrity: sha512-VEPQ0iPgWO/sBaZOU1xo4nuNdODVOajPnTIbog2GKYr31nIlZ0fWPoCQgGfF3ETyBl1vn63F/p50Um9Z4J8O8A==}
@@ -3569,7 +3569,7 @@ snapshots:
       joi: 17.13.3
       json-schema-to-ts: 3.1.1
       superstruct: 2.0.2
-      typebox: 1.1.8
+      typebox: 1.1.9
       valibot: 1.3.1(typescript@5.9.3)
       yup: 1.7.1
       zod: 4.3.6
@@ -3635,7 +3635,7 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
-  typebox@1.1.8:
+  typebox@1.1.9:
     optional: true
 
   typescript-eslint@8.57.2(eslint@10.1.0(jiti@2.6.1))(typescript@5.9.3):
