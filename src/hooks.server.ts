@@ -1,4 +1,5 @@
 import { paraglideMiddleware } from '$lib/paraglide/server';
+import type { TooManyRequestsResponse } from '$lib/schemas/api';
 import { validateEnv } from '$lib/server/env-validation';
 import { getLogger } from '$lib/server/logger';
 import { rateLimiter } from '$lib/server/rate-limiter';
@@ -23,7 +24,7 @@ const rateLimiterHandle: Handle = async ({ event, resolve }) => {
 	const status = await rateLimiter.check(event);
 	if (status.limited) {
 		const response = new Response(
-			`You are being rate limited. Please try again after ${status.retryAfter} seconds.`,
+			`You are being rate limited. Please try again after ${status.retryAfter} seconds.` satisfies TooManyRequestsResponse,
 			{
 				status: 429,
 				headers: { 'Retry-After': status.retryAfter.toString() }

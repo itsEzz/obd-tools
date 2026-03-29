@@ -1,5 +1,9 @@
 import { convertOBDElevenBackup } from '$lib/logic/backup-converter';
-import { backupConverterApiSchema } from '$lib/schemas/backup-converter';
+import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
+import {
+	backupConverterApiSchema,
+	type BackupConverterApiResponse
+} from '$lib/schemas/backup-converter';
 import { createChildLogger } from '$lib/server/logger';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
@@ -12,7 +16,9 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	if (!formDataResult.ok) {
 		logger.error('Failed to parse multipart form data');
-		return json({ error: 'Invalid multipart form data' }, { status: 400 });
+		return json({ error: 'Invalid multipart form data' } satisfies BadRequestResponse, {
+			status: 400
+		});
 	}
 
 	const validationResult = await backupConverterApiSchema.safeParseAsync(
@@ -22,7 +28,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (!validationResult.success) {
 		logger.error('Form data validation failed');
 		return json(
-			{ error: 'Form data validation failed', issues: validationResult.error.issues },
+			{
+				error: 'Form data validation failed',
+				issues: validationResult.error.issues
+			} satisfies BadRequestResponse,
 			{ status: 400 }
 		);
 	}
@@ -33,10 +42,12 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ ...validationResult.data, error: backupConverterResult.error },
 			'Backup converter failed'
 		);
-		return json({ error: 'Backup converter failed' }, { status: 500 });
+		return json({ message: 'Backup converter failed' } satisfies InternalServerErrorResponse, {
+			status: 500
+		});
 	}
 
 	return json({
 		result: backupConverterResult.data
-	});
+	} satisfies BackupConverterApiResponse);
 };

@@ -1,5 +1,6 @@
 import { hexToBinary } from '$lib/logic/hex-to-binary';
-import { hexToBinaryApiSchema } from '$lib/schemas/hex-to-binary';
+import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
+import { hexToBinaryApiSchema, type HexToBinaryApiResponse } from '$lib/schemas/hex-to-binary';
 import { createChildLogger } from '$lib/server/logger';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
@@ -12,7 +13,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	if (!body.ok) {
 		logger.error('Failed to parse JSON body');
-		return json({ error: 'Invalid JSON body' }, { status: 400 });
+		return json({ error: 'Invalid JSON body' } satisfies BadRequestResponse, { status: 400 });
 	}
 
 	const validationResult = await hexToBinaryApiSchema.safeParseAsync(body.data);
@@ -20,7 +21,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (!validationResult.success) {
 		logger.error('JSON Body validation failed');
 		return json(
-			{ error: 'JSON Body validation failed', issues: validationResult.error.issues },
+			{
+				error: 'JSON Body validation failed',
+				issues: validationResult.error.issues
+			} satisfies BadRequestResponse,
 			{ status: 400 }
 		);
 	}
@@ -34,10 +38,12 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ ...validationResult.data, error: hexToBinaryResult.error },
 			'Hex to binary failed'
 		);
-		return json({ error: 'Hex to binary failed' }, { status: 500 });
+		return json({ message: 'Hex to binary failed' } satisfies InternalServerErrorResponse, {
+			status: 500
+		});
 	}
 
 	return json({
 		result: hexToBinaryResult.data
-	});
+	} satisfies HexToBinaryApiResponse);
 };

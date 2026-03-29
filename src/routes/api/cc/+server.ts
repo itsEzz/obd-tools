@@ -1,5 +1,6 @@
 import { codingCompare } from '$lib/logic/coding-compare';
-import { codingCompareApiSchema } from '$lib/schemas/coding-compare';
+import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
+import { codingCompareApiSchema, type CodingCompareApiResponse } from '$lib/schemas/coding-compare';
 import { createChildLogger } from '$lib/server/logger';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
@@ -12,7 +13,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	if (!body.ok) {
 		logger.error('Failed to parse JSON body');
-		return json({ error: 'Invalid JSON body' }, { status: 400 });
+		return json({ error: 'Invalid JSON body' } satisfies BadRequestResponse, { status: 400 });
 	}
 
 	const validationResult = await codingCompareApiSchema.safeParseAsync(body.data);
@@ -20,7 +21,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (!validationResult.success) {
 		logger.error('JSON Body validation failed');
 		return json(
-			{ error: 'JSON Body validation failed', issues: validationResult.error.issues },
+			{
+				error: 'JSON Body validation failed',
+				issues: validationResult.error.issues
+			} satisfies BadRequestResponse,
 			{ status: 400 }
 		);
 	}
@@ -35,10 +39,12 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ ...validationResult.data, error: codingCompareResult.error },
 			'Coding compare failed'
 		);
-		return json({ error: 'Coding compare failed' }, { status: 500 });
+		return json({ message: 'Coding compare failed' } satisfies InternalServerErrorResponse, {
+			status: 500
+		});
 	}
 
 	return json({
 		result: codingCompareResult.data
-	});
+	} satisfies CodingCompareApiResponse);
 };

@@ -1,5 +1,6 @@
 import { lookupPrCodes } from '$lib/logic/pr-codes';
-import { prCodesApiSchema } from '$lib/schemas/pr-codes';
+import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
+import { prCodesApiSchema, type PrCodesApiResponse } from '$lib/schemas/pr-codes';
 import { createChildLogger } from '$lib/server/logger';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
@@ -12,7 +13,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	if (!body.ok) {
 		logger.error('Failed to parse JSON body');
-		return json({ error: 'Invalid JSON body' }, { status: 400 });
+		return json({ error: 'Invalid JSON body' } satisfies BadRequestResponse, { status: 400 });
 	}
 
 	const validationResult = await prCodesApiSchema.safeParseAsync(body.data);
@@ -20,7 +21,10 @@ export const POST: RequestHandler = async ({ request }) => {
 	if (!validationResult.success) {
 		logger.error('JSON Body validation failed');
 		return json(
-			{ error: 'JSON Body validation failed', issues: validationResult.error.issues },
+			{
+				error: 'JSON Body validation failed',
+				issues: validationResult.error.issues
+			} satisfies BadRequestResponse,
 			{ status: 400 }
 		);
 	}
@@ -34,10 +38,12 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ ...validationResult.data, error: prCodesResult.error },
 			'PR codes lookup failed'
 		);
-		return json({ error: 'PR codes lookup failed' }, { status: 500 });
+		return json({ message: 'PR codes lookup failed' } satisfies InternalServerErrorResponse, {
+			status: 500
+		});
 	}
 
 	return json({
 		result: prCodesResult.data
-	});
+	} satisfies PrCodesApiResponse);
 };
