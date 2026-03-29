@@ -110,7 +110,7 @@
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
-				{@html m.coding_compare_description()}
+				{m.coding_compare_description()}
 			</p>
 			<Separator />
 			<form method="POST" use:enhance class="flex flex-col gap-2">

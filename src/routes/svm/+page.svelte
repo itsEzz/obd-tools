@@ -99,8 +99,10 @@
 	{#snippet body()}
 		<ol class="ml-4 list-decimal">
 			<li>{m.svm_step_1()}</li>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<li>{@html m.svm_step_2()}</li>
 			<li>
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.svm_step_3()}
 			</li>
 			<li>
@@ -120,6 +122,7 @@
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.svm_description()}
 			</p>
 			<div class="flex justify-center">

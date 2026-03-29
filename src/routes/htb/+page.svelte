@@ -103,6 +103,7 @@
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.hex_to_binary_description()}
 			</p>
 			<Separator />

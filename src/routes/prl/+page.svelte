@@ -142,6 +142,7 @@
 				</div>
 				<div class="chat chat-start">
 					<div class="chat-bubble bg-secondary text-secondary-foreground">
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 						{@html m.pr_codes_faq_answer_2()}
 					</div>
 				</div>
@@ -161,6 +162,7 @@
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.pr_codes_description()}
 			</p>
 			<div class="flex justify-center">

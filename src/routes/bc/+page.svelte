@@ -171,6 +171,7 @@
 	{#snippet body()}
 		<ol class="ml-4 list-decimal">
 			<li>{m.backup_converter_info_1()}</li>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<li>{@html m.backup_converter_info_2()}</li>
 			<li>
 				{m.backup_converter_info_3()}
@@ -189,6 +190,7 @@
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="rounded-lg bg-secondary p-4 text-center">
+				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.backup_converter_description()}
 			</p>
 			<div class="flex justify-center">
