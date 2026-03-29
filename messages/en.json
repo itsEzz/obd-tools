@@ -22,7 +22,7 @@
 	"language_select_label": "Change language",
 	"theme_switch_to_light_mode": "Switch to light mode",
 	"theme_switch_to_dark_mode": "Switch to dark mode",
-	"navbar_svm_label": "SVM",
+	"navbar_svm_label": "SVM XOR",
 	"navbar_coding_compare_label": "Coding Compare",
 	"navbar_hex_to_binary_label": "Hex 2 Binary",
 	"navbar_pr_codes_lookup_label": "PR Codes Lookup",
@@ -128,5 +128,11 @@
 	"backup_converter_submit_label": "Convert backup",
 	"backup_converter_result_label": "Converted backup",
 	"backup_converter_copy_result_label": "Copy converted backup",
-	"backup_converter_download_result_label": "Download converted backup"
+	"backup_converter_download_result_label": "Download converted backup",
+	"openapi_title": "OBD Tools API Documentation",
+	"openapi_description": "Comprehensive documentation for the OBD Tools API, detailing available endpoints, request and response formats, and usage examples.",
+	"openapi_success_response_description": "Success",
+	"openapi_bad_request_response_description": "Bad Request",
+	"openapi_too_many_requests_response_description": "Too Many Requests",
+	"openapi_internal_server_error_response_description": "Internal Server Error"
 }
