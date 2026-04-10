@@ -22,9 +22,9 @@
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
-	import MessageCircleQuestionMark from '@lucide/svelte/icons/message-circle-question-mark';
-	import SearchIcon from '@lucide/svelte/icons/search';
-	import SearchAlertIcon from '@lucide/svelte/icons/search-alert';
+	import EmptyIcon from 'phosphor-svelte/lib/EmptyIcon';
+	import MagnifyingGlassIcon from 'phosphor-svelte/lib/MagnifyingGlassIcon';
+	import QuestionIcon from 'phosphor-svelte/lib/QuestionIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -119,7 +119,7 @@
 
 <DialogDrawer bind:open={openFaq}>
 	{#snippet body()}
-		<Tabs.Root value="faq">
+		<Tabs.Root value="faq" class="mt-2">
 			<Tabs.List class="w-full">
 				<Tabs.Trigger value="faq">{m.pr_codes_faq_label()}</Tabs.Trigger>
 				<Tabs.Trigger value="example">{m.pr_codes_faq_example_label()}</Tabs.Trigger>
@@ -150,7 +150,7 @@
 			<Tabs.Content value="example" class="w-full overflow-hidden">
 				<img
 					src="/pr_code_sticker.jpg"
-					class="h-full w-full rounded-lg object-contain"
+					class="h-full w-full object-contain"
 					alt={m.pr_codes_faq_example_img_alt()}
 				/>
 			</Tabs.Content>
@@ -161,13 +161,13 @@
 <ContentWindow title={m.navbar_pr_codes_lookup_label()} urlSearchParamsSchema={prCodesParamsSchema}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="rounded-lg bg-secondary p-4 text-center">
+			<p class="bg-secondary p-4 text-center">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.pr_codes_description()}
 			</p>
 			<div class="flex justify-center">
 				<Button class="w-fit" variant="outline" onclick={handleClickOpenFaq}>
-					<MessageCircleQuestionMark aria-hidden="true" />
+					<QuestionIcon aria-hidden="true" />
 					{m.pr_codes_faq_label()}
 				</Button>
 			</div>
@@ -206,14 +206,14 @@
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Button class="w-full" disabled={!canSubmit}>
-					<SearchIcon aria-hidden="true" />{m.pr_codes_submit_label()}
+					<MagnifyingGlassIcon aria-hidden="true" />{m.pr_codes_submit_label()}
 				</Form.Button>
 			</form>
 			{#if showResult}
 				<Separator />
 				{#if prCodesResult!.length === 0}
 					<Item.Root variant="outline" class="p-2" id="pr-codes-result">
-						<Item.Media><SearchAlertIcon class="size-6" /></Item.Media>
+						<Item.Media><EmptyIcon class="size-6" /></Item.Media>
 						<Item.Content>
 							<Item.Title>{m.pr_codes_no_result_title()}</Item.Title>
 							<Item.Description>{m.pr_codes_no_result_description()}</Item.Description>
@@ -255,8 +255,8 @@
 	.chat {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
 	}
 
 	.chat-end {
@@ -278,7 +278,6 @@
 		padding-top: 0.5rem;
 		padding-bottom: 0.5rem;
 		max-width: 90%;
-		border-radius: var(--rounded-box, 1rem);
 		min-height: 2.25rem;
 		min-width: 2.75rem;
 	}

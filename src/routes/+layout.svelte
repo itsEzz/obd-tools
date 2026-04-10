@@ -22,14 +22,15 @@
 	position="top-right"
 	toastOptions={{
 		classes: {
-			closeButton: 'pointer-events-auto'
+			toast: '!rounded-none',
+			closeButton: 'pointer-events-auto rounded-none!'
 		}
 	}}
 />
 
 <a
 	href="#main-content"
-	class="focus:text-background-foreground sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-md focus:bg-background focus:px-4 focus:py-2"
+	class="focus:text-background-foreground sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:bg-background focus:px-4 focus:py-2"
 >
 	{m.skip_to_main_content_label()}
 </a>

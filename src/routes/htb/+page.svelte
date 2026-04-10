@@ -18,7 +18,7 @@
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
-	import BinaryIcon from '@lucide/svelte/icons/binary';
+	import BinaryIcon from 'phosphor-svelte/lib/BinaryIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -102,7 +102,7 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="rounded-lg bg-secondary p-4 text-center">
+			<p class="bg-secondary p-4 text-center">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.hex_to_binary_description()}
 			</p>

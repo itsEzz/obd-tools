@@ -3,9 +3,9 @@
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { cn } from '$lib/utils';
-	import CircleCheck from '@lucide/svelte/icons/circle-check';
-	import CircleX from '@lucide/svelte/icons/circle-x';
-	import Copy from '@lucide/svelte/icons/copy';
+	import CircleCheckIcon from 'phosphor-svelte/lib/CheckCircleIcon';
+	import CopyIcon from 'phosphor-svelte/lib/CopyIcon';
+	import CircleXIcon from 'phosphor-svelte/lib/XCircleIcon';
 	import { onDestroy } from 'svelte';
 	import { toast } from 'svelte-sonner';
 
@@ -59,11 +59,11 @@
 		aria-disabled={buttonProps.disabled || copyStatus !== 'idle'}
 	>
 		{#if copyStatus === 'idle'}
-			<Copy aria-hidden="true" />
+			<CopyIcon aria-hidden="true" />
 		{:else if copyStatus === 'copied'}
-			<CircleCheck aria-hidden="true" />
+			<CircleCheckIcon aria-hidden="true" />
 		{:else if copyStatus === 'failed'}
-			<CircleX aria-hidden="true" />
+			<CircleXIcon aria-hidden="true" />
 		{/if}
 		{#if text}
 			<span>{text}</span>

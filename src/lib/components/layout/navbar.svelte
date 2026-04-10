@@ -9,8 +9,8 @@
 	import { m } from '$lib/paraglide/messages';
 	import type { NavItem } from '$lib/types/navigation';
 	import { cn } from '$lib/utils';
-	import MenuIcon from '@lucide/svelte/icons/menu';
-	import XIcon from '@lucide/svelte/icons/x';
+	import ListIcon from 'phosphor-svelte/lib/ListIcon';
+	import XIcon from 'phosphor-svelte/lib/XIcon';
 	import LanguageSelect from './language-select.svelte';
 	import ThemeToggle from './theme-toggle.svelte';
 
@@ -28,14 +28,14 @@
 </script>
 
 <div class="sticky top-0 z-50 w-full p-2" id="top">
-	<div class="flex min-h-16 items-center rounded-xl border bg-background px-4">
+	<div class="flex min-h-16 items-center border bg-background px-4">
 		<div class="inline-flex w-1/2 justify-start">
 			<DropdownMenu.Root bind:open={isNavMenuOpen}>
 				<DropdownMenu.Trigger
 					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'mr-2 lg:hidden')}
 					aria-label={isNavMenuOpen ? m.navbar_close_menu_label() : m.navbar_open_menu_label()}
 				>
-					<MenuIcon
+					<ListIcon
 						class={cn(
 							'h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all!',
 							isNavMenuOpen && 'scale-0 -rotate-90'

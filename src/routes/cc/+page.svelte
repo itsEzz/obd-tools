@@ -17,7 +17,7 @@
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
-	import DiffIcon from '@lucide/svelte/icons/diff';
+	import GitDiffIcon from 'phosphor-svelte/lib/GitDiffIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -109,7 +109,7 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="rounded-lg bg-secondary p-4 text-center">
+			<p class="bg-secondary p-4 text-center">
 				{m.coding_compare_description()}
 			</p>
 			<Separator />
@@ -159,7 +159,7 @@
 					<Form.FieldErrors />
 				</Form.Field>
 				<Form.Button class="w-full" disabled={!canSubmit}>
-					<DiffIcon aria-hidden="true" />
+					<GitDiffIcon aria-hidden="true" />
 					{m.coding_compare_submit_label()}
 				</Form.Button>
 			</form>

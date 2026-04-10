@@ -25,10 +25,10 @@
 	import { downloadFile } from '$lib/utils/download';
 	import { toHumanReadable } from '$lib/utils/number';
 	import { scrollIntoView } from '$lib/utils/scroll';
-	import FileCogIcon from '@lucide/svelte/icons/file-cog';
-	import FileDownIcon from '@lucide/svelte/icons/file-down';
-	import InfoIcon from '@lucide/svelte/icons/info';
-	import PaperClipIcon from '@lucide/svelte/icons/paperclip';
+	import DownloadSimpleIcon from 'phosphor-svelte/lib/DownloadSimpleIcon';
+	import FileDashedIcon from 'phosphor-svelte/lib/FileDashedIcon';
+	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';
+	import PaperClipIcon from 'phosphor-svelte/lib/PaperclipIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -169,7 +169,7 @@
 
 <DialogDrawer bind:open={openInfo} title={m.backup_converter_info_title()}>
 	{#snippet body()}
-		<ol class="ml-4 list-decimal">
+		<ol class="ml-6 list-decimal">
 			<li>{m.backup_converter_info_1()}</li>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<li>{@html m.backup_converter_info_2()}</li>
@@ -189,7 +189,7 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="rounded-lg bg-secondary p-4 text-center">
+			<p class="bg-secondary p-4 text-center">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.backup_converter_description()}
 			</p>
@@ -207,7 +207,7 @@
 							<Form.Label>{m.backup_converter_backup_label()}</Form.Label>
 							<div
 								class={cn(
-									'textarea-scrollbar relative rounded-lg border border-input bg-transparent transition-colors focus-within:ring-3 dark:bg-input/30',
+									'textarea-scrollbar relative border border-input bg-transparent transition-colors focus-within:ring-3 dark:bg-input/30',
 									$errors.backup
 										? 'border-destructive ring-destructive/20 dark:ring-destructive/40'
 										: 'focus-within:border-ring focus-within:ring-ring/50'
@@ -216,7 +216,7 @@
 								<Textarea
 									{...props}
 									{...$constraints.backup}
-									class="max-h-96 min-h-32 rounded-b-none border-none break-all focus-visible:ring-0 aria-invalid:ring-0"
+									class="max-h-96 min-h-32 border-none break-all focus-visible:ring-0 aria-invalid:ring-0"
 									placeholder={`e.g. OBDeleven vehicle history log
 
 Date: ${new Date().toLocaleString()}
@@ -228,7 +228,7 @@ VIN: ....
 								<div
 									class="flex items-center justify-between border-t bg-transparent p-1 dark:bg-input/30"
 								>
-									<p class="ml-1.5 text-sm text-muted-foreground">
+									<p class="ml-1.5 text-xs text-muted-foreground">
 										{toHumanReadable($formData.backup.length)} character(s)
 									</p>
 									<Input
@@ -410,7 +410,7 @@ VIN: ....
 					</Form.Field>
 				</div>
 				<Form.Button class="w-full" disabled={!canSubmit}>
-					<FileCogIcon aria-hidden="true" />{m.backup_converter_submit_label()}
+					<FileDashedIcon aria-hidden="true" />{m.backup_converter_submit_label()}
 				</Form.Button>
 			</form>
 			{#if showResult}
@@ -418,18 +418,18 @@ VIN: ....
 				<div class="flex flex-col gap-2" id="backup-converter-result">
 					<Label for="converted-backup">{m.backup_converter_result_label()}</Label>
 					<div
-						class="textarea-scrollbar relative rounded-lg border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 dark:bg-input/30"
+						class="textarea-scrollbar relative border border-input bg-transparent transition-colors focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 dark:bg-input/30"
 					>
 						<Textarea
 							id="converted-backup"
 							readonly
 							value={backupConverterResult}
-							class="max-h-96 min-h-32 rounded-b-none border-none break-all focus-visible:ring-0 aria-invalid:ring-0"
+							class="max-h-96 min-h-32 border-none break-all focus-visible:ring-0 aria-invalid:ring-0"
 						/>
 						<div
 							class="flex flex-wrap items-center justify-center gap-2 border-t bg-transparent p-1 sm:justify-between dark:bg-input/30"
 						>
-							<p class="ml-1.5 text-sm text-muted-foreground">
+							<p class="ml-1.5 text-xs text-muted-foreground">
 								{toHumanReadable(backupConverterResult?.length ?? 0)} character(s)
 							</p>
 							<div class="flex flex-wrap justify-center gap-2">
@@ -438,7 +438,7 @@ VIN: ....
 									text={m.backup_converter_copy_result_label()}
 								/>
 								<Button onclick={handleClickDownloadResult}>
-									<FileDownIcon aria-hidden="true" />
+									<DownloadSimpleIcon aria-hidden="true" />
 									{m.backup_converter_download_result_label()}
 								</Button>
 							</div>

@@ -9,7 +9,7 @@
 	import { emptySchema } from '$lib/schemas/empty';
 	import { cn } from '$lib/utils';
 	import { copyText } from '$lib/utils/copy';
-	import Share2Icon from '@lucide/svelte/icons/share-2';
+	import ShareFatIcon from 'phosphor-svelte/lib/ShareFatIcon';
 	import { useSearchParams, type StandardSchemaV1 } from 'runed/kit';
 	import type { Snippet } from 'svelte';
 	import { SvelteURL } from 'svelte/reactivity';
@@ -80,11 +80,11 @@
 <div class="mockup-window relative m-2 w-fit max-w-3xl border">
 	<Tooltip.Root>
 		<Tooltip.Trigger
-			class={cn('absolute top-1.5 right-2', buttonVariants({ variant: 'outline', size: 'icon' }))}
+			class={cn('absolute top-2 right-2', buttonVariants({ variant: 'outline', size: 'icon' }))}
 			aria-label={m.share_page_dialog_title()}
 			onclick={handleClickOpenShareDialog}
 		>
-			<Share2Icon aria-hidden="true" />
+			<ShareFatIcon aria-hidden="true" />
 		</Tooltip.Trigger>
 		<Tooltip.Content>
 			<p>{m.share_page_dialog_title()}</p>
@@ -112,7 +112,6 @@
 		overflow-x: auto;
 		display: flex;
 		flex-direction: column;
-		border-radius: var(--rounded-box, 1rem /* 16px */);
 		padding-top: 1.25rem /* 20px */;
 	}
 	.mockup-window:before {

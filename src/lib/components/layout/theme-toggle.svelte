@@ -2,9 +2,9 @@
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
-	import MoonIcon from '@lucide/svelte/icons/moon';
-	import SunIcon from '@lucide/svelte/icons/sun';
 	import { mode, toggleMode } from 'mode-watcher';
+	import MoonIcon from 'phosphor-svelte/lib/MoonIcon';
+	import SunIcon from 'phosphor-svelte/lib/SunIcon';
 
 	// Variables & States
 	const ariaLabel = $derived(

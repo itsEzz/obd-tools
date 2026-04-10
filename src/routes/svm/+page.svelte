@@ -13,9 +13,9 @@
 	import { defaultSearchParamsOptions } from '$lib/search-params';
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
-	import BadgeCheckIcon from '@lucide/svelte/icons/badge-check';
-	import CalculatorIcon from '@lucide/svelte/icons/calculator';
-	import InfoIcon from '@lucide/svelte/icons/info';
+	import CalculatorIcon from 'phosphor-svelte/lib/CalculatorIcon';
+	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';
+	import SealCheckIcon from 'phosphor-svelte/lib/SealCheckIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -97,7 +97,7 @@
 	description={m.svm_step_by_step_description()}
 >
 	{#snippet body()}
-		<ol class="ml-4 list-decimal">
+		<ol class="ml-6 list-decimal">
 			<li>{m.svm_step_1()}</li>
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<li>{@html m.svm_step_2()}</li>
@@ -121,7 +121,7 @@
 <ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmParamsSchema}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="rounded-lg bg-secondary p-4 text-center">
+			<p class="bg-secondary p-4 text-center">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.svm_description()}
 			</p>
@@ -158,7 +158,7 @@
 			{#if showResult}
 				<Separator />
 				<Item.Root variant="outline" class="p-2" id="svm-result">
-					<Item.Media><BadgeCheckIcon class="size-6" /></Item.Media>
+					<Item.Media><SealCheckIcon class="size-6" /></Item.Media>
 					<Item.Content>
 						<Item.Title>{m.svm_result_label()}:<b>{svmResult}</b></Item.Title>
 					</Item.Content>

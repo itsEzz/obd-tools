@@ -4,7 +4,7 @@
 	import { m } from '$lib/paraglide/messages';
 	import { getLocale, locales, setLocale, type Locale } from '$lib/paraglide/runtime.js';
 	import type { LanguageOption } from '$lib/types/locale';
-	import GlobeIcon from '@lucide/svelte/icons/globe';
+	import GlobeIcon from 'phosphor-svelte/lib/GlobeIcon';
 	import { toast } from 'svelte-sonner';
 	import { buttonVariants } from '../ui/button';
 

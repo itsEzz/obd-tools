@@ -8,7 +8,7 @@
 	{#snippet body()}
 		<div class="flex max-w-7xl flex-col items-center justify-center gap-4 lg:flex-row">
 			<div class="flex flex-col items-center">
-				<img src="/welcome.gif" class="max-w-sm rounded-lg" alt={m.home_welcome_gif_img_alt()} />
+				<img src="/welcome.gif" class="max-w-sm" alt={m.home_welcome_gif_img_alt()} />
 				<Button
 					variant="link"
 					href="https://tenor.com/view/ollie-owl-animation-tv-kids-gif-17328099"
