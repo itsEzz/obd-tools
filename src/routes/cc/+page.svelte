@@ -109,7 +109,7 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="bg-secondary p-4 text-center">
+			<p class="bg-muted p-4 text-center">
 				{m.coding_compare_description()}
 			</p>
 			<Separator />

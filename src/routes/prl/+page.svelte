@@ -161,7 +161,7 @@
 <ContentWindow title={m.navbar_pr_codes_lookup_label()} urlSearchParamsSchema={prCodesParamsSchema}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="bg-secondary p-4 text-center">
+			<p class="bg-muted p-4 text-center">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.pr_codes_description()}
 			</p>
