@@ -1,5 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"website_title": "OBD Tools",
 	"generic_error_message_title": "Something went wrong",
 	"generic_error_message_description": "We're having issues generating your result. Please try again later.",
 	"schema_string_invalid": "Must be a string",
@@ -35,6 +36,8 @@
 	"copy_button_toast_success_title": "Copied to clipboard",
 	"copy_button_toast_failure_title": "Failed to copy to clipboard",
 	"copy_bbcode_button_label": "Copy table as BBCode",
+	"share_button_toast_failure_title": "Failed to share link",
+	"share_text": "Checkout this OBD Tools site!",
 	"util_not_supported_toast_title": "Feature not supported",
 	"util_not_supported_toast_description": "Either your browser doesn't support this feature or you're not in a secure context (HTTPS).",
 	"share_page_dialog_title": "Share OBD Tools link",
