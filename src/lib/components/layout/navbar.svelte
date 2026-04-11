@@ -27,9 +27,9 @@
 	];
 </script>
 
-<div class="sticky top-0 z-50 w-full p-2" id="top">
-	<div class="flex min-h-16 items-center border bg-background px-4">
-		<div class="inline-flex w-1/2 justify-start">
+<div class="sticky top-0 z-50 w-full" id="top">
+	<div class="flex min-h-16 items-center border-b bg-background px-2">
+		<div class="inline-flex w-1/2 items-center justify-start">
 			<DropdownMenu.Root bind:open={isNavMenuOpen}>
 				<DropdownMenu.Trigger
 					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'mr-2 lg:hidden')}
@@ -53,16 +53,18 @@
 				<DropdownMenu.Content align="start">
 					<DropdownMenu.Group class="space-y-1">
 						{#each navItems as item (item.href)}
-							<DropdownMenu.Item class={page.url.pathname === item.href ? 'bg-muted' : ''}>
-								<a href={resolve(item.href)}>{item.label}</a>
+							<DropdownMenu.Item class={cn(page.url.pathname === item.href && 'bg-muted')}>
+								<a href={resolve(item.href)}>
+									{item.label}
+								</a>
 							</DropdownMenu.Item>
 						{/each}
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
-			<a class={cn(buttonVariants({ variant: 'ghost' }), 'text-xl')} href={resolve('/')}
-				>OBD Tools</a
-			>
+			<a class={cn(buttonVariants({ variant: 'ghost' }), 'p-6 text-xl')} href={resolve('/')}>
+				{m.website_title()}
+			</a>
 		</div>
 		<div class="hidden shrink-0 lg:flex">
 			<NavigationMenu.Root viewport={isMobile.current}>
@@ -73,9 +75,13 @@
 								{#snippet child()}
 									<a
 										href={resolve(item.href)}
-										class={navigationMenuTriggerStyle()}
-										class:bg-muted={page.url.pathname === item.href}>{item.label}</a
+										class={cn(
+											navigationMenuTriggerStyle(),
+											page.url.pathname === item.href && 'bg-muted'
+										)}
 									>
+										{item.label}
+									</a>
 								{/snippet}
 							</NavigationMenu.Link>
 						</NavigationMenu.Item>
