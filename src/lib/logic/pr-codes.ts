@@ -30,9 +30,9 @@ export function generatePrCodesBBCodeTable(prCodesResult: PrCodesResult, codes: 
         [table]
             [tbody0]
                 [tr bgcolor="#D9D9D9"]
-                    [td][center][font color="#000CFA"][b]PR code[/b][/font][/center][/td]
-                    [td][center][b]Code group[/b][/center][/td]
-                    [td][b]Description[/b][/td]
+                    [td][center][font color="#000CFA"][b]${m.pr_codes_table_header_code()}[/b][/font][/center][/td]
+                    [td][center][b]${m.pr_codes_table_header_code_group()}[/b][/center][/td]
+                    [td][b]${m.pr_codes_table_header_description()}[/b][/td]
                 [/tr]`;
 
 	prCodesResult.forEach((prCode, idx) => {
@@ -50,6 +50,6 @@ export function generatePrCodesBBCodeTable(prCodesResult: PrCodesResult, codes: 
 	code += `
     [/tbody0]
     [/table]
-    [a href="${origin}/prl?codes=${codes.replaceAll(' ', '+')}"]Made with OBD Tools[/a]`;
+    [a href="${origin}/prl?codes=${codes.replaceAll(' ', '+')}"]${m.made_with_obd_tools()}[/a]`;
 	return code;
 }

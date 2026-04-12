@@ -1,4 +1,5 @@
 import { page } from '$app/state';
+import { m } from '$lib/paraglide/messages';
 import type { HexToBinaryResult } from '$lib/schemas/hex-to-binary';
 import { tc, type Result } from '@itsezz/try-catch';
 
@@ -48,16 +49,16 @@ export function generateHexToBinaryBBCodeTable(
 		[table]
 			[tbody0]
 				[tr bgcolor="#D9D9D9"]
-					[td][center][font color="#000CFA"][b]Byte No[/b][/font][/center][/td]
-					[td][center][b]HEX[/b][/center][/td]
-					[td][center][b]Bit 7[/b][/center][/td]
-					[td][center][b]Bit 6[/b][/center][/td]
-					[td][center][b]Bit 5[/b][/center][/td]
-					[td][center][b]Bit 4[/b][/center][/td]
-					[td][center][b]Bit 3[/b][/center][/td]
-					[td][center][b]Bit 2[/b][/center][/td]
-					[td][center][b]Bit 1[/b][/center][/td]
-					[td][center][b]Bit 0[/b][/center][/td]
+					[td][center][font color="#000CFA"][b]${m.hex_to_binary_table_header_byte_number()}[/b][/font][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_hex()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_7()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_6()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_5()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_4()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_3()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_2()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_1()}[/b][/center][/td]
+					[td][center][b]${m.hex_to_binary_table_header_bit_0()}[/b][/center][/td]
 				[/tr]`;
 
 	hexToBinaryResult.forEach((byte, idx) => {
@@ -80,6 +81,6 @@ export function generateHexToBinaryBBCodeTable(
 	code += `
 	[/tbody0]
 	[/table]
-	[a href="${origin}/htb?hexValue=${hexVal}"]Made with OBD Tools[/a]`;
+	[a href="${origin}/htb?hexValue=${hexVal}"]${m.made_with_obd_tools()}[/a]`;
 	return code;
 }

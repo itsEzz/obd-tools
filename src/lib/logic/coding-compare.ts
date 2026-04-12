@@ -1,4 +1,5 @@
 import { page } from '$app/state';
+import { m } from '$lib/paraglide/messages';
 import type { CodingCompareResult } from '$lib/schemas/coding-compare';
 import { tc, type Result } from '@itsezz/try-catch';
 
@@ -70,15 +71,15 @@ export function generateCodingCompareBBCodeTable(
 		[tbody0]
 			[tr]
 				[td][/td]
-				[td colspan=2 bgcolor="#ffff00"][center][b]Hex value 1[/b][/center][/td]
-				[td colspan=2 bgcolor="#ffff00"][center][b]Hex value 2[/b][/center][/td]
+				[td colspan=2 bgcolor="#ffff00"][center][b]${m.coding_compare_table_header_value1()}[/b][/center][/td]
+				[td colspan=2 bgcolor="#ffff00"][center][b]${m.coding_compare_table_header_value2()}[/b][/center][/td]
 			[/tr]
 			[tr bgcolor="#D9D9D9"]
-				[td][center][font color="#000CFA"][b]Byte No[/b][/font][/center][/td]
-				[td][center][b]HEX[/b][/center][/td]
-				[td][center][b]BITS[/b][br][b]7 6 5 4 3 2 1 0[/b][/center][/td]
-				[td][center][b]HEX[/b][/center][/td]
-				[td][center][b]BITS[/b][br][b]7 6 5 4 3 2 1 0[/b][/center][/td]
+				[td][center][font color="#000CFA"][b]${m.coding_compare_table_header_byte_number()}[/b][/font][/center][/td]
+				[td][center][b]${m.coding_compare_table_header_hex()}[/b][/center][/td]
+				[td][center][b]${m.coding_compare_table_header_binary()}[/b][br][b]7 6 5 4 3 2 1 0[/b][/center][/td]
+				[td][center][b]${m.coding_compare_table_header_hex()}[/b][/center][/td]
+				[td][center][b]${m.coding_compare_table_header_binary()}[/b][br][b]7 6 5 4 3 2 1 0[/b][/center][/td]
 			[/tr]`;
 
 	codingCompareResult.forEach((byte, idx) => {
@@ -117,6 +118,6 @@ export function generateCodingCompareBBCodeTable(
 	code += `
 	[/tbody0]
 	[/table]
-	[a href="${origin}/cc?hexValue1=${hexVal1}&hexValue2=${hexVal2}&onlyDiff=${onlyDiff.toString()}"]Made with OBD Tools[/a]`;
+	[a href="${origin}/cc?hexValue1=${hexVal1}&hexValue2=${hexVal2}&onlyDiff=${onlyDiff.toString()}"]${m.made_with_obd_tools()}[/a]`;
 	return code;
 }
