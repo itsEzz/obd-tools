@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
+	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
@@ -9,9 +9,11 @@
 	import { emptySchema } from '$lib/schemas/empty';
 	import { cn } from '$lib/utils';
 	import { copyText } from '$lib/utils/copy';
+	import { shareText } from '$lib/utils/share';
 	import ShareFatIcon from 'phosphor-svelte/lib/ShareFatIcon';
 	import { useSearchParams, type StandardSchemaV1 } from 'runed/kit';
 	import type { Snippet } from 'svelte';
+	import { toast } from 'svelte-sonner';
 	import { SvelteURL } from 'svelte/reactivity';
 	import CopyButton from '../common/copy-button.svelte';
 	import DialogDrawer from '../common/dialog-drawer.svelte';
@@ -53,6 +55,11 @@
 	async function handleClickOpenShareDialog() {
 		openShareDialog = true;
 	}
+
+	async function handleClickShareUrl() {
+		const ok = await shareText(m.website_title(), m.share_text(), shareLink);
+		if (!ok) toast.error(m.share_button_toast_failure_title());
+	}
 </script>
 
 <DialogDrawer
@@ -63,16 +70,27 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-2">
-			<div class="flex items-center gap-2">
-				<Input value={shareLink} readonly id={shareLinkId} />
-				<CopyButton copyFn={handleCopyLink} variant="outline" />
-			</div>
+			<Input value={shareLink} readonly id={shareLinkId} />
 			{#if urlSearchParamsSchema && params.size > 0}
 				<div class="flex items-center space-x-2">
 					<Switch id="include-params" bind:checked={includeParams} />
 					<Label for="include-params">{m.share_page_dialog_include_params_label()}</Label>
 				</div>
 			{/if}
+		</div>
+	{/snippet}
+	{#snippet footer()}
+		<div class="flex flex-wrap items-center gap-2">
+			<CopyButton
+				copyFn={handleCopyLink}
+				variant="outline"
+				text={m.copy_link_text()}
+				class="flex-1"
+			/>
+			<Button class="flex-1" onclick={handleClickShareUrl}>
+				<ShareFatIcon aria-hidden="true" />
+				{m.share_link_text()}
+			</Button>
 		</div>
 	{/snippet}
 </DialogDrawer>
