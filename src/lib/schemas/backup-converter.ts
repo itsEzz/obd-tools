@@ -22,12 +22,18 @@ export const maxFileSizeInBytes: { maxSize: number; readable: string } = {
 	readable: '10MB'
 };
 
-const booleanSchema = z
-	.enum(['true', 'false'] as const)
-	.transform((val) => val === 'true')
-	.meta({
-		type: 'boolean'
-	});
+const formBoolean = (defaultVal: boolean) =>
+	z
+		.preprocess(
+			(val) => {
+				if (val === 'true') return true;
+				if (val === 'false') return false;
+				return val;
+			},
+			z.boolean().meta({ default: defaultVal })
+		)
+		.optional()
+		.default(defaultVal);
 
 export const backupConverterApiSchema = z.object({
 	backup: z
@@ -63,12 +69,12 @@ export const backupConverterApiSchema = z.object({
 		)
 		.optional()
 		.default('compact'),
-	incBasicBkpInfo: booleanSchema.optional().default(true),
-	incBasicCUInfo: booleanSchema.optional().default(true),
-	incAdapData: booleanSchema.optional().default(true),
-	incAdvIdentData: booleanSchema.optional().default(true),
-	addEmptyLinesBtwCUs: booleanSchema.optional().default(true),
-	addEmptyLinesBtwAdapAndAdvIdentData: booleanSchema.optional().default(true)
+	incBasicBkpInfo: formBoolean(true),
+	incBasicCUInfo: formBoolean(true),
+	incAdapData: formBoolean(true),
+	incAdvIdentData: formBoolean(true),
+	addEmptyLinesBtwCUs: formBoolean(true),
+	addEmptyLinesBtwAdapAndAdvIdentData: formBoolean(true)
 });
 
 export const backupConverterFormSchema = z.object({

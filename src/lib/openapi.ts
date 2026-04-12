@@ -1,5 +1,5 @@
 import { version } from '$app/environment';
-import { createDocument } from 'zod-openapi';
+import { createDocument, createSchema } from 'zod-openapi';
 import { m } from './paraglide/messages';
 import {
 	badRequestResponseSchema,
@@ -25,15 +25,15 @@ export const openApiDocument = createDocument({
 	servers: [{ url: '/api' }],
 	components: {
 		schemas: {
-			SVMBody: svmApiSchema,
+			SVMBody: createSchema(svmApiSchema, { io: 'input' }).schema,
 			SVMResponse: svmApiResponseSchema,
-			CodingCompareBody: codingCompareApiSchema,
+			CodingCompareBody: createSchema(codingCompareApiSchema, { io: 'input' }).schema,
 			CodingCompareResponse: codingCompareApiResponseSchema,
-			HexToBinaryBody: hexToBinaryApiSchema,
+			HexToBinaryBody: createSchema(hexToBinaryApiSchema, { io: 'input' }).schema,
 			HexToBinaryResponse: hexToBinaryApiResponseSchema,
-			PRCodesBody: prCodesApiSchema,
+			PRCodesBody: createSchema(prCodesApiSchema, { io: 'input' }).schema,
 			PRCodesResponse: prCodesApiResponseSchema,
-			BackupConverterBody: backupConverterApiSchema,
+			BackupConverterBody: createSchema(backupConverterApiSchema, { io: 'input' }).schema,
 			BackupConverterResponse: backupConverterApiResponseSchema,
 			BadRequestResponse: badRequestResponseSchema,
 			TooManyRequestsResponse: tooManyRequestsResponseSchema,
