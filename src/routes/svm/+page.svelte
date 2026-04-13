@@ -121,7 +121,7 @@
 <ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmParamsSchema}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
-			<p class="bg-muted p-4 text-center">
+			<p class="bg-muted p-4 text-center text-sm sm:text-base">
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html m.svm_description()}
 			</p>

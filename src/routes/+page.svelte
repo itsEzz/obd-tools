@@ -16,9 +16,9 @@
 				>
 			</div>
 			<div class="text-center lg:text-start">
-				<h1 class="text-5xl font-bold">{m.home_welcome_title()}</h1>
-				<h2 class="py-3 text-2xl">{m.home_welcome_subtitle()}</h2>
-				<p>
+				<h1 class="text-2xl font-bold sm:text-3xl md:text-4xl">{m.home_welcome_title()}</h1>
+				<h2 class="py-3 text-lg sm:text-xl md:text-2xl">{m.home_welcome_subtitle()}</h2>
+				<p class="text-sm sm:text-base">
 					<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 					{@html m.home_welcome_description()}
 				</p>

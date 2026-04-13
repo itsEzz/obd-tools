@@ -113,7 +113,7 @@
 		<div class="flex flex-col overflow-x-auto">
 			{#if title && title.length > 0}
 				<div class="text-center">
-					<h1 class="text-4xl font-bold">{title}</h1>
+					<h1 class="text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h1>
 				</div>
 			{/if}
 			<div class="mt-4 p-1">
