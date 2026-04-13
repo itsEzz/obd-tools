@@ -108,7 +108,7 @@
 	"pr_codes_table_header_description": "Description",
 	"pr_codes_no_result_title": "No matching PR codes found",
 	"pr_codes_no_result_description": "Unfortunately, none of the provided PR codes could be found in our database.",
-	"backup_converter_description": "Convert OBDeleven backups into csv format with ease.<br/>This makes backup data more compact and ready for analysis in excel and other spreadsheet tools.",
+	"backup_converter_description": "Convert OBDeleven backups into csv format with ease.<br/>This makes backup data more compact and ready for analysis in Excel and other spreadsheet tools.",
 	"backup_converter_info_title": "Backup Converter Information",
 	"backup_converter_info_1": "This converter is optimized for english language backups. Using other languages may affect the output accuracy.",
 	"backup_converter_info_2": "The provided OBDeleven backup <b><u>must</u></b> be in its <b><u>original and unmodified</u></b> format. Any alterations will directly affect the converter result.",
