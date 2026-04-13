@@ -196,7 +196,7 @@
 			<div class="flex justify-center">
 				<Button class="w-fit" variant="outline" onclick={handleClickOpenInfo}>
 					<InfoIcon aria-hidden="true" />
-					{m.backup_converter_additional_information_label()}
+					{m.additional_information_label()}
 				</Button>
 			</div>
 			<Separator />

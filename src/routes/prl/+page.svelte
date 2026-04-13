@@ -23,8 +23,8 @@
 	import { copyText } from '$lib/utils/copy';
 	import { scrollIntoView } from '$lib/utils/scroll';
 	import EmptyIcon from 'phosphor-svelte/lib/EmptyIcon';
+	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';
 	import MagnifyingGlassIcon from 'phosphor-svelte/lib/MagnifyingGlassIcon';
-	import QuestionIcon from 'phosphor-svelte/lib/QuestionIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
 	import { toast } from 'svelte-sonner';
@@ -167,8 +167,8 @@
 			</p>
 			<div class="flex justify-center">
 				<Button class="w-fit" variant="outline" onclick={handleClickOpenFaq}>
-					<QuestionIcon aria-hidden="true" />
-					{m.pr_codes_faq_label()}
+					<InfoIcon aria-hidden="true" />
+					{m.additional_information_label()}
 				</Button>
 			</div>
 			<Separator />
