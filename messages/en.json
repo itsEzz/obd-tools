@@ -2,6 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"website_title": "OBD Tools",
 	"made_with_obd_tools": "Made with OBD Tools",
+	"adrian_website_link_aria_label": "Link to Adrian Gast's Website (opens in new tab)",
 	"generic_error_message_title": "Something went wrong",
 	"generic_error_message_description": "We're having issues generating your result. Please try again later.",
 	"additional_information_label": "Additional information",

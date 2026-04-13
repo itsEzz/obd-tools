@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
 	import { version } from '$app/environment';
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { m } from '$lib/paraglide/messages';
 </script>
 
 <footer
@@ -13,7 +14,7 @@
 			href="https://adriangast.de"
 			target="_blank"
 			rel="noreferrer"
-			aria-label="Adrian Gast's Website (opens in new tab)"
+			aria-label={m.adrian_website_link_aria_label()}
 			class="p-0">Adrian Gast</Button
 		> | v{version}
 	</p>
