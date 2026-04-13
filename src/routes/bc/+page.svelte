@@ -140,7 +140,7 @@
 			}
 			if (file.type === 'text/plain') {
 				const text = await file.text();
-				$formData.backup += text;
+				$formData.backup = text;
 			} else {
 				toast.error(m.backup_converter_file_type_invalid_title(), {
 					description: m.backup_converter_file_type_invalid_description()
@@ -229,7 +229,8 @@ VIN: ....
 									class="flex items-center justify-between border-t bg-transparent p-1 dark:bg-input/30"
 								>
 									<p class="ml-1.5 text-xs text-muted-foreground">
-										{toHumanReadable($formData.backup.length)} character(s)
+										{toHumanReadable($formData.backup.length)}
+										{m.backup_converter_character_count_label()}
 									</p>
 									<Input
 										type="file"
@@ -430,7 +431,8 @@ VIN: ....
 							class="flex flex-wrap items-center justify-center gap-2 border-t bg-transparent p-1 sm:justify-between dark:bg-input/30"
 						>
 							<p class="ml-1.5 text-xs text-muted-foreground">
-								{toHumanReadable(backupConverterResult?.length ?? 0)} character(s)
+								{toHumanReadable(backupConverterResult?.length ?? 0)}
+								{m.backup_converter_character_count_label()}
 							</p>
 							<div class="flex flex-wrap justify-center gap-2">
 								<CopyButton
