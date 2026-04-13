@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 import { m } from '$lib/paraglide/messages';
-import { isSuccess, tca } from '@itsezz/try-catch';
+import { tca } from '@itsezz/try-catch';
 import { toast } from 'svelte-sonner';
 
 /**
