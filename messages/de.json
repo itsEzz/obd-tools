@@ -107,7 +107,6 @@
 	"pr_codes_table_header_description": "Beschreibung",
 	"pr_codes_no_result_title": "Keine passenden PR-Codes gefunden",
 	"pr_codes_no_result_description": "Leider wurden keine der angegebenen PR-Codes in unserer Datenbank gefunden.",
-
 	"backup_converter_description": "Konvertieren Sie OBDeleven-Backups ganz einfach ins CSV-Format.<br/>Dadurch werden die Backup-Daten kompakter und können in Excel und anderen Tabellenkalkulationsprogrammen analysiert werden.",
 	"backup_converter_info_title": "Backup-Konverter-Information",
 	"backup_converter_info_1": "Dieser Konverter ist für englischsprachige Backups optimiert. Die Verwendung anderer Sprachen kann die Genauigkeit der Ausgabe beeinträchtigen.",
