@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
+	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { emptySchema } from '$lib/schemas/empty';
@@ -70,7 +70,7 @@
 >
 	{#snippet body()}
 		<div class="flex flex-col gap-2">
-			<Input value={shareLink} readonly id={shareLinkId} />
+			<Textarea value={shareLink} readonly id={shareLinkId} class="max-h-24 min-h-fit break-all" />
 			{#if urlSearchParamsSchema && params.size > 0}
 				<div class="flex items-center space-x-2">
 					<Switch id="include-params" bind:checked={includeParams} />
