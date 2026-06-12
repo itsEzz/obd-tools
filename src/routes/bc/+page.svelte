@@ -259,7 +259,8 @@ VIN: ....
 								<Input
 									{...props}
 									{...$constraints.delimiter}
-									minlength={2}
+									minlength={1}
+									maxlength={1}
 									placeholder="e.g. ;"
 									bind:value={$formData.delimiter}
 								/>
