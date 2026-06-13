@@ -109,10 +109,7 @@
 	description={m.seo_coding_compare_description()}
 />
 
-<ContentWindow
-	title={m.navbar_coding_compare_label()}
-	urlSearchParamsSchema={codingCompareParamsSchema}
->
+<ContentWindow title={m.navbar_coding_compare_label()}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="bg-muted p-4 text-center text-sm sm:text-base">

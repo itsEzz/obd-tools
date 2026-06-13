@@ -164,7 +164,7 @@
 	{/snippet}
 </DialogDrawer>
 
-<ContentWindow title={m.navbar_pr_codes_lookup_label()} urlSearchParamsSchema={prCodesParamsSchema}>
+<ContentWindow title={m.navbar_pr_codes_lookup_label()}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="bg-muted p-4 text-center text-sm sm:text-base">

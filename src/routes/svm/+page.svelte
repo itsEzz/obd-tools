@@ -124,7 +124,7 @@
 	{/snippet}
 </DialogDrawer>
 
-<ContentWindow title={m.navbar_svm_label()} urlSearchParamsSchema={svmParamsSchema}>
+<ContentWindow title={m.navbar_svm_label()}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="bg-muted p-4 text-center text-sm sm:text-base">

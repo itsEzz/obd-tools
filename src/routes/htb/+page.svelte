@@ -102,10 +102,7 @@
 	description={m.seo_hex_to_binary_description()}
 />
 
-<ContentWindow
-	title={m.navbar_hex_to_binary_label()}
-	urlSearchParamsSchema={hexToBinaryParamsSchema}
->
+<ContentWindow title={m.navbar_hex_to_binary_label()}>
 	{#snippet body()}
 		<div class="flex flex-col gap-4">
 			<p class="bg-muted p-4 text-center text-sm sm:text-base">
