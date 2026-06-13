@@ -169,9 +169,6 @@
 			{#if showResult}
 				<Separator />
 				<Table.Root id="coding-compare-result">
-					<Table.Caption>
-						<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
-					</Table.Caption>
 					<Table.Header>
 						<Table.Row>
 							<Table.Row></Table.Row>
@@ -220,6 +217,9 @@
 						{/each}
 					</Table.Body>
 				</Table.Root>
+				<div class="flex justify-center">
+					<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
+				</div>
 			{/if}
 		</div>
 	{/snippet}

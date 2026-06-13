@@ -227,9 +227,6 @@
 					</Item.Root>
 				{:else}
 					<Table.Root id="pr-codes-result">
-						<Table.Caption>
-							<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
-						</Table.Caption>
 						<Table.Header>
 							<Table.Row>
 								<Table.Head class="text-center">
@@ -251,6 +248,9 @@
 							{/each}
 						</Table.Body>
 					</Table.Root>
+					<div class="flex justify-center">
+						<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
+					</div>
 				{/if}
 			{/if}
 		</div>
