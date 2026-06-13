@@ -2,6 +2,7 @@
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"website_title": "OBD Tools",
 	"made_with_obd_tools": "Erstellt mit OBD Tools",
+	"logo_alt": "OBD Tools Logo",
 	"adrian_website_link_aria_label": "Link zu Adrian Gast's Website (öffnet in einem neuen Tab)",
 	"generic_error_message_title": "Etwas ist schiefgelaufen",
 	"generic_error_message_description": "Bei der Erstellung Ihres Ergebnisses ist ein Problem aufgetreten. Bitte versuchen Sie es später erneut.",
