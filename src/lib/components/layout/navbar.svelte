@@ -63,7 +63,10 @@
 					</DropdownMenu.Group>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
-			<a class={cn(buttonVariants({ variant: 'ghost' }), 'p-6 text-xl')} href={resolve('/')}>
+			<a
+				class={cn(buttonVariants({ variant: 'ghost' }), 'p-6 text-lg px-1 sm:text-xl sm:px-4')}
+				href={resolve('/')}
+			>
 				<img src={'/favicon-96x96.png'} alt={m.logo_alt()} class="size-12 hidden sm:block" />
 				{m.website_title()}
 			</a>
