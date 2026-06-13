@@ -2,7 +2,10 @@
 	import ContentWindow from '$lib/components/layout/content-window.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { m } from '$lib/paraglide/messages';
+	import SvelteSeo from 'svelte-seo';
 </script>
+
+<SvelteSeo title={m.website_title()} />
 
 <ContentWindow>
 	{#snippet body()}
