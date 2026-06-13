@@ -18,6 +18,7 @@
 	import SealCheckIcon from 'phosphor-svelte/lib/SealCheckIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
+	import SvelteSeo from 'svelte-seo';
 	import { toast } from 'svelte-sonner';
 	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -90,6 +91,11 @@
 		if (result.valid) submit();
 	});
 </script>
+
+<SvelteSeo
+	title={`${m.website_title()} - ${m.navbar_svm_label()}`}
+	description={m.seo_svm_description()}
+/>
 
 <DialogDrawer
 	bind:open={openTutorial}

@@ -31,6 +31,7 @@
 	import PaperClipIcon from 'phosphor-svelte/lib/PaperclipIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
+	import SvelteSeo from 'svelte-seo';
 	import { toast } from 'svelte-sonner';
 	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -166,6 +167,11 @@
 		if (result.valid) submit();
 	});
 </script>
+
+<SvelteSeo
+	title={`${m.website_title()} - ${m.navbar_backup_converter_label()}`}
+	description={m.seo_backup_converter_description()}
+/>
 
 <DialogDrawer bind:open={openInfo} title={m.backup_converter_info_title()}>
 	{#snippet body()}

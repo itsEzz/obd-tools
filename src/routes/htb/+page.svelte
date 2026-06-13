@@ -21,6 +21,7 @@
 	import BinaryIcon from 'phosphor-svelte/lib/BinaryIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';
+	import SvelteSeo from 'svelte-seo';
 	import { toast } from 'svelte-sonner';
 	import { defaults, superForm } from 'sveltekit-superforms';
 	import { zod4 } from 'sveltekit-superforms/adapters';
@@ -95,6 +96,11 @@
 		if (result.valid) submit();
 	});
 </script>
+
+<SvelteSeo
+	title={`${m.website_title()} - ${m.navbar_hex_to_binary_label()}`}
+	description={m.seo_hex_to_binary_description()}
+/>
 
 <ContentWindow
 	title={m.navbar_hex_to_binary_label()}

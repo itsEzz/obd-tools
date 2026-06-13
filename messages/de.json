@@ -137,5 +137,18 @@
 	"backup_converter_submit_label": "Backup konvertieren",
 	"backup_converter_result_label": "Konvertiertes Backup",
 	"backup_converter_copy_result_label": "Konvertiertes Backup kopieren",
-	"backup_converter_download_result_label": "Konvertiertes Backup herunterladen"
+	"backup_converter_download_result_label": "Konvertiertes Backup herunterladen",
+	"openapi_title": "OBD Tools API-Dokumentation",
+	"openapi_description": "Umfassende Dokumentation für die OBD Tools API mit detaillierten Angaben zu verfügbaren Endpunkten, Anfrage- und Antwortformaten sowie Anwendungsbeispielen.",
+	"openapi_success_response_description": "Erfolg",
+	"openapi_bad_request_response_description": "Ungültige Anforderung",
+	"openapi_too_many_requests_response_description": "Zu viele Anfragen",
+	"openapi_internal_server_error_response_description": "interner Serverfehler",
+	"seo_website_description": "Eine Sammlung von Werkzeugen für die Arbeit mit OBD-II-Daten.",
+	"seo_website_keywords": "OBD, OBD-II, Fahrzeugdiagnose, SVM, Codierungsvergleich, Hexadezimal-zu-Binär-Umwandlung, PR-Codes, Backup-Konverter",
+	"seo_svm_description": "Entfernen Sie mühelos Ihren Software Version Management (1555 / B201A) Fehlercode.",
+	"seo_coding_compare_description": "Vergleichen Sie Hex-Werte sofort und heben Sie Unterschiede in diesem einfachen Side-by-Side-Tool hervor.",
+	"seo_hex_to_binary_description": "Wandeln Sie Hex-Werte in ihre Binärdarstellung um.<br/>Ideal zum Verständnis bitbasierter Konfigurationen in der Fahrzeugdiagnose.",
+	"seo_pr_codes_description": "Entschlüsseln Sie VAG PR-Codes, um die Werksausstattung Ihres Fahrzeugs zu entdecken.",
+	"seo_backup_converter_description": "Konvertieren Sie OBDeleven-Backups ganz einfach ins CSV-Format. Dadurch werden die Backup-Daten kompakter und können in Excel und anderen Tabellenkalkulationsprogrammen analysiert werden."
 }

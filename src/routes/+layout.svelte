@@ -1,17 +1,81 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import Footer from '$lib/components/layout/footer.svelte';
 	import Navbar from '$lib/components/layout/navbar.svelte';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { mode, ModeWatcher } from 'mode-watcher';
+	import SvelteSeo from 'svelte-seo';
 	import './layout.css';
 
 	// Props
 	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href="/favicon.ico" /></svelte:head>
+<svelte:head>
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+	<!-- Apple -->
+	<meta name="apple-mobile-web-app-title" content="App" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	<!-- PWA -->
+	<meta name="theme-color" content="#ffffff" />
+	<link rel="manifest" href="/manifest.json" />
+	<!-- Windows tiles -->
+	<meta name="msapplication-TileColor" content="#ffffff" />
+	<meta name="msapplication-config" content="/browserconfig.xml" />
+</svelte:head>
+
+<SvelteSeo
+	title={m.website_title()}
+	description={m.seo_website_description()}
+	keywords={m.seo_website_keywords()}
+	applicationName={m.website_title()}
+	canonical={page.url.href}
+	manifest="/manifest.json"
+	openGraph={{
+		title: m.website_title(),
+		description: m.seo_website_description(),
+		url: page.url.href,
+		type: 'website',
+		site_name: m.website_title(),
+		images: [
+			{
+				url: new URL('/og.png', page.url.origin).href,
+				width: 1200,
+				height: 630,
+				alt: m.website_title()
+			}
+		]
+	}}
+	twitter={{
+		card: 'summary_large_image',
+		title: m.website_title(),
+		description: m.seo_website_description(),
+		image: new URL('/og.png', page.url.origin).href,
+		imageAlt: m.website_title()
+	}}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'WebApplication',
+		name: m.website_title(),
+		description: m.seo_website_description(),
+		url: page.url.href,
+		operatingSystem: 'Web Browser',
+		browserRequirements: 'Requires JavaScript. Requires HTML5.',
+		permissions: 'no special permissions required',
+		author: {
+			'@type': 'Person',
+			name: 'Adrian Gast',
+			url: 'https://adriangast.de'
+		}
+	}}
+/>
 
 <ModeWatcher />
 

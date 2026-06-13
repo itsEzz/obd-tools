@@ -143,5 +143,12 @@
 	"openapi_success_response_description": "Success",
 	"openapi_bad_request_response_description": "Bad Request",
 	"openapi_too_many_requests_response_description": "Too Many Requests",
-	"openapi_internal_server_error_response_description": "Internal Server Error"
+	"openapi_internal_server_error_response_description": "Internal Server Error",
+	"seo_website_description": "A collection of tools for working with OBD-II data.",
+	"seo_website_keywords": "OBD, OBD-II, automotive diagnostics, SVM, coding compare, hex to binary, PR codes, backup converter",
+	"seo_svm_description": "Easily get rid of your Software Version Management (1555 / B201A) fault code.",
+	"seo_coding_compare_description": "Compare hex values instantly and highlight their differences with this simple side-by-side comparison tool.",
+	"seo_hex_to_binary_description": "Convert hex values to their binary representation. Perfect for understanding bit-level configurations in automotive diagnostics.",
+	"seo_pr_codes_description": "Decode VAG PR codes to discover your vehicle's factory features and equipment.",
+	"seo_backup_converter_description": "Convert OBDeleven backups into csv format with ease. This makes backup data more compact and ready for analysis in Excel and other spreadsheet tools."
 }
