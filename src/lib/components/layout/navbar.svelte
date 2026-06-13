@@ -12,6 +12,7 @@
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
 	import LanguageSelect from './language-select.svelte';
+	import Share from './share.svelte';
 	import ThemeToggle from './theme-toggle.svelte';
 
 	// Variables & States
@@ -91,6 +92,7 @@
 			</NavigationMenu.Root>
 		</div>
 		<div class="inline-flex w-1/2 justify-end gap-1">
+			<Share />
 			<ThemeToggle />
 			<LanguageSelect />
 		</div>
