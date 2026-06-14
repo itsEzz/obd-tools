@@ -9,6 +9,7 @@ interface UmamiOptions {
 
 class Umami {
 	private options: UmamiOptions;
+	private doNotTrack: boolean;
 
 	constructor(options?: Partial<UmamiOptions>) {
 		const websiteId = options?.websiteId || clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID;
@@ -20,9 +21,21 @@ class Umami {
 			websiteId: websiteId,
 			userAgent: options?.userAgent || `Mozilla/5.0 Umami/${version}`
 		};
+
+		this.doNotTrack =
+			clientAppConfig.PUBLIC_UMAMI_DO_NOT_TRACK === 'true'
+				? 'globalPrivacyControl' in navigator
+					? navigator.globalPrivacyControl === true
+					: navigator.doNotTrack === '1'
+				: false;
 	}
 
-	send(payload: Record<string, unknown>, type: 'event' | 'identify' = 'event'): Promise<Response> {
+	private async send(
+		payload: Record<string, unknown>,
+		type: 'event' | 'identify' = 'event'
+	): Promise<Response | null> {
+		if (this.doNotTrack) return Promise.resolve(null);
+
 		const { hostname, userAgent } = this.options;
 
 		return fetch(`${hostname}/api/send`, {
@@ -35,10 +48,10 @@ class Umami {
 		});
 	}
 
-	track(
+	async track(
 		event: string | Record<string, unknown>,
 		eventData?: Record<string, unknown>
-	): Promise<Response> {
+	): Promise<Response | null> {
 		const type = typeof event;
 		const { websiteId } = this.options;
 		switch (type) {

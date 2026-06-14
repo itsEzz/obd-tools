@@ -69,7 +69,7 @@ export const clientEnvSchema = z.object({
 	PUBLIC_UMAMI_PERFORMANCE: z.enum(['true', 'false']).optional(),
 	PUBLIC_UMAMI_EXCLUDE_SEARCH: z.enum(['true', 'false']).optional(),
 	PUBLIC_UMAMI_EXCLUDE_HASH: z.enum(['true', 'false']).optional(),
-	PUBLIC_UMAMI_DO_NOT_TRACK: z.enum(['true', 'false']).optional(),
+	PUBLIC_UMAMI_DO_NOT_TRACK: z.enum(['true', 'false']).optional().default('true'),
 	PUBLIC_UMAMI_WEBSITE_ID: z.uuid({ version: 'v4', message: 'Must be a valid UUID v4' }).optional()
 });
 
