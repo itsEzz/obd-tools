@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
+	import type { Pathname } from '$app/types';
 	import { buttonVariants } from '$lib/components/ui/button/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
 	import { navigationMenuTriggerStyle } from '$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte';
 	import { IsMobile } from '$lib/hooks/is-mobile.svelte.js';
 	import { m } from '$lib/paraglide/messages';
-	import type { NavItem } from '$lib/types/navigation';
 	import { cn } from '$lib/utils';
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
@@ -19,7 +19,10 @@
 	// Variables & States
 	let isNavMenuOpen = $state<boolean>(false);
 	const isMobile = new IsMobile();
-	const navItems: NavItem[] = [
+	const navItems: {
+		href: Pathname;
+		label: string;
+	}[] = [
 		{ href: '/svm', label: m.navbar_svm_label() },
 		{ href: '/cc', label: m.navbar_coding_compare_label() },
 		{ href: '/htb', label: m.navbar_hex_to_binary_label() },

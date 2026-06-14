@@ -3,7 +3,6 @@
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { getLocale, locales, setLocale, type Locale } from '$lib/paraglide/runtime.js';
-	import type { LanguageOption } from '$lib/types/locale';
 	import GlobeIcon from 'phosphor-svelte/lib/GlobeIcon';
 	import { toast } from 'svelte-sonner';
 	import { buttonVariants } from '../ui/button';
@@ -11,7 +10,10 @@
 	// Variables & States
 	let currentLocale = $state<Locale>(getLocale());
 	// ! Add new languages here
-	const availableLanguages: LanguageOption[] = [
+	const availableLanguages: {
+		code: Locale;
+		label: string;
+	}[] = [
 		{ code: 'en', label: 'English' },
 		{ code: 'de', label: 'Deutsch' }
 	];
