@@ -7,6 +7,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { cn } from '$lib/utils';
+	import { clientAppConfig } from '$lib/utils/client-app-config';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import SvelteSeo from 'svelte-seo';
 	import './layout.css';
@@ -31,6 +32,14 @@
 	<!-- Windows tiles -->
 	<meta name="msapplication-TileColor" content="#ffffff" />
 	<meta name="msapplication-config" content="/browserconfig.xml" />
+	<!-- Analytics -->
+	{#if clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID}
+		<script
+			defer
+			src="/proxy/stats.js"
+			data-website-id={clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID}
+		></script>
+	{/if}
 </svelte:head>
 
 <SvelteSeo
