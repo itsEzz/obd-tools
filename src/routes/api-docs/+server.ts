@@ -1,7 +1,8 @@
 import { openApiDocument } from '$lib/openapi';
+import { m } from '$lib/paraglide/messages';
+import { umami } from '$lib/utils/umami';
 import { ScalarApiReference } from '@scalar/sveltekit';
 import type { RequestHandler } from './$types';
-import { m } from '$lib/paraglide/messages';
 
 const render = ScalarApiReference({
 	theme: 'alternate',
@@ -15,6 +16,7 @@ const render = ScalarApiReference({
 	hideDownloadButton: true
 });
 
-export const GET: RequestHandler = () => {
+export const GET: RequestHandler = async () => {
+	await umami.track({ url: '/api-docs', title: 'API Docs' });
 	return render();
 };

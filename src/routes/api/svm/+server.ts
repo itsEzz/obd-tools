@@ -2,6 +2,7 @@ import { svmXor } from '$lib/logic/svm';
 import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
 import { svmApiSchema, type SvmApiResponse } from '$lib/schemas/svm';
 import { createChildLogger } from '$lib/server/logger';
+import { umami } from '$lib/utils/umami';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -9,6 +10,8 @@ import type { RequestHandler } from './$types';
 const logger = createChildLogger('api.svm');
 
 export const POST: RequestHandler = async ({ request }) => {
+	await umami.track({ url: '/api/svm', title: 'SVM XOR' });
+
 	const body = await tca(request.json());
 
 	if (!body.ok) {

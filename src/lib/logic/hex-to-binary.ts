@@ -1,13 +1,17 @@
 import { page } from '$app/state';
 import { m } from '$lib/paraglide/messages';
 import type { HexToBinaryResult } from '$lib/schemas/hex-to-binary';
+import { umami } from '$lib/utils/umami';
 import { tc, type Result } from '@itsezz/try-catch';
 
-export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToBinaryResult> {
+export function hexToBinary(
+	value: string,
+	onlySetBytes: boolean
+): Result<HexToBinaryResult, unknown> {
 	const results: HexToBinaryResult = [];
 	const byteCount = value.length / 2;
 
-	return tc(() => {
+	const result = tc(() => {
 		for (let i = 0; i < byteCount; i++) {
 			const startIdx = i * 2;
 			const hex = value.slice(startIdx, startIdx + 2).toUpperCase();
@@ -38,6 +42,13 @@ export function hexToBinary(value: string, onlySetBytes: boolean): Result<HexToB
 
 		return results;
 	});
+
+	umami.track(result.ok ? 'htb-success' : 'htb-error', {
+		input: { value, onlySetBytes },
+		error: result.error ? String(result.error) : undefined
+	});
+
+	return result;
 }
 
 export function generateHexToBinaryBBCodeTable(

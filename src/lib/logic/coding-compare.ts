@@ -1,17 +1,18 @@
 import { page } from '$app/state';
 import { m } from '$lib/paraglide/messages';
 import type { CodingCompareResult } from '$lib/schemas/coding-compare';
+import { umami } from '$lib/utils/umami';
 import { tc, type Result } from '@itsezz/try-catch';
 
 export function codingCompare(
 	value1: string,
 	value2: string,
 	onlyDiff: boolean
-): Result<CodingCompareResult> {
+): Result<CodingCompareResult, unknown> {
 	const results: CodingCompareResult = [];
 	const byteCount = value1.length / 2;
 
-	return tc(() => {
+	const result = tc(() => {
 		for (let i = 0; i < byteCount; i++) {
 			const startIdx = i * 2;
 			const hex1 = value1.slice(startIdx, startIdx + 2).toUpperCase();
@@ -39,6 +40,13 @@ export function codingCompare(
 
 		return results;
 	});
+
+	umami.track(result.ok ? 'cc-success' : 'cc-error', {
+		input: { value1, value2, onlyDiff },
+		error: result.error ? String(result.error) : undefined
+	});
+
+	return result;
 }
 
 function createBits(byte: number, compareByte: number): CodingCompareResult[0]['bits1'] {

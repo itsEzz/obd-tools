@@ -2,6 +2,7 @@ import { lookupPrCodes } from '$lib/logic/pr-codes';
 import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
 import { prCodesApiSchema, type PrCodesApiResponse } from '$lib/schemas/pr-codes';
 import { createChildLogger } from '$lib/server/logger';
+import { umami } from '$lib/utils/umami';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -9,6 +10,7 @@ import type { RequestHandler } from './$types';
 const logger = createChildLogger('api.prl');
 
 export const POST: RequestHandler = async ({ request }) => {
+	await umami.track({ url: '/api/prl', title: 'PR Codes Lookup' });
 	const body = await tca(request.json());
 
 	if (!body.ok) {

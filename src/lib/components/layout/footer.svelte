@@ -15,7 +15,8 @@
 			target="_blank"
 			rel="noreferrer"
 			aria-label={m.adrian_website_link_aria_label()}
-			class="p-0">Adrian Gast</Button
+			class="p-0"
+			data-umami-event="visit-adrian-website">Adrian Gast</Button
 		> | v{version}
 	</p>
 </footer>

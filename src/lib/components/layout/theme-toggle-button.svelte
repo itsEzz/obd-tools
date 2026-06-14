@@ -52,6 +52,7 @@
 		class={buttonVariants({ variant: 'outline', size: 'icon' })}
 		aria-label={ariaLabel}
 		onclick={handleClickToggleTheme}
+		data-umami-event="toggle-theme"
 	>
 		<SunIcon
 			class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90"

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { ResolvedPathname } from '$app/types';
+	import type { Pathname } from '$app/types';
 	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { Switch } from '$lib/components/ui/switch/index.js';
@@ -22,15 +22,16 @@
 	import CopyButton from '../common/copy-button.svelte';
 	import DialogDrawer from '../common/dialog-drawer.svelte';
 
+	// Types
+	type PathnamesWithParams = Extract<Pathname, '/svm' | '/cc' | '/htb' | '/prl' | '/bc'>;
+
 	// Variables & States
-	const urlSchemaMapping: Record<ResolvedPathname, StandardSchemaV1> = {
-		'/': emptySchema,
+	const urlSchemaMapping: Record<PathnamesWithParams, StandardSchemaV1> = {
 		'/svm': svmParamsSchema,
 		'/cc': codingCompareParamsSchema,
 		'/htb': hexToBinaryParamsSchema,
 		'/prl': prCodesParamsSchema,
-		'/bc': backupConverterParamsSchema,
-		'/api-docs': emptySchema
+		'/bc': backupConverterParamsSchema
 	};
 	let openShareDialog = $state<boolean>(false);
 	let includeParams = $state(true);
@@ -38,7 +39,12 @@
 	const id = $props.id();
 	const shareLinkId = `share-link-${id}`;
 	const { searchParams } = $derived(
-		validateSearchParams(page.url, urlSchemaMapping[page.url.pathname])
+		validateSearchParams(
+			page.url,
+			page.url.pathname in Object.keys(urlSchemaMapping)
+				? urlSchemaMapping[page.url.pathname as PathnamesWithParams]
+				: emptySchema
+		)
 	);
 	const params = $derived.by(() => {
 		const _params = searchParams;
@@ -93,8 +99,9 @@
 				variant="outline"
 				text={m.copy_link_text()}
 				class="flex-1"
+				data-umami-event="share-link-copy"
 			/>
-			<Button class="flex-1" onclick={handleClickShareUrl}>
+			<Button class="flex-1" onclick={handleClickShareUrl} data-umami-event="share-link-share">
 				<ShareFatIcon aria-hidden="true" />
 				{m.share_link_text()}
 			</Button>
@@ -107,6 +114,7 @@
 		class={buttonVariants({ variant: 'outline', size: 'icon' })}
 		aria-label={m.share_page_dialog_title()}
 		onclick={handleClickOpenShareDialog}
+		data-umami-event="share-link-open"
 	>
 		<ShareFatIcon aria-hidden="true" />
 	</Tooltip.Trigger>

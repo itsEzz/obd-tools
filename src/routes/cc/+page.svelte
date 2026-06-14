@@ -218,7 +218,11 @@
 					</Table.Body>
 				</Table.Root>
 				<div class="flex justify-center">
-					<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
+					<CopyButton
+						copyFn={handleCopyBBCode}
+						text={m.copy_bbcode_button_label()}
+						data-umami-event="cc-copy-bbcode"
+					/>
 				</div>
 			{/if}
 		</div>

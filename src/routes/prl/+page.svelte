@@ -172,7 +172,12 @@
 				{@html m.pr_codes_description()}
 			</p>
 			<div class="flex justify-center">
-				<Button class="w-fit" variant="outline" onclick={handleClickOpenFaq}>
+				<Button
+					class="w-fit"
+					variant="outline"
+					onclick={handleClickOpenFaq}
+					data-umami-event="prl-info-open"
+				>
 					<InfoIcon aria-hidden="true" />
 					{m.additional_information_label()}
 				</Button>
@@ -249,7 +254,11 @@
 						</Table.Body>
 					</Table.Root>
 					<div class="flex justify-center">
-						<CopyButton copyFn={handleCopyBBCode} text={m.copy_bbcode_button_label()} />
+						<CopyButton
+							copyFn={handleCopyBBCode}
+							text={m.copy_bbcode_button_label()}
+							data-umami-event="prl-copy-bbcode"
+						/>
 					</div>
 				{/if}
 			{/if}

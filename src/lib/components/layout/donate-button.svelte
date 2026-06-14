@@ -18,6 +18,7 @@
 		target="_blank"
 		rel="noreferrer"
 		aria-label={m.donate_label()}
+		data-umami-event="donate"
 	>
 		<HandHeartIcon aria-hidden="true" />
 		{#if !iconOnly.current}

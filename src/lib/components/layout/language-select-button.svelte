@@ -55,7 +55,12 @@
 			<DropdownMenu.Separator />
 			<DropdownMenu.RadioGroup value={currentLocale} onValueChange={handleChangeLocale}>
 				{#each availableLanguages as language (language.code)}
-					<DropdownMenu.RadioItem value={language.code}>
+					<DropdownMenu.RadioItem
+						value={language.code}
+						data-umami-event="change-language"
+						data-umami-event-locale_old={currentLocale}
+						data-umami-event-locale_new={language.code}
+					>
 						{language.label}
 					</DropdownMenu.RadioItem>
 				{/each}

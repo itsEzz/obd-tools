@@ -5,6 +5,7 @@ import {
 	type BackupConverterApiResponse
 } from '$lib/schemas/backup-converter';
 import { createChildLogger } from '$lib/server/logger';
+import { umami } from '$lib/utils/umami';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
@@ -12,6 +13,7 @@ import type { RequestHandler } from './$types';
 const logger = createChildLogger('api.bc');
 
 export const POST: RequestHandler = async ({ request }) => {
+	await umami.track({ url: '/api/bc', title: 'Backup Converter' });
 	const formDataResult = await tca(request.formData());
 
 	if (!formDataResult.ok) {

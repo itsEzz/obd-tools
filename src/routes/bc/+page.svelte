@@ -197,7 +197,12 @@
 				{@html m.backup_converter_description()}
 			</p>
 			<div class="flex justify-center">
-				<Button class="w-fit" variant="outline" onclick={handleClickOpenInfo}>
+				<Button
+					class="w-fit"
+					variant="outline"
+					onclick={handleClickOpenInfo}
+					data-umami-event="bc-info-open"
+				>
 					<InfoIcon aria-hidden="true" />
 					{m.additional_information_label()}
 				</Button>
@@ -442,8 +447,9 @@ VIN: ....
 								<CopyButton
 									copyFn={handleCopyConvertedBackup}
 									text={m.backup_converter_copy_result_label()}
+									data-umami-event="bc-copy-result"
 								/>
-								<Button onclick={handleClickDownloadResult}>
+								<Button onclick={handleClickDownloadResult} data-umami-event="bc-download-result">
 									<DownloadSimpleIcon aria-hidden="true" />
 									{m.backup_converter_download_result_label()}
 								</Button>

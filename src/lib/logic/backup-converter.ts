@@ -8,6 +8,7 @@ import {
 	type BackupConverterOptions,
 	type BackupLine
 } from '$lib/types/backup-converter';
+import { umami } from '$lib/utils/umami';
 import { failure, tc, type Result } from '@itsezz/try-catch';
 import XRegExp from 'xregexp';
 
@@ -21,21 +22,19 @@ const sectionRegex = new RegExp('^[A-F0-9]{2}\\s.+$', 'i');
 
 export function convertOBDElevenBackup(
 	data: BackupConverterFormSchema
-): Result<BackupConverterResult, null> {
+): Result<BackupConverterResult, unknown> {
 	const { backup, ...options } = data;
 
 	const prepareResult = tc(() => prepareBackup(backup));
 
-	if (
-		!prepareResult.ok ||
-		prepareResult.data.backupBySection.length < 2 ||
-		prepareResult.data.backupLevels.size < 2
-	)
-		return failure(null);
+	if (!prepareResult.ok) return prepareResult;
+
+	if (prepareResult.data.backupBySection.length < 2 || prepareResult.data.backupLevels.size < 2)
+		return failure(new Error('Backup data seems invalid'));
 
 	const levelResult = tc(() => getHighAndLowLevels(prepareResult.data.backupLevels));
 
-	if (!levelResult.ok) return failure(null);
+	if (!levelResult.ok) return levelResult;
 
 	const conversionResult = tc(() =>
 		convertBackup(
@@ -46,9 +45,17 @@ export function convertOBDElevenBackup(
 		)
 	);
 
-	return conversionResult.ok && conversionResult.data.length > 100
-		? conversionResult
-		: failure(null);
+	const result =
+		conversionResult.ok && conversionResult.data.length > 100
+			? conversionResult
+			: failure(new Error('Converted backup size is too small'));
+
+	umami.track(result.ok ? 'bc-success' : 'bc-error', {
+		input: { ...options, backupLength: backup.length },
+		error: result.error ? String(result.error) : undefined
+	});
+
+	return result;
 }
 
 function prepareBackup(backup: string): {

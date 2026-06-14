@@ -132,7 +132,12 @@
 				{@html m.svm_description()}
 			</p>
 			<div class="flex justify-center">
-				<Button class="w-fit" variant="outline" onclick={handleClickOpenTutorial}>
+				<Button
+					class="w-fit"
+					variant="outline"
+					onclick={handleClickOpenTutorial}
+					data-umami-event="svm-info-open"
+				>
 					<InfoIcon aria-hidden="true" />
 					{m.svm_step_by_step_label()}
 				</Button>
