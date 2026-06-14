@@ -11,10 +11,10 @@
 	import { cn } from '$lib/utils';
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
-	import Donate from './donate-button.svelte';
-	import LanguageSelect from './language-select-button.svelte';
-	import Share from './share-link-button.svelte';
-	import ThemeToggle from './theme-toggle-button.svelte';
+	import DonateButton from './donate-button.svelte';
+	import LanguageSelectButton from './language-select-button.svelte';
+	import ShareButton from './share-link-button.svelte';
+	import ThemeToggleButton from './theme-toggle-button.svelte';
 
 	// Variables & States
 	let isNavMenuOpen = $state<boolean>(false);
@@ -99,10 +99,10 @@
 			</NavigationMenu.Root>
 		</div>
 		<div class="inline-flex w-1/2 justify-end gap-1">
-			<Share />
-			<ThemeToggle />
-			<LanguageSelect />
-			<Donate />
+			<ShareButton />
+			<ThemeToggleButton />
+			<LanguageSelectButton />
+			<DonateButton />
 		</div>
 	</div>
 </div>
