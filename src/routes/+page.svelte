@@ -74,7 +74,7 @@
 {#snippet marqueeItem(item: MarqueeItem)}
 	<Item.Root variant="outline" class="max-w-60 sm:max-w-sm md:max-w-none hover:bg-muted/50 ">
 		<Item.Media class="h-full">
-			<item.icon class="size-6" />
+			<item.icon aria-hidden="true" class="size-6" />
 		</Item.Media>
 		<Item.Content class="h-full justify-center">
 			<Item.Title>{item.title}</Item.Title>
