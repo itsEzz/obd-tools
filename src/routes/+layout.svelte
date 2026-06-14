@@ -2,9 +2,11 @@
 	import { page } from '$app/state';
 	import Footer from '$lib/components/layout/footer.svelte';
 	import Navbar from '$lib/components/layout/navbar.svelte';
+	import { AnimatedGridPattern } from '$lib/components/magic/animated-grid-pattern';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
+	import { cn } from '$lib/utils';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import SvelteSeo from 'svelte-seo';
 	import './layout.css';
@@ -100,14 +102,27 @@
 </a>
 
 <Tooltip.Provider>
-	<Navbar />
+	<div class="min-h-screen border flex flex-col">
+		<Navbar />
 
-	<main
-		id="main-content"
-		class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
-	>
-		{@render children()}
-	</main>
-
-	<Footer />
+		<div class="relative overflow-hidden flex-1">
+			<main
+				id="main-content"
+				class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+			>
+				{@render children()}
+			</main>
+			<AnimatedGridPattern
+				numSquares={30}
+				maxOpacity={0.1}
+				duration={3}
+				repeatDelay={1}
+				class={cn(
+					'mask-[radial-gradient(1200px_circle_at_center,white,transparent)]',
+					'inset-x-0 inset-y-[-30%] h-[200%] skew-y-12'
+				)}
+			/>
+		</div>
+		<Footer />
+	</div>
 </Tooltip.Provider>
