@@ -14,7 +14,7 @@
 	<Button
 		variant="default"
 		size={iconOnly.current ? 'icon' : 'default'}
-		href={clientAppConfig.PUBLIC_PAYPAL_DONATION_LINK}
+		href={clientAppConfig.PUBLIC_DONATION_LINK}
 		target="_blank"
 		rel="noreferrer"
 		aria-label={m.donate_label()}
@@ -26,7 +26,7 @@
 	</Button>
 {/snippet}
 
-{#if clientAppConfig.PUBLIC_PAYPAL_DONATION_LINK}
+{#if clientAppConfig.PUBLIC_DONATION_LINK}
 	{#if iconOnly.current}
 		<Tooltip.Root>
 			<Tooltip.Trigger>

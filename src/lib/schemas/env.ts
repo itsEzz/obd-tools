@@ -62,7 +62,7 @@ export const serverEnvSchema = z.object({
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 export const clientEnvSchema = z.object({
-	PUBLIC_PAYPAL_DONATION_LINK: z.url('Must be a valid URL').optional(),
+	PUBLIC_DONATION_LINK: z.url('Must be a valid URL').optional(),
 	PUBLIC_UMAMI_HOST_URL: z.url('Must be a valid URL').optional(),
 	PUBLIC_UMAMI_DOMAINS: z.string().optional(),
 	PUBLIC_UMAMI_TAG: z.string().optional(),
