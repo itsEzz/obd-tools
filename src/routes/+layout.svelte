@@ -102,7 +102,7 @@
 </a>
 
 <Tooltip.Provider>
-	<div class="min-h-screen border flex flex-col">
+	<div class="min-h-screen flex flex-col">
 		<Navbar />
 
 		<div class="relative overflow-hidden flex-1">
