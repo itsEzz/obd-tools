@@ -38,6 +38,13 @@
 			defer
 			src="/proxy/stats.js"
 			data-website-id={clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID}
+			data-host-url={clientAppConfig.PUBLIC_UMAMI_HOST_URL}
+			data-domains={clientAppConfig.PUBLIC_UMAMI_DOMAINS}
+			data-tag={clientAppConfig.PUBLIC_UMAMI_TAG}
+			data-performance={clientAppConfig.PUBLIC_UMAMI_PERFORMANCE}
+			data-exclude-search={clientAppConfig.PUBLIC_UMAMI_EXCLUDE_SEARCH}
+			data-exclude-hash={clientAppConfig.PUBLIC_UMAMI_EXCLUDE_HASH}
+			data-do-not-track={clientAppConfig.PUBLIC_UMAMI_DO_NOT_TRACK}
 		></script>
 	{/if}
 </svelte:head>

@@ -63,6 +63,13 @@ export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 export const clientEnvSchema = z.object({
 	PUBLIC_PAYPAL_DONATION_LINK: z.url('Must be a valid URL').optional(),
+	PUBLIC_UMAMI_HOST_URL: z.url('Must be a valid URL').optional(),
+	PUBLIC_UMAMI_DOMAINS: z.string().optional(),
+	PUBLIC_UMAMI_TAG: z.string().optional(),
+	PUBLIC_UMAMI_PERFORMANCE: z.enum(['true', 'false']).optional(),
+	PUBLIC_UMAMI_EXCLUDE_SEARCH: z.enum(['true', 'false']).optional(),
+	PUBLIC_UMAMI_EXCLUDE_HASH: z.enum(['true', 'false']).optional(),
+	PUBLIC_UMAMI_DO_NOT_TRACK: z.enum(['true', 'false']).optional(),
 	PUBLIC_UMAMI_WEBSITE_ID: z.uuid({ version: 'v4', message: 'Must be a valid UUID v4' }).optional()
 });
 
