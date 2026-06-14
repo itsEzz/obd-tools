@@ -9,7 +9,7 @@
 	let { title, body }: Props = $props();
 </script>
 
-<div class="container max-w-4xl">
+<div class="w-full max-w-3xl z-10 p-4 backdrop-blur-xs border">
 	{#if title && title.length > 0}
 		<h1 class="text-center text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h1>
 	{/if}
