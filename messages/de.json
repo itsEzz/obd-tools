@@ -27,6 +27,7 @@
 	"language_select_label": "Sprache ändern",
 	"theme_switch_to_light_mode": "Zum hellen Modus wechseln",
 	"theme_switch_to_dark_mode": "Zum dunklen Modus wechseln",
+	"donate_label": "Spenden",
 	"navbar_svm_label": "SVM XOR",
 	"navbar_coding_compare_label": "Coding-Vergleich",
 	"navbar_hex_to_binary_label": "Hex zu Binär",

@@ -11,6 +11,7 @@
 	import { cn } from '$lib/utils';
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
+	import Donate from './donate.svelte';
 	import LanguageSelect from './language-select.svelte';
 	import Share from './share.svelte';
 	import ThemeToggle from './theme-toggle.svelte';
@@ -98,6 +99,7 @@
 			<Share />
 			<ThemeToggle />
 			<LanguageSelect />
+			<Donate />
 		</div>
 	</div>
 </div>

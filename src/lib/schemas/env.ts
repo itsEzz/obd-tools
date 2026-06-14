@@ -60,3 +60,9 @@ export const serverEnvSchema = z.object({
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
+
+export const clientEnvSchema = z.object({
+	PUBLIC_PAYPAL_DONATION_LINK: z.url().optional()
+});
+
+export type ClientEnv = z.infer<typeof clientEnvSchema>;
