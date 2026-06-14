@@ -11,10 +11,10 @@
 	import { cn } from '$lib/utils';
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
-	import Donate from './donate.svelte';
-	import LanguageSelect from './language-select.svelte';
-	import Share from './share.svelte';
-	import ThemeToggle from './theme-toggle.svelte';
+	import Donate from './donate-button.svelte';
+	import LanguageSelect from './language-select-button.svelte';
+	import Share from './share-link-button.svelte';
+	import ThemeToggle from './theme-toggle-button.svelte';
 
 	// Variables & States
 	let isNavMenuOpen = $state<boolean>(false);
