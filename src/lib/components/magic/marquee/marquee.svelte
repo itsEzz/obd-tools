@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { cn } from "$lib/utils";
-	import type { Snippet } from "svelte";
+	import { cn } from '$lib/utils';
+	import type { Snippet } from 'svelte';
 
 	interface MarqueeProps {
 		children: Snippet;
@@ -14,7 +14,7 @@
 
 	let {
 		children,
-		class: className = "",
+		class: className = '',
 		reverse = false,
 		pauseOnHover = false,
 		vertical = false,
@@ -26,21 +26,21 @@
 <div
 	{...rest}
 	class={cn(
-		"group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
+		'group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem]',
 		{
-			"flex-row": !vertical,
-			"flex-col": vertical,
+			'flex-row': !vertical,
+			'flex-col': vertical
 		},
 		className
 	)}
 >
 	{#each Array(repeat).fill(0) as _, i (i)}
 		<div
-			class={cn("flex shrink-0 justify-around gap-(--gap)", {
-				"animate-marquee flex-row": !vertical,
-				"animate-marquee-vertical flex-col": vertical,
-				"group-hover:paused": pauseOnHover,
-				"direction-[reverse]": reverse,
+			class={cn('flex shrink-0 justify-around gap-(--gap)', {
+				'animate-marquee flex-row': !vertical,
+				'animate-marquee-vertical flex-col': vertical,
+				'group-hover:paused': pauseOnHover,
+				'direction-[reverse]': reverse
 			})}
 		>
 			{@render children?.()}
