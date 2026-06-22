@@ -11,7 +11,7 @@ import svelteConfig from './svelte.config.js';
 const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
 export default defineConfig(
-	globalIgnores(['src/lib/paraglide/*', 'src/lib/components/ui/*']),
+	globalIgnores(['src/lib/paraglide/*', 'src/lib/components/ui/*', 'src/lib/components/magic/*']),
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
 	...ts.configs.recommended,
