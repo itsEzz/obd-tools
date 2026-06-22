@@ -50,7 +50,7 @@
 		"@sveltejs/kit": "^2.66.0",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.1",
-		"@types/node": "^25.9.4",
+		"@types/node": "^26.0.0",
 		"bits-ui": "^2.18.1",
 		"clsx": "^2.1.1",
 		"eslint": "^10.5.0",
@@ -89,6 +89,6 @@
 		"pino-roll": "^4.0.0",
 		"runed": "^0.37.1",
 		"xregexp": "^5.1.2",
-		"zod-openapi": "^5.4.6"
+		"zod-openapi": "^6.0.0"
 	}
 }
