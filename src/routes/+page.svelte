@@ -116,12 +116,12 @@
 				in:blur={{ delay: 100, duration: 500 }}
 			>
 				<Marquee pauseOnHover class="[--duration:25s] w-full">
-					{#each firstRow as item}
+					{#each firstRow as item (item.title)}
 						{@render marqueeItem(item)}
 					{/each}
 				</Marquee>
 				<Marquee reverse pauseOnHover class="[--duration:25s] w-full">
-					{#each secondRow as item}
+					{#each secondRow as item (item.title)}
 						{@render marqueeItem(item)}
 					{/each}
 				</Marquee>
