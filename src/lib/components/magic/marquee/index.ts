@@ -1,2 +1,2 @@
-import Marquee from './marquee.svelte';
+import Marquee from "./marquee.svelte";
 export { Marquee };

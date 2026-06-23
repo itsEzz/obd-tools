@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { motion } from 'motion-sv';
-	import { cn } from '$lib/utils';
-	import type { HTMLAttributes } from 'svelte/elements';
+	import { onMount } from "svelte";
+	import { motion } from "motion-sv";
+	import { cn } from "$lib/utils";
+	import type { HTMLAttributes } from "svelte/elements";
 
 	interface AnimatedGridPatternProps extends HTMLAttributes<SVGElement> {
 		width?: number;
@@ -45,7 +45,7 @@
 	const getPos = (): [number, number] => {
 		return [
 			Math.floor((Math.random() * dimensions.width) / width),
-			Math.floor((Math.random() * dimensions.height) / height)
+			Math.floor((Math.random() * dimensions.height) / height),
 		];
 	};
 
@@ -53,7 +53,7 @@
 		return Array.from({ length: count }, (_, i) => ({
 			id: i,
 			pos: getPos(),
-			iteration: 0
+			iteration: 0,
 		}));
 	};
 
@@ -65,7 +65,7 @@
 		nextSquares[squareId] = {
 			...current,
 			pos: getPos(),
-			iteration: current.iteration + 1
+			iteration: current.iteration + 1,
 		};
 
 		squares = nextSquares;
@@ -103,7 +103,7 @@
 	bind:this={containerRef}
 	aria-hidden="true"
 	class={cn(
-		'pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30',
+		"pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
 		className
 	)}
 	{...props}
@@ -115,7 +115,7 @@
 	</defs>
 	<rect width="100%" height="100%" fill={`url(#${id})`} />
 	<svg {x} {y} class="overflow-visible">
-		{#each squares as { pos: [squareX, squareY], id: squareId, iteration }, index (squareId + '-' + iteration)}
+		{#each squares as { pos: [squareX, squareY], id: squareId, iteration }, index (squareId + "-" + iteration)}
 			<motion.rect
 				initial={{ opacity: 0 }}
 				animate={{ opacity: maxOpacity }}
@@ -123,8 +123,8 @@
 					duration,
 					repeat: 1,
 					delay: index * 0.1,
-					repeatType: 'reverse',
-					repeatDelay
+					repeatType: "reverse",
+					repeatDelay,
 				}}
 				onAnimationComplete={() => updateSquarePosition(squareId)}
 				width={width - 1}
