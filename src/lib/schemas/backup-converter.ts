@@ -1,6 +1,10 @@
 import { m } from '$lib/paraglide/messages';
-import type { BackupFormatValue } from '$lib/types/backup-converter';
 import z from 'zod';
+
+interface BackupFormatValue {
+	label: string;
+	value: string;
+}
 
 export const backupFormatValues = ['compact', 'extended', 'full'] as const;
 export const backupFormatSelectValues: BackupFormatValue[] = [

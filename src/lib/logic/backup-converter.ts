@@ -2,15 +2,29 @@ import type {
 	BackupConverterFormSchema,
 	BackupConverterResult
 } from '$lib/schemas/backup-converter';
-import {
-	BackupNextLineLevelDetail,
-	type BackupBySection,
-	type BackupConverterOptions,
-	type BackupLine
-} from '$lib/types/backup-converter';
 import { umami } from '$lib/utils/umami';
 import { failure, tc, type Result } from '@itsezz/try-catch';
 import XRegExp from 'xregexp';
+
+interface BackupLine {
+	indentation: number;
+	line: string;
+}
+
+interface BackupBySection {
+	section: string;
+	data: BackupLine[];
+}
+
+enum BackupNextLineLevelDetail {
+	INVALID = -1,
+	EQ = 0,
+	LE = 1,
+	GR = 2,
+	END = 3
+}
+
+type BackupConverterOptions = Omit<BackupConverterFormSchema, 'backup'>;
 
 const indentationRegex = new RegExp('^\\s*', 'i');
 const controlUnitRegex = XRegExp(
