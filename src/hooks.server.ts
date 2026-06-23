@@ -1,23 +1,23 @@
+import { getTextDirection } from '$lib/paraglide/runtime';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import type { TooManyRequestsResponse } from '$lib/schemas/api';
-import { validateEnv } from '$lib/server/env-validation';
-import { getLogger } from '$lib/server/logger';
 import { rateLimiter } from '$lib/server/rate-limiter';
-import type { Handle, ServerInit } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-// creating a handle to use the paraglide middleware
-const paraglideHandle: Handle = ({ event, resolve }) =>
-	paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
-		event.request = localizedRequest;
+const handleParaglide: Handle = ({ event, resolve }) =>
+	paraglideMiddleware(event.request, ({ request, locale }) => {
+		event.request = request;
+
 		return resolve(event, {
-			transformPageChunk: ({ html }) => {
-				return html.replace('%lang%', locale);
-			}
+			transformPageChunk: ({ html }) =>
+				html
+					.replace('%paraglide.lang%', locale)
+					.replace('%paraglide.dir%', getTextDirection(locale))
 		});
 	});
 
-const rateLimiterHandle: Handle = async ({ event, resolve }) => {
+const handleRateLimiter: Handle = async ({ event, resolve }) => {
 	// Only apply rate limiting to API routes
 	if (!event.url.pathname.startsWith('/api/')) return resolve(event);
 
@@ -36,17 +36,4 @@ const rateLimiterHandle: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-export const handle: Handle = sequence(rateLimiterHandle, paraglideHandle);
-
-export const init: ServerInit = async () => {
-	const logger = getLogger();
-
-	try {
-		logger.info('App initializing...');
-		await validateEnv();
-		logger.info('App initialization complete');
-	} catch (error) {
-		logger.error(error, 'App initialization failed');
-		throw error;
-	}
-};
+export const handle: Handle = sequence(handleRateLimiter, handleParaglide);
