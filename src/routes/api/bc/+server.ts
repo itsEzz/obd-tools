@@ -41,7 +41,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	const backupConverterResult = convertOBDElevenBackup(validationResult.data);
 	if (!backupConverterResult.ok) {
 		logger.error(
-			{ ...validationResult.data, error: backupConverterResult.error },
+			{ ...validationResult.data, err: backupConverterResult.error },
 			'Backup converter failed'
 		);
 		return json({ message: 'Backup converter failed' } satisfies InternalServerErrorResponse, {

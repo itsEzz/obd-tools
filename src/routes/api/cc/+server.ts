@@ -38,7 +38,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	);
 	if (!codingCompareResult.ok) {
 		logger.error(
-			{ ...validationResult.data, error: codingCompareResult.error },
+			{ ...validationResult.data, err: codingCompareResult.error },
 			'Coding compare failed'
 		);
 		return json({ message: 'Coding compare failed' } satisfies InternalServerErrorResponse, {

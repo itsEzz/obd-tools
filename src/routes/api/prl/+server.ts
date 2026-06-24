@@ -36,10 +36,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		validationResult.data.onlyFoundCodes
 	);
 	if (!prCodesResult.ok) {
-		logger.error(
-			{ ...validationResult.data, error: prCodesResult.error },
-			'PR codes lookup failed'
-		);
+		logger.error({ ...validationResult.data, err: prCodesResult.error }, 'PR codes lookup failed');
 		return json({ message: 'PR codes lookup failed' } satisfies InternalServerErrorResponse, {
 			status: 500
 		});
