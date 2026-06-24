@@ -1,3 +1,5 @@
+overrides:
+  'sveltekit-superforms>typebox': '1.2.19' # TODO remove once the https://github.com/ciscoheat/sveltekit-superforms/issues/689 issue is resolved
 allowBuilds:
   '@tailwindcss/oxide': true
   core-js-pure: false

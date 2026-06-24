@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  sveltekit-superforms>typebox: 1.2.19
+
 importers:
 
   .:
@@ -1694,8 +1697,8 @@ packages:
     resolution: {integrity: sha512-1URUxUqfHFM1c+zfSPsa3gnkO7Aq21qyH75SIduNYz4SzY964rn1X2vCMQaHSHhktiw+0kPa2iyb6PUpXqB6Vg==}
     engines: {node: '>=20'}
 
-  typebox@1.3.0:
-    resolution: {integrity: sha512-3HaX5iZ13wSzcLSflDH1UJwaXnRghtc8LhQtKnq8qnlcnZvmGOpBOM6rY9PdyPBKNOYBpDHfE9r6BmI41fvp4g==}
+  typebox@1.2.19:
+    resolution: {integrity: sha512-9stLVZhos9aUXJzu0Yf717xbcv3vFsE5APzsQ7j/honIUFtern451IdTlqmVzPzuGxHkeWwWc2cerw6m2lqKOQ==}
 
   typescript-eslint@8.62.0:
     resolution: {integrity: sha512-8QxXi+ZACKX0kaqO4gY8kn0RSD9gFfaHDWwjqtEN48aWCBkX4MJaufWN+c3BzlrXLOxfywDL8CaoqUwcRq4j4Q==}
@@ -3219,7 +3222,7 @@ snapshots:
       joi: 17.13.4
       json-schema-to-ts: 3.1.1
       superstruct: 2.0.2
-      typebox: 1.3.0
+      typebox: 1.2.19
       valibot: 1.4.1(typescript@6.0.3)
       yup: 1.7.1
       zod: 4.4.3
@@ -3285,7 +3288,7 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
-  typebox@1.3.0:
+  typebox@1.2.19:
     optional: true
 
   typescript-eslint@8.62.0(eslint@10.5.0(jiti@2.7.0))(typescript@6.0.3):
