@@ -59,7 +59,6 @@
 		"formsnap": "^2.0.1",
 		"globals": "^17.7.0",
 		"mode-watcher": "^1.1.0",
-		"motion-sv": "^0.1.12",
 		"phosphor-svelte": "^3.1.0",
 		"pino": "^10.3.1",
 		"pino-pretty": "^13.1.3",
