@@ -155,7 +155,7 @@
 	"backup_converter_result_label": "Konvertiertes Backup",
 	"backup_converter_copy_result_label": "Konvertiertes Backup kopieren",
 	"backup_converter_download_result_label": "Konvertiertes Backup herunterladen",
-	"openapi_title": "OBD Tools API-Dokumentation",
+	"openapi_title": "OBD Tools - API-Dokumentation",
 	"openapi_description": "Umfassende Dokumentation für die OBD Tools API mit detaillierten Angaben zu verfügbaren Endpunkten, Anfrage- und Antwortformaten sowie Anwendungsbeispielen.",
 	"openapi_success_response_description": "Erfolg",
 	"openapi_bad_request_response_description": "Ungültige Anforderung",
