@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { cn } from "$lib/utils";
-	import type { HTMLAttributes } from "svelte/elements";
+	import { onMount } from 'svelte';
+	import { cn } from '$lib/utils';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	interface AnimatedGridPatternProps extends HTMLAttributes<SVGElement> {
 		width?: number;
@@ -50,10 +50,10 @@
 	});
 
 	function animateSquare(el: SVGRectElement, i: number) {
-		el.setAttribute("opacity", "0");
+		el.setAttribute('opacity', '0');
 
 		const total = duration * 1000 * 2 + repeatDelay * 1000;
-		const fade = duration * 1000 / total;
+		const fade = (duration * 1000) / total;
 		const pause = (duration * 1000 + repeatDelay * 1000) / total;
 
 		let anim: Animation | null = null;
@@ -64,27 +64,32 @@
 
 			const cols = Math.max(1, Math.floor(dimensions.width / width));
 			const rows = Math.max(1, Math.floor(dimensions.height / height));
-			el.setAttribute("x", String((Math.random() * cols | 0) * width + 1));
-			el.setAttribute("y", String((Math.random() * rows | 0) * height + 1));
+			el.setAttribute('x', String(((Math.random() * cols) | 0) * width + 1));
+			el.setAttribute('y', String(((Math.random() * rows) | 0) * height + 1));
 
 			anim = el.animate(
 				[
 					{ opacity: 0 },
 					{ opacity: maxOpacity, offset: fade },
 					{ opacity: maxOpacity, offset: pause },
-					{ opacity: 0 },
+					{ opacity: 0 }
 				],
-				{ duration: total, delay: i * 100, easing: "ease" }
+				{ duration: total, delay: i * 100, easing: 'ease' }
 			);
 
 			anim.onfinish = () => {
-				el.setAttribute("opacity", "0");
+				el.setAttribute('opacity', '0');
 				cycle();
 			};
 		};
 
 		cycle();
-		return { destroy: () => { dead = true; anim?.cancel(); } };
+		return {
+			destroy: () => {
+				dead = true;
+				anim?.cancel();
+			}
+		};
 	}
 </script>
 
@@ -92,7 +97,7 @@
 	bind:this={containerRef}
 	aria-hidden="true"
 	class={cn(
-		"pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30",
+		'pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30',
 		className
 	)}
 	{...props}
