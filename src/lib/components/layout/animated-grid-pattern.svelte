@@ -109,7 +109,8 @@
 	</defs>
 	<rect width="100%" height="100%" fill={`url(#${id})`} />
 	<svg {x} {y} class="overflow-visible">
-		{#each Array(numSquares) as _, i (i)}
+		<!-- eslint-disable-next-line @typescript-eslint/no-unused-vars -->
+		{#each Array.from({ length: numSquares }) as _, i (i)}
 			<rect
 				use:animateSquare={i}
 				width={width - 1}

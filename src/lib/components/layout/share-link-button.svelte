@@ -17,7 +17,7 @@
 	import { shareText } from '$lib/utils/share';
 	import ShareFatIcon from 'phosphor-svelte/lib/ShareFatIcon';
 	import { toast } from 'svelte-sonner';
-	import { SvelteURL } from 'svelte/reactivity';
+	import { SvelteURL, SvelteURLSearchParams } from 'svelte/reactivity';
 	import { type z } from 'zod';
 	import CopyButton from '../common/copy-button.svelte';
 	import DialogDrawer from '../common/dialog-drawer.svelte';
@@ -45,13 +45,11 @@
 	);
 	const defaultValues = $derived(getUrlDefaults(currentSchema));
 	const params = $derived.by(() => {
-		const result = new URLSearchParams();
+		const result = new SvelteURLSearchParams();
 		for (const [key, value] of page.url.searchParams) {
 			if (Object.keys(defaultValues).includes(key)) {
 				const stringDefault = String(defaultValues[key]);
-				if (value !== stringDefault) {
-					result.set(key, value);
-				}
+				if (value !== stringDefault) result.set(key, value);
 			}
 		}
 		return result;
