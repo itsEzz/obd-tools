@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
+	import { clientEnv } from '$lib/env';
 	import { m } from '$lib/paraglide/messages';
-	import { clientAppConfig } from '$lib/utils/client-app-config';
 	import HandHeartIcon from 'phosphor-svelte/lib/HandHeartIcon';
 	import { MediaQuery } from 'svelte/reactivity';
 	import { Button } from '../ui/button';
@@ -14,7 +14,7 @@
 	<Button
 		variant="default"
 		size={iconOnly.current ? 'icon' : 'default'}
-		href={clientAppConfig.PUBLIC_DONATION_LINK}
+		href={clientEnv.PUBLIC_DONATION_LINK}
 		target="_blank"
 		rel="noreferrer"
 		aria-label={m.donate_label()}
@@ -27,7 +27,7 @@
 	</Button>
 {/snippet}
 
-{#if clientAppConfig.PUBLIC_DONATION_LINK}
+{#if clientEnv.PUBLIC_DONATION_LINK}
 	{#if iconOnly.current}
 		<Tooltip.Root>
 			<Tooltip.Trigger>
