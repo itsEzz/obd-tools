@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import AnimatedGridPattern from '$lib/components/layout/animated-grid-pattern.svelte';
 	import Footer from '$lib/components/layout/footer.svelte';
 	import Navbar from '$lib/components/layout/navbar.svelte';
-	import { AnimatedGridPattern } from '$lib/components/magic/animated-grid-pattern';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
+	import { clientEnv } from '$lib/env';
 	import { m } from '$lib/paraglide/messages';
 	import { cn } from '$lib/utils';
-	import { clientAppConfig } from '$lib/utils/client-app-config';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import SvelteSeo from 'svelte-seo';
 	import './layout.css';
@@ -33,18 +33,18 @@
 	<meta name="msapplication-TileColor" content="#ffffff" />
 	<meta name="msapplication-config" content="/browserconfig.xml" />
 	<!-- Analytics -->
-	{#if clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID}
+	{#if clientEnv.PUBLIC_UMAMI_WEBSITE_ID}
 		<script
 			defer
 			src="/proxy/stats.js"
-			data-website-id={clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID}
-			data-host-url={clientAppConfig.PUBLIC_UMAMI_HOST_URL}
-			data-domains={clientAppConfig.PUBLIC_UMAMI_DOMAINS}
-			data-tag={clientAppConfig.PUBLIC_UMAMI_TAG}
-			data-performance={clientAppConfig.PUBLIC_UMAMI_PERFORMANCE}
-			data-exclude-search={clientAppConfig.PUBLIC_UMAMI_EXCLUDE_SEARCH}
-			data-exclude-hash={clientAppConfig.PUBLIC_UMAMI_EXCLUDE_HASH}
-			data-do-not-track={clientAppConfig.PUBLIC_UMAMI_DO_NOT_TRACK}
+			data-website-id={clientEnv.PUBLIC_UMAMI_WEBSITE_ID}
+			data-host-url={clientEnv.PUBLIC_UMAMI_HOST_URL}
+			data-domains={clientEnv.PUBLIC_UMAMI_DOMAINS}
+			data-tag={clientEnv.PUBLIC_UMAMI_TAG}
+			data-performance={clientEnv.PUBLIC_UMAMI_PERFORMANCE}
+			data-exclude-search={clientEnv.PUBLIC_UMAMI_EXCLUDE_SEARCH}
+			data-exclude-hash={clientEnv.PUBLIC_UMAMI_EXCLUDE_HASH}
+			data-do-not-track={clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK}
 		></script>
 	{/if}
 </svelte:head>
@@ -129,7 +129,7 @@
 				{@render children()}
 			</main>
 			<AnimatedGridPattern
-				numSquares={30}
+				numSquares={50}
 				maxOpacity={0.1}
 				duration={3}
 				repeatDelay={1}

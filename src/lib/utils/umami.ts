@@ -1,5 +1,6 @@
 import { version } from '$app/environment';
-import { clientAppConfig } from '$lib/utils/client-app-config';
+import { clientEnv } from '$lib/env';
+import { tca } from '@itsezz/try-catch';
 
 interface UmamiOptions {
 	hostname: string;
@@ -12,18 +13,17 @@ class Umami {
 	private doNotTrack: boolean;
 
 	constructor(options?: Partial<UmamiOptions>) {
-		const websiteId = options?.websiteId || clientAppConfig.PUBLIC_UMAMI_WEBSITE_ID;
+		const websiteId = options?.websiteId || clientEnv.PUBLIC_UMAMI_WEBSITE_ID;
 		if (!websiteId) throw new Error('No website ID provided.');
 
 		this.options = {
-			hostname:
-				options?.hostname || clientAppConfig.PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
+			hostname: options?.hostname || clientEnv.PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
 			websiteId: websiteId,
 			userAgent: options?.userAgent || `Mozilla/5.0 Umami/${version}`
 		};
 
 		this.doNotTrack =
-			clientAppConfig.PUBLIC_UMAMI_DO_NOT_TRACK === 'true'
+			clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK === 'true'
 				? 'globalPrivacyControl' in navigator
 					? navigator.globalPrivacyControl === true
 					: navigator.doNotTrack === '1'
@@ -38,14 +38,19 @@ class Umami {
 
 		const { hostname, userAgent } = this.options;
 
-		return fetch(`${hostname}/api/send`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'User-Agent': userAgent
-			},
-			body: JSON.stringify({ type, payload })
-		});
+		const fetchResult = await tca(
+			fetch(`${hostname}/api/send`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'User-Agent': userAgent
+				},
+				body: JSON.stringify({ type, payload })
+			})
+		);
+
+		if (fetchResult.ok && fetchResult.data.ok) return fetchResult.data;
+		return null;
 	}
 
 	async track(
