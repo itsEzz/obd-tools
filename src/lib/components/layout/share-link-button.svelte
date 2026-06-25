@@ -16,9 +16,9 @@
 	import { copyText } from '$lib/utils/copy';
 	import { shareText } from '$lib/utils/share';
 	import ShareFatIcon from 'phosphor-svelte/lib/ShareFatIcon';
-	import { validateSearchParams, type StandardSchemaV1 } from 'runed/kit';
 	import { toast } from 'svelte-sonner';
 	import { SvelteURL } from 'svelte/reactivity';
+	import { type z } from 'zod';
 	import CopyButton from '../common/copy-button.svelte';
 	import DialogDrawer from '../common/dialog-drawer.svelte';
 
@@ -26,7 +26,7 @@
 	type PathnamesWithParams = Extract<Pathname, '/svm' | '/cc' | '/htb' | '/prl' | '/bc'>;
 
 	// Variables & States
-	const urlSchemaMapping: Record<PathnamesWithParams, StandardSchemaV1> = {
+	const urlSchemaMapping: Record<PathnamesWithParams, z.ZodObject<z.ZodRawShape>> = {
 		'/svm': svmParamsSchema,
 		'/cc': codingCompareParamsSchema,
 		'/htb': hexToBinaryParamsSchema,
@@ -38,20 +38,23 @@
 
 	const id = $props.id();
 	const shareLinkId = `share-link-${id}`;
-	const { searchParams } = $derived(
-		validateSearchParams(
-			page.url,
-			page.url.pathname in Object.keys(urlSchemaMapping)
-				? urlSchemaMapping[page.url.pathname as PathnamesWithParams]
-				: emptySchema
-		)
+	const currentSchema = $derived(
+		page.url.pathname in urlSchemaMapping
+			? urlSchemaMapping[page.url.pathname as PathnamesWithParams]
+			: emptySchema
 	);
+	const defaultValues = $derived(getUrlDefaults(currentSchema));
 	const params = $derived.by(() => {
-		const _params = searchParams;
-		_params.forEach((value, key) => {
-			if (!value) _params.delete(key);
-		});
-		return _params;
+		const result = new URLSearchParams();
+		for (const [key, value] of page.url.searchParams) {
+			if (Object.keys(defaultValues).includes(key)) {
+				const stringDefault = String(defaultValues[key]);
+				if (value !== stringDefault) {
+					result.set(key, value);
+				}
+			}
+		}
+		return result;
 	});
 
 	const shareLink = $derived.by<string>(() => {
@@ -72,6 +75,13 @@
 	async function handleClickShareUrl() {
 		const ok = await shareText(m.website_title(), m.share_text(), shareLink);
 		if (!ok) toast.error(m.share_button_toast_failure_title());
+	}
+
+	// Functions
+	function getUrlDefaults(schema: z.ZodObject<z.ZodRawShape>): Record<string, unknown> {
+		const result = schema.safeParse({});
+		if (!result.success) return {};
+		return result.data;
 	}
 </script>
 
