@@ -13,7 +13,7 @@ const render = ScalarApiReference({
 	agent: { disabled: true },
 	mcp: { disabled: true },
 	hideClientButton: true,
-	hideDownloadButton: true
+	documentDownloadType: 'none'
 });
 
 export const GET: RequestHandler = async () => {
