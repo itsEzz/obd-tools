@@ -3,7 +3,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import { getLocale, locales, setLocale, type Locale } from '$lib/paraglide/runtime.js';
-	import GlobeIcon from 'phosphor-svelte/lib/GlobeIcon';
+	import TranslateIcon from 'phosphor-svelte/lib/TranslateIcon';
 	import { toast } from 'svelte-sonner';
 	import { buttonVariants } from '../ui/button';
 
@@ -40,7 +40,7 @@
 					class={buttonVariants({ variant: 'outline', size: 'icon' })}
 					aria-label={m.language_select_label()}
 				>
-					<GlobeIcon aria-hidden="true" />
+					<TranslateIcon aria-hidden="true" />
 				</DropdownMenu.Trigger>
 			{/snippet}
 		</Tooltip.Trigger>
