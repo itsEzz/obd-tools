@@ -36,4 +36,4 @@ const handleRateLimiter: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-export const handle: Handle = sequence(handleRateLimiter, handleParaglide);
+export const handle: Handle = sequence(handleParaglide, handleRateLimiter);
