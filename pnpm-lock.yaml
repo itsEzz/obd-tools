@@ -10,6 +10,16 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      pino:
+        specifier: ^10.3.1
+        version: 10.3.1
+      pino-pretty:
+        specifier: ^13.1.3
+        version: 13.1.3
+      pino-roll:
+        specifier: ^4.0.0
+        version: 4.0.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -71,15 +81,6 @@ importers:
       phosphor-svelte:
         specifier: ^3.1.0
         version: 3.1.0(svelte@5.56.4(@typescript-eslint/types@8.62.0))(vite@8.1.0(@types/node@26.0.1)(jiti@2.7.0))
-      pino:
-        specifier: ^10.3.1
-        version: 10.3.1
-      pino-pretty:
-        specifier: ^13.1.3
-        version: 13.1.3
-      pino-roll:
-        specifier: ^4.0.0
-        version: 4.0.0
       prettier:
         specifier: ^3.8.4
         version: 3.8.4
