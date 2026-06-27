@@ -124,7 +124,6 @@
 					</Drawer.Description>
 				{/if}
 			</Drawer.Header>
-			<!-- TODO overflow-y-auto seems to cause issues -->
 			<div
 				id={!description ? descriptionId : undefined}
 				class={cn('overflow-y-auto px-4 pt-1', !footer && 'pb-4')}

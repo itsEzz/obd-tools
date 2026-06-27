@@ -90,7 +90,7 @@
 	idToFocusOnOpen={shareLinkId}
 >
 	{#snippet body()}
-		<div class="flex flex-col gap-2">
+		<div class="flex flex-col gap-2 overflow-hidden">
 			<Textarea value={shareLink} readonly id={shareLinkId} class="max-h-24 min-h-fit break-all" />
 			{#if params.size > 0}
 				<div class="flex items-center space-x-2">
