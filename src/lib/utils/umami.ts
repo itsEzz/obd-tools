@@ -1,6 +1,6 @@
-import { version } from '$app/environment';
+import { browser, version } from '$app/environment';
 import { clientEnv } from '$lib/env';
-import { tca } from '@itsezz/try-catch';
+import { failure, success, tca, type Result } from '@itsezz/try-catch';
 
 interface UmamiOptions {
 	hostname: string;
@@ -23,7 +23,7 @@ class Umami {
 		};
 
 		this.doNotTrack =
-			clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK === 'true'
+			clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK === 'true' && browser
 				? 'globalPrivacyControl' in navigator
 					? navigator.globalPrivacyControl === true
 					: navigator.doNotTrack === '1'
@@ -33,8 +33,8 @@ class Umami {
 	private async send(
 		payload: Record<string, unknown>,
 		type: 'event' | 'identify' = 'event'
-	): Promise<Response | null> {
-		if (this.doNotTrack) return Promise.resolve(null);
+	): Promise<Result<Response | null, unknown>> {
+		if (this.doNotTrack) return success(null);
 
 		const { hostname, userAgent } = this.options;
 
@@ -49,14 +49,13 @@ class Umami {
 			})
 		);
 
-		if (fetchResult.ok && fetchResult.data.ok) return fetchResult.data;
-		return null;
+		return fetchResult;
 	}
 
 	async track(
 		event: string | Record<string, unknown>,
 		eventData?: Record<string, unknown>
-	): Promise<Response | null> {
+	): Promise<Result<Response | null, unknown>> {
 		const type = typeof event;
 		const { websiteId } = this.options;
 		switch (type) {
@@ -69,7 +68,7 @@ class Umami {
 			case 'object':
 				return this.send({ website: websiteId, ...(event as Record<string, unknown>) });
 			default:
-				return Promise.reject('Invalid event.');
+				return failure('Invalid event.');
 		}
 	}
 }
