@@ -5,11 +5,9 @@
 	import * as Item from '$lib/components/ui/item/index.js';
 	import { m } from '$lib/paraglide/messages';
 	import BracketsCurlyIcon from 'phosphor-svelte/lib/BracketsCurlyIcon';
-	import CodeIcon from 'phosphor-svelte/lib/CodeIcon';
 	import DeviceMobileIcon from 'phosphor-svelte/lib/DeviceMobileIcon';
-	import LayoutIcon from 'phosphor-svelte/lib/LayoutIcon';
+	import GitHubLogoIcon from 'phosphor-svelte/lib/GithubLogoIcon';
 	import LightningIcon from 'phosphor-svelte/lib/LightningIcon';
-	import LockIcon from 'phosphor-svelte/lib/LockIcon';
 	import SparkleIcon from 'phosphor-svelte/lib/SparkleIcon';
 	import TranslateIcon from 'phosphor-svelte/lib/TranslateIcon';
 	import type { Component } from 'svelte';
@@ -34,34 +32,24 @@
 			description: m.home_marquee_item_2_description()
 		},
 		{
-			icon: CodeIcon,
+			icon: SparkleIcon,
 			title: m.home_marquee_item_3_title(),
 			description: m.home_marquee_item_3_description()
 		},
 		{
-			icon: LayoutIcon,
+			icon: TranslateIcon,
 			title: m.home_marquee_item_4_title(),
 			description: m.home_marquee_item_4_description()
 		},
 		{
-			icon: TranslateIcon,
+			icon: BracketsCurlyIcon,
 			title: m.home_marquee_item_5_title(),
 			description: m.home_marquee_item_5_description()
 		},
 		{
-			icon: BracketsCurlyIcon,
+			icon: GitHubLogoIcon,
 			title: m.home_marquee_item_6_title(),
 			description: m.home_marquee_item_6_description()
-		},
-		{
-			icon: SparkleIcon,
-			title: m.home_marquee_item_7_title(),
-			description: m.home_marquee_item_7_description()
-		},
-		{
-			icon: LockIcon,
-			title: m.home_marquee_item_8_title(),
-			description: m.home_marquee_item_8_description()
 		}
 	];
 
