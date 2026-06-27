@@ -37,7 +37,7 @@
 		<div class="inline-flex w-1/2 items-center justify-start">
 			<DropdownMenu.Root bind:open={isNavMenuOpen}>
 				<DropdownMenu.Trigger
-					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'mr-2 lg:hidden')}
+					class={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'mr-2 xl:hidden')}
 					aria-label={isNavMenuOpen ? m.navbar_close_menu_label() : m.navbar_open_menu_label()}
 				>
 					<ListIcon
@@ -75,7 +75,7 @@
 				{m.website_title()}
 			</a>
 		</div>
-		<div class="hidden shrink-0 lg:flex">
+		<div class="hidden shrink-0 xl:flex">
 			<NavigationMenu.Root viewport={isMobile.current}>
 				<NavigationMenu.List class="flex-wrap gap-2">
 					{#each navItems as item (item.href)}
