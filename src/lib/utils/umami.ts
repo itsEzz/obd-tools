@@ -4,7 +4,7 @@ import { failure, success, tca, type Result } from '@itsezz/try-catch';
 
 interface UmamiOptions {
 	hostname: string;
-	websiteId: string;
+	websiteId?: string;
 	userAgent: string;
 }
 
@@ -14,7 +14,6 @@ class Umami {
 
 	constructor(options?: Partial<UmamiOptions>) {
 		const websiteId = options?.websiteId || clientEnv.PUBLIC_UMAMI_WEBSITE_ID;
-		if (!websiteId) throw new Error('No website ID provided.');
 
 		this.options = {
 			hostname: options?.hostname || clientEnv.PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
@@ -34,7 +33,7 @@ class Umami {
 		payload: Record<string, unknown>,
 		type: 'event' | 'identify' = 'event'
 	): Promise<Result<Response | null, unknown>> {
-		if (this.doNotTrack) return success(null);
+		if (this.doNotTrack || !this.options.websiteId) return success(null);
 
 		const { hostname, userAgent } = this.options;
 
