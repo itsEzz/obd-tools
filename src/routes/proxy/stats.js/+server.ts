@@ -29,7 +29,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 	return new Response(bodyResult.data, {
 		headers: {
 			'content-type': 'application/javascript; charset=utf-8',
-			'cache-control': 'public, max-age=3600'
+			'cache-control': 'public, max-age=3600, stale-while-revalidate, stale-if-error'
 		}
 	});
 };
