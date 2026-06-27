@@ -124,7 +124,7 @@
 		<div class="relative overflow-hidden flex-1">
 			<main
 				id="main-content"
-				class="container mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+				class="mx-4 sm:container sm:mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
 			>
 				{@render children()}
 			</main>
