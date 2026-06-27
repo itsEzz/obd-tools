@@ -1,10 +1,10 @@
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
-import tailwindcss from '@tailwindcss/vite';
 import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import { fileURLToPath } from 'url';
+import tailwindcss from '@tailwindcss/vite';
 import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { defineConfig } from 'vite';
 
 const file = fileURLToPath(new URL('package.json', import.meta.url));
 const json = readFileSync(file, 'utf8');
