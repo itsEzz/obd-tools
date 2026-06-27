@@ -20,6 +20,10 @@
 		"tailwindcss",
 		"vite",
 		"obd",
+		"obd-ii",
+		"obdeleven",
+		"vag",
+		"automotive-diagnostics",
 		"tools"
 	],
 	"engines": {
