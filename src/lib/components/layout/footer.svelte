@@ -53,7 +53,7 @@
 							<a
 								href={linkItem.link}
 								target="_blank"
-								rel="noopener noreferrer"
+								rel="external noopener noreferrer"
 								aria-label={linkItem.ariaLabel}
 								{...props}
 							>

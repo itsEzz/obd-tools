@@ -82,8 +82,9 @@
 					<img src="/welcome.gif" class="max-w-sm" alt={m.home_welcome_gif_img_alt()} />
 					<Button
 						variant="link"
+						rel="external noopener noreferrer"
 						href="https://tenor.com/view/ollie-owl-animation-tv-kids-gif-17328099"
-						target="external _blank">{m.home_welcome_gif_source_link_label()}</Button
+						target="_blank">{m.home_welcome_gif_source_link_label()}</Button
 					>
 				</div>
 				<div class="text-center lg:text-start">

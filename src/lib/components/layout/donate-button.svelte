@@ -16,7 +16,7 @@
 		size={iconOnly.current ? 'icon' : 'default'}
 		href={clientEnv.PUBLIC_DONATION_LINK}
 		target="_blank"
-		rel="noreferrer"
+		rel="external noopener noreferrer"
 		aria-label={m.donate_label()}
 		data-umami-event="donate"
 	>
