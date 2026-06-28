@@ -1,6 +1,6 @@
 {
 	"name": "obd-tools",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "A collection of tools for working with OBD-II data.",
 	"type": "module",
 	"private": true,
