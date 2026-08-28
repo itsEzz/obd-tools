@@ -234,7 +234,7 @@ VIN: ....
 									bind:value={$formData.backup}
 								/>
 								<div
-									class="flex items-center justify-between border-t bg-transparent p-1 dark:bg-input/30"
+									class="flex flex-wrap items-center justify-center gap-2 border-t bg-transparent p-1 sm:justify-between dark:bg-input/30"
 								>
 									<p class="ml-1.5 text-xs text-muted-foreground">
 										{toHumanReadable($formData.backup.length)}
