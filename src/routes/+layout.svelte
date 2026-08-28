@@ -118,13 +118,13 @@
 </a>
 
 <Tooltip.Provider>
-	<div class="min-h-screen flex flex-col">
+	<div class="flex min-h-screen flex-col">
 		<Navbar />
 
-		<div class="relative overflow-hidden flex-1">
+		<div class="relative flex-1 overflow-hidden">
 			<main
 				id="main-content"
-				class="mx-4 sm:container sm:mx-auto mt-4 mb-20 flex justify-center sm:mt-8 md:mt-12 lg:mt-16"
+				class="mx-4 mt-4 mb-20 flex justify-center sm:container sm:mx-auto sm:mt-8 md:mt-12 lg:mt-16"
 			>
 				{@render children()}
 			</main>

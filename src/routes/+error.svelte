@@ -23,10 +23,10 @@
 <ContentWindow>
 	{#snippet body()}
 		<div class="flex flex-col items-center gap-6 text-center">
-			<div class="text-8xl sm:text-9xl font-bold text-primary leading-none">
+			<div class="text-8xl leading-none font-bold text-primary sm:text-9xl">
 				{status}
 			</div>
-			<p class="text-lg sm:text-xl text-balance">
+			<p class="text-lg text-balance sm:text-xl">
 				{message}
 			</p>
 			<Button variant="outline" href={resolve('/')} data-umami-event="error-go-home">

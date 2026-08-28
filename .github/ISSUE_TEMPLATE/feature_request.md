@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Suggest a new tool, enhancement, or improvement
-title: "[Feature] "
+title: '[Feature] '
 labels: enhancement
 assignees: ''
 ---

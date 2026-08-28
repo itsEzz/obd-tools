@@ -60,7 +60,7 @@
 <SvelteSeo title={m.website_title()} />
 
 {#snippet marqueeItem(item: MarqueeItem)}
-	<Item.Root variant="outline" class="max-w-60 sm:max-w-sm md:max-w-none hover:bg-muted/50 ">
+	<Item.Root variant="outline" class="max-w-60 hover:bg-muted/50 sm:max-w-sm md:max-w-none ">
 		<Item.Media class="h-full">
 			<item.icon aria-hidden="true" class="size-6" />
 		</Item.Media>
@@ -104,21 +104,21 @@
 				class="relative flex w-full flex-col items-center justify-center overflow-hidden"
 				in:blur={{ delay: 100, duration: 500 }}
 			>
-				<Marquee pauseOnHover class="[--duration:25s] w-full">
+				<Marquee pauseOnHover class="w-full [--duration:25s]">
 					{#each firstRow as item (item.title)}
 						{@render marqueeItem(item)}
 					{/each}
 				</Marquee>
-				<Marquee reverse pauseOnHover class="[--duration:25s] w-full">
+				<Marquee reverse pauseOnHover class="w-full [--duration:25s]">
 					{#each secondRow as item (item.title)}
 						{@render marqueeItem(item)}
 					{/each}
 				</Marquee>
 				<div
-					class="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"
+					class="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r from-background"
 				></div>
 				<div
-					class="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"
+					class="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l from-background"
 				></div>
 			</div>
 		</div>

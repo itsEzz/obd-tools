@@ -1,8 +1,8 @@
 ---
 name: Pull Request
 about: Submit a Pull Request to improve OBD Tools
-title: ""
-labels: ""
+title: ''
+labels: ''
 assignees: ''
 ---
 

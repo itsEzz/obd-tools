@@ -10,7 +10,7 @@
 	let { title, body }: Props = $props();
 </script>
 
-<div class="w-full max-w-3xl z-10 p-4 backdrop-blur-sm border" in:blur={{ duration: 200 }}>
+<div class="z-10 w-full max-w-3xl border p-4 backdrop-blur-sm" in:blur={{ duration: 200 }}>
 	{#if title && title.length > 0}
 		<h1 class="text-center text-2xl font-bold sm:text-3xl md:text-4xl">{title}</h1>
 	{/if}

@@ -58,8 +58,8 @@ This project uses [inlang](https://inlang.com) with Paraglide JS for internation
 1. **Add the locale** to `project.inlang/settings.json`:
    ```json
    {
-     "baseLocale": "en",
-     "locales": ["en", "de", "fr"]   // ← add your locale here
+   	"baseLocale": "en",
+   	"locales": ["en", "de", "fr"] // ← add your locale here
    }
    ```
 2. **Create a message file** at `messages/{locale}.json` (copy `messages/en.json` as a starting point).
