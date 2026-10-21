@@ -80,7 +80,8 @@ const zodIssueInvalidUnionMultipleMatchSchema = zodBaseIssueSchema.extend({
 	errors: z.tuple([]),
 	input: z.unknown().optional(),
 	discriminator: z.string().optional(),
-	inclusive: z.literal(false)
+	inclusive: z.literal(false),
+	matches: z.array(z.number())
 });
 
 const zodIssueInvalidUnionSchema = z.union([
