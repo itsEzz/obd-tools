@@ -13,10 +13,10 @@
 	bind:ref
 	data-slot="navigation-menu-indicator"
 	class={cn(
-		"data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:animate-in data-[state=visible]:fade-in top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
+		"data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-1 flex h-1.5 items-end justify-center overflow-hidden",
 		className
 	)}
 	{...restProps}
 >
-	<div class="rounded-none bg-border shadow-md relative top-[60%] h-2 w-2 rotate-45"></div>
+	<div class="bg-border rounded-none shadow-md relative top-[60%] h-2 w-2 rotate-45"></div>
 </NavigationMenuPrimitive.Indicator>
