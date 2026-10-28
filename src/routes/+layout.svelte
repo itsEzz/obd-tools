@@ -1,13 +1,23 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import AnimatedGridPattern from '#lib/components/layout/animated-grid-pattern.svelte';
 	import Footer from '#lib/components/layout/footer.svelte';
 	import Navbar from '#lib/components/layout/navbar.svelte';
 	import { Toaster } from '#lib/components/ui/sonner/index.js';
 	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
-	import { clientEnv } from '#lib/env.js';
 	import { m } from '#lib/paraglide/messages.js';
 	import { cn } from '#lib/utils.js';
+	import {
+		PUBLIC_UMAMI_DO_NOT_TRACK,
+		PUBLIC_UMAMI_DOMAINS,
+		PUBLIC_UMAMI_EXCLUDE_HASH,
+		PUBLIC_UMAMI_EXCLUDE_SEARCH,
+		PUBLIC_UMAMI_HOST_URL,
+		PUBLIC_UMAMI_PERFORMANCE,
+		PUBLIC_UMAMI_SCRIPT_URL,
+		PUBLIC_UMAMI_TAG,
+		PUBLIC_UMAMI_WEBSITE_ID
+	} from '$app/env/public';
+	import { page } from '$app/state';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import SvelteSeo from 'svelte-seo';
 	import './layout.css';
@@ -33,18 +43,18 @@
 	<meta name="msapplication-TileColor" content="#ffffff" />
 	<meta name="msapplication-config" content="/browserconfig.xml" />
 	<!-- Analytics -->
-	{#if clientEnv.PUBLIC_UMAMI_WEBSITE_ID}
+	{#if PUBLIC_UMAMI_WEBSITE_ID && PUBLIC_UMAMI_SCRIPT_URL}
 		<script
 			defer
-			src="/proxy/stats.js"
-			data-website-id={clientEnv.PUBLIC_UMAMI_WEBSITE_ID}
-			data-host-url={clientEnv.PUBLIC_UMAMI_HOST_URL}
-			data-domains={clientEnv.PUBLIC_UMAMI_DOMAINS}
-			data-tag={clientEnv.PUBLIC_UMAMI_TAG}
-			data-performance={clientEnv.PUBLIC_UMAMI_PERFORMANCE}
-			data-exclude-search={clientEnv.PUBLIC_UMAMI_EXCLUDE_SEARCH}
-			data-exclude-hash={clientEnv.PUBLIC_UMAMI_EXCLUDE_HASH}
-			data-do-not-track={clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK}
+			src={PUBLIC_UMAMI_SCRIPT_URL}
+			data-website-id={PUBLIC_UMAMI_WEBSITE_ID}
+			data-host-url={PUBLIC_UMAMI_HOST_URL}
+			data-domains={PUBLIC_UMAMI_DOMAINS}
+			data-tag={PUBLIC_UMAMI_TAG}
+			data-performance={PUBLIC_UMAMI_PERFORMANCE}
+			data-exclude-search={PUBLIC_UMAMI_EXCLUDE_SEARCH}
+			data-exclude-hash={PUBLIC_UMAMI_EXCLUDE_HASH}
+			data-do-not-track={PUBLIC_UMAMI_DO_NOT_TRACK}
 		></script>
 	{/if}
 </svelte:head>

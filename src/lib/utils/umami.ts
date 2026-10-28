@@ -1,5 +1,9 @@
 import { browser, version } from '$app/env';
-import { clientEnv } from '#lib/env.js';
+import {
+	PUBLIC_UMAMI_DO_NOT_TRACK,
+	PUBLIC_UMAMI_HOST_URL,
+	PUBLIC_UMAMI_WEBSITE_ID
+} from '$app/env/public';
 import { failure, success, tca, type Result } from '@itsezz/try-catch';
 
 interface UmamiOptions {
@@ -13,16 +17,16 @@ class Umami {
 	private doNotTrack: boolean;
 
 	constructor(options?: Partial<UmamiOptions>) {
-		const websiteId = options?.websiteId || clientEnv.PUBLIC_UMAMI_WEBSITE_ID;
+		const websiteId = options?.websiteId || PUBLIC_UMAMI_WEBSITE_ID;
 
 		this.options = {
-			hostname: options?.hostname || clientEnv.PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
+			hostname: options?.hostname || PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
 			websiteId,
 			userAgent: options?.userAgent || `Mozilla/5.0 Umami/${version}`
 		};
 
 		this.doNotTrack =
-			clientEnv.PUBLIC_UMAMI_DO_NOT_TRACK === 'true' && browser
+			PUBLIC_UMAMI_DO_NOT_TRACK === 'true' && browser
 				? 'globalPrivacyControl' in navigator
 					? navigator.globalPrivacyControl === true
 					: navigator.doNotTrack === '1'
