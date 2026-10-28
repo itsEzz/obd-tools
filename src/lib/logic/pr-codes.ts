@@ -1,8 +1,8 @@
 import { page } from '$app/state';
-import { m } from '$lib/paraglide/messages';
-import { prCodes } from '$lib/pr-codes';
-import type { PrCodesResult } from '$lib/schemas/pr-codes';
-import { umami } from '$lib/utils/umami';
+import { m } from '#lib/paraglide/messages.js';
+import { prCodes } from '#lib/pr-codes.js';
+import type { PrCodesResult } from '#lib/schemas/pr-codes.js';
+import { umami } from '#lib/utils/umami.js';
 import { tc, type Result } from '@itsezz/try-catch';
 
 export function lookupPrCodes(
@@ -27,9 +27,9 @@ export function lookupPrCodes(
 			.filter((item) => item !== undefined)
 	);
 
-	umami.track(result.ok ? 'prl-success' : 'prl-error', {
+	void umami.track(result.ok ? 'prl-success' : 'prl-error', {
 		input: { codes, onlyFoundCodes },
-		error: result.error ? String(result.error) : undefined
+		error: result.error ? JSON.stringify(result.error) : undefined
 	});
 
 	return result;

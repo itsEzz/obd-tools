@@ -1,4 +1,4 @@
-import { building, dev } from '$app/environment';
+import { building, dev } from '$app/env';
 import { join } from 'node:path';
 import pino, { type Logger, type TransportTargetOptions } from 'pino';
 

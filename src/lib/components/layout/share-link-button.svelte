@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Pathname } from '$app/types';
-	import { Button, buttonVariants } from '$lib/components/ui/button/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { Switch } from '$lib/components/ui/switch/index.js';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { m } from '$lib/paraglide/messages';
-	import { backupConverterParamsSchema } from '$lib/schemas/backup-converter';
-	import { codingCompareParamsSchema } from '$lib/schemas/coding-compare';
-	import { emptySchema } from '$lib/schemas/empty';
-	import { hexToBinaryParamsSchema } from '$lib/schemas/hex-to-binary';
-	import { prCodesParamsSchema } from '$lib/schemas/pr-codes';
-	import { svmParamsSchema } from '$lib/schemas/svm';
-	import { copyText } from '$lib/utils/copy';
-	import { shareText } from '$lib/utils/share';
+	import type { Path } from '$app/types';
+	import { Button, buttonVariants } from '#lib/components/ui/button/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import { Switch } from '#lib/components/ui/switch/index.js';
+	import { Textarea } from '#lib/components/ui/textarea/index.js';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { backupConverterParamsSchema } from '#lib/schemas/backup-converter.js';
+	import { codingCompareParamsSchema } from '#lib/schemas/coding-compare.js';
+	import { emptySchema } from '#lib/schemas/empty.js';
+	import { hexToBinaryParamsSchema } from '#lib/schemas/hex-to-binary.js';
+	import { prCodesParamsSchema } from '#lib/schemas/pr-codes.js';
+	import { svmParamsSchema } from '#lib/schemas/svm.js';
+	import { copyText } from '#lib/utils/copy.js';
+	import { shareText } from '#lib/utils/share.js';
 	import ShareFatIcon from 'phosphor-svelte/lib/ShareFatIcon';
 	import { toast } from 'svelte-sonner';
 	import { SvelteURL, SvelteURLSearchParams } from 'svelte/reactivity';
@@ -23,15 +23,15 @@
 	import DialogDrawer from '../common/dialog-drawer.svelte';
 
 	// Types
-	type PathnamesWithParams = Extract<Pathname, '/svm' | '/cc' | '/htb' | '/prl' | '/bc'>;
+	type PathnamesWithParams = Extract<Path, 'svm' | 'cc' | 'htb' | 'prl' | 'bc'>;
 
 	// Variables & States
 	const urlSchemaMapping: Record<PathnamesWithParams, z.ZodObject<z.ZodRawShape>> = {
-		'/svm': svmParamsSchema,
-		'/cc': codingCompareParamsSchema,
-		'/htb': hexToBinaryParamsSchema,
-		'/prl': prCodesParamsSchema,
-		'/bc': backupConverterParamsSchema
+		svm: svmParamsSchema,
+		cc: codingCompareParamsSchema,
+		htb: hexToBinaryParamsSchema,
+		prl: prCodesParamsSchema,
+		bc: backupConverterParamsSchema,
 	};
 	let openShareDialog = $state<boolean>(false);
 	let includeParams = $state(true);
@@ -41,7 +41,7 @@
 	const currentSchema = $derived(
 		page.url.pathname in urlSchemaMapping
 			? urlSchemaMapping[page.url.pathname as PathnamesWithParams]
-			: emptySchema
+			: emptySchema,
 	);
 	const defaultValues = $derived(getUrlDefaults(currentSchema));
 	const params = $derived.by(() => {

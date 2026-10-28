@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.js';
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	interface AnimatedGridPatternProps extends HTMLAttributes<SVGElement> {

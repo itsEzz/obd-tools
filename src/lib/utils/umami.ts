@@ -1,5 +1,5 @@
-import { browser, version } from '$app/environment';
-import { clientEnv } from '$lib/env';
+import { browser, version } from '$app/env';
+import { clientEnv } from '#lib/env.js';
 import { failure, success, tca, type Result } from '@itsezz/try-catch';
 
 interface UmamiOptions {
@@ -17,7 +17,7 @@ class Umami {
 
 		this.options = {
 			hostname: options?.hostname || clientEnv.PUBLIC_UMAMI_HOST_URL || 'https://cloud.umami.is',
-			websiteId: websiteId,
+			websiteId,
 			userAgent: options?.userAgent || `Mozilla/5.0 Umami/${version}`
 		};
 

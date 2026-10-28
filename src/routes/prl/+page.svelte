@@ -1,27 +1,27 @@
 <script lang="ts">
-	import CopyButton from '$lib/components/common/copy-button.svelte';
-	import DialogDrawer from '$lib/components/common/dialog-drawer.svelte';
-	import ContentWindow from '$lib/components/layout/content-window.svelte';
-	import Button from '$lib/components/ui/button/button.svelte';
-	import * as Form from '$lib/components/ui/form/index.js';
-	import * as Item from '$lib/components/ui/item/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { Separator } from '$lib/components/ui/separator/index.js';
-	import { Switch } from '$lib/components/ui/switch/index.js';
-	import * as Table from '$lib/components/ui/table/index.js';
-	import * as Tabs from '$lib/components/ui/tabs/index.js';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
-	import { generatePrCodesBBCodeTable, lookupPrCodes } from '$lib/logic/pr-codes';
-	import { m } from '$lib/paraglide/messages';
+	import CopyButton from '#lib/components/common/copy-button.svelte';
+	import DialogDrawer from '#lib/components/common/dialog-drawer.svelte';
+	import ContentWindow from '#lib/components/layout/content-window.svelte';
+	import Button from '#lib/components/ui/button/button.svelte';
+	import * as Form from '#lib/components/ui/form/index.js';
+	import * as Item from '#lib/components/ui/item/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import { Separator } from '#lib/components/ui/separator/index.js';
+	import { Switch } from '#lib/components/ui/switch/index.js';
+	import * as Table from '#lib/components/ui/table/index.js';
+	import * as Tabs from '#lib/components/ui/tabs/index.js';
+	import { Textarea } from '#lib/components/ui/textarea/index.js';
+	import { generatePrCodesBBCodeTable, lookupPrCodes } from '#lib/logic/pr-codes.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import {
 		prCodesFormInputSchema,
 		prCodesFormOutputSchema,
 		prCodesParamsSchema,
 		type PrCodesResult
-	} from '$lib/schemas/pr-codes';
-	import { defaultSearchParamsOptions } from '$lib/search-params';
-	import { copyText } from '$lib/utils/copy';
-	import { scrollIntoView } from '$lib/utils/scroll';
+	} from '#lib/schemas/pr-codes.js';
+	import { defaultSearchParamsOptions } from '#lib/search-params.js';
+	import { copyText } from '#lib/utils/copy.js';
+	import { scrollIntoView } from '#lib/utils/scroll.js';
 	import EmptyIcon from 'phosphor-svelte/lib/EmptyIcon';
 	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';
 	import MagnifyingGlassIcon from 'phosphor-svelte/lib/MagnifyingGlassIcon';

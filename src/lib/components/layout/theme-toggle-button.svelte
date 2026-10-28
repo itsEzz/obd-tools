@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { m } from '$lib/paraglide/messages';
+	import { buttonVariants } from '#lib/components/ui/button/index.js';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import { mode, toggleMode } from 'mode-watcher';
 	import MoonIcon from 'phosphor-svelte/lib/MoonIcon';
 	import SunIcon from 'phosphor-svelte/lib/SunIcon';

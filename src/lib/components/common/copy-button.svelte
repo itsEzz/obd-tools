@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button, type ButtonProps } from '$lib/components/ui/button/index.js';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { m } from '$lib/paraglide/messages';
-	import { cn } from '$lib/utils';
+	import { Button, type ButtonProps } from '#lib/components/ui/button/index.js';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { cn } from '#lib/utils.js';
 	import CircleCheckIcon from 'phosphor-svelte/lib/CheckCircleIcon';
 	import CopyIcon from 'phosphor-svelte/lib/CopyIcon';
 	import CircleXIcon from 'phosphor-svelte/lib/XCircleIcon';

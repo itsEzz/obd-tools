@@ -1,8 +1,8 @@
 <script lang="ts">
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { m } from '$lib/paraglide/messages';
-	import { getLocale, locales, setLocale, type Locale } from '$lib/paraglide/runtime.js';
+	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { getLocale, locales, setLocale, type Locale } from '#lib/paraglide/runtime.js';
 	import TranslateIcon from 'phosphor-svelte/lib/TranslateIcon';
 	import { toast } from 'svelte-sonner';
 	import { buttonVariants } from '../ui/button';

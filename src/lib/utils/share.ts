@@ -1,5 +1,5 @@
-import { browser } from '$app/environment';
-import { m } from '$lib/paraglide/messages';
+import { browser } from '$app/env';
+import { m } from '#lib/paraglide/messages.js';
 import { tca } from '@itsezz/try-catch';
 import { toast } from 'svelte-sonner';
 

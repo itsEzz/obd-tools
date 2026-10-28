@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { clientEnv } from '$lib/env';
-	import { m } from '$lib/paraglide/messages';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { clientEnv } from '#lib/env.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import HandHeartIcon from 'phosphor-svelte/lib/HandHeartIcon';
 	import { MediaQuery } from 'svelte/reactivity';
 	import { Button } from '../ui/button';

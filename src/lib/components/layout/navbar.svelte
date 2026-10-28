@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import type { Pathname } from '$app/types';
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import * as NavigationMenu from '$lib/components/ui/navigation-menu/index.js';
-	import { navigationMenuTriggerStyle } from '$lib/components/ui/navigation-menu/navigation-menu-trigger.svelte';
-	import { IsMobile } from '$lib/hooks/is-mobile.svelte.js';
-	import { m } from '$lib/paraglide/messages';
-	import { cn } from '$lib/utils';
+	import type { Path } from '$app/types';
+	import { buttonVariants } from '#lib/components/ui/button/index.js';
+	import * as DropdownMenu from '#lib/components/ui/dropdown-menu/index.js';
+	import * as NavigationMenu from '#lib/components/ui/navigation-menu/index.js';
+	import { navigationMenuTriggerStyle } from '#lib/components/ui/navigation-menu/navigation-menu-trigger.svelte';
+	import { IsMobile } from '#lib/hooks/is-mobile.svelte.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { cn } from '#lib/utils.js';
 	import ListIcon from 'phosphor-svelte/lib/ListIcon';
 	import XIcon from 'phosphor-svelte/lib/XIcon';
 	import DonateButton from './donate-button.svelte';
@@ -19,16 +19,14 @@
 	// Variables & States
 	let isNavMenuOpen = $state<boolean>(false);
 	const isMobile = new IsMobile();
-	const navItems: {
-		href: Pathname;
-		label: string;
-	}[] = [
-		{ href: '/svm', label: m.navbar_svm_label() },
-		{ href: '/cc', label: m.navbar_coding_compare_label() },
-		{ href: '/htb', label: m.navbar_hex_to_binary_label() },
-		{ href: '/prl', label: m.navbar_pr_codes_lookup_label() },
-		{ href: '/bc', label: m.navbar_backup_converter_label() },
-		{ href: '/api-docs', label: m.navbar_api_docs_label() }
+
+	const navItems: { href: Path; label: string }[] = [
+		{ href: 'svm', label: m.navbar_svm_label() },
+		{ href: 'cc', label: m.navbar_coding_compare_label() },
+		{ href: 'htb', label: m.navbar_hex_to_binary_label() },
+		{ href: 'prl', label: m.navbar_pr_codes_lookup_label() },
+		{ href: 'bc', label: m.navbar_backup_converter_label() },
+		{ href: 'api-docs', label: m.navbar_api_docs_label() },
 	];
 </script>
 
@@ -43,14 +41,14 @@
 					<ListIcon
 						class={cn(
 							'h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all!',
-							isNavMenuOpen && 'scale-0 -rotate-90'
+							isNavMenuOpen && 'scale-0 -rotate-90',
 						)}
 						aria-hidden="true"
 					/>
 					<XIcon
 						class={cn(
 							'absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all!',
-							isNavMenuOpen && 'scale-100 rotate-0'
+							isNavMenuOpen && 'scale-100 rotate-0',
 						)}
 						aria-hidden="true"
 					/>
@@ -86,7 +84,7 @@
 										href={resolve(item.href)}
 										class={cn(
 											navigationMenuTriggerStyle(),
-											page.url.pathname === item.href && 'bg-muted'
+											page.url.pathname === item.href && 'bg-muted',
 										)}
 									>
 										{item.label}

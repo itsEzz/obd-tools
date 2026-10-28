@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import ContentWindow from '$lib/components/layout/content-window.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { m } from '$lib/paraglide/messages';
+	import ContentWindow from '#lib/components/layout/content-window.svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import HouseIcon from 'phosphor-svelte/lib/HouseIcon';
 	import SvelteSeo from 'svelte-seo';
 

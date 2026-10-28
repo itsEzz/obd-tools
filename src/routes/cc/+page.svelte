@@ -1,22 +1,22 @@
 <script lang="ts">
-	import CopyButton from '$lib/components/common/copy-button.svelte';
-	import ContentWindow from '$lib/components/layout/content-window.svelte';
-	import * as Form from '$lib/components/ui/form/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import { Separator } from '$lib/components/ui/separator/index.js';
-	import { Switch } from '$lib/components/ui/switch/index.js';
-	import * as Table from '$lib/components/ui/table/index.js';
-	import { codingCompare, generateCodingCompareBBCodeTable } from '$lib/logic/coding-compare';
-	import { m } from '$lib/paraglide/messages';
+	import CopyButton from '#lib/components/common/copy-button.svelte';
+	import ContentWindow from '#lib/components/layout/content-window.svelte';
+	import * as Form from '#lib/components/ui/form/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import { Separator } from '#lib/components/ui/separator/index.js';
+	import { Switch } from '#lib/components/ui/switch/index.js';
+	import * as Table from '#lib/components/ui/table/index.js';
+	import { codingCompare, generateCodingCompareBBCodeTable } from '#lib/logic/coding-compare.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import {
 		codingCompareFormSchema,
 		codingCompareParamsSchema,
 		type CodingCompareResult
-	} from '$lib/schemas/coding-compare';
-	import { defaultSearchParamsOptions } from '$lib/search-params';
-	import { copyText } from '$lib/utils/copy';
-	import { scrollIntoView } from '$lib/utils/scroll';
+	} from '#lib/schemas/coding-compare.js';
+	import { defaultSearchParamsOptions } from '#lib/search-params.js';
+	import { copyText } from '#lib/utils/copy.js';
+	import { scrollIntoView } from '#lib/utils/scroll.js';
 	import GitDiffIcon from 'phosphor-svelte/lib/GitDiffIcon';
 	import { useSearchParams } from 'runed/kit';
 	import { onMount } from 'svelte';

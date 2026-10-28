@@ -1,20 +1,19 @@
-import { getTextDirection } from '$lib/paraglide/runtime';
-import { paraglideMiddleware } from '$lib/paraglide/server';
-import type { TooManyRequestsResponse } from '$lib/schemas/api';
-import { rateLimiter } from '$lib/server/rate-limiter';
-import type { Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+import { getTextDirection } from '#lib/paraglide/runtime.js';
+import { paraglideMiddleware } from '#lib/paraglide/server.js';
+import type { TooManyRequestsResponse } from '#lib/schemas/api.js';
+import { rateLimiter } from '#lib/server/rate-limiter.js';
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 
 const handleParaglide: Handle = ({ event, resolve }) =>
-	paraglideMiddleware(event.request, ({ request, locale }) => {
-		event.request = request;
-
-		return resolve(event, {
-			transformPageChunk: ({ html }) =>
-				html
-					.replace('%paraglide.lang%', locale)
-					.replace('%paraglide.dir%', getTextDirection(locale))
-		});
+	paraglideMiddleware(event.request, ({ request: localizedRequest, locale }) => {
+		return resolve(
+			{ ...event, request: localizedRequest },
+			{
+				transformPageChunk: ({ html }) => {
+					return html.replace('%lang%', locale).replace('%dir%', getTextDirection(locale));
+				}
+			}
+		);
 	});
 
 const handleRateLimiter: Handle = async ({ event, resolve }) => {

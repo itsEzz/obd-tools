@@ -1,4 +1,4 @@
-import { version } from '$app/environment';
+import { version } from '$app/env';
 import { createDocument, createSchema } from 'zod-openapi';
 import { m } from './paraglide/messages';
 import {

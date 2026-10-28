@@ -1,6 +1,6 @@
-import { openApiDocument } from '$lib/openapi';
-import { m } from '$lib/paraglide/messages';
-import { umami } from '$lib/utils/umami';
+import { openApiDocument } from '#lib/openapi.js';
+import { m } from '#lib/paraglide/messages.js';
+import { umami } from '#lib/utils/umami.js';
 import { ScalarApiReference } from '@scalar/sveltekit';
 import type { RequestHandler } from './$types';
 

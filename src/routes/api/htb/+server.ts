@@ -1,8 +1,8 @@
-import { hexToBinary } from '$lib/logic/hex-to-binary';
-import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
-import { hexToBinaryApiSchema, type HexToBinaryApiResponse } from '$lib/schemas/hex-to-binary';
-import { createChildLogger } from '$lib/server/logger';
-import { umami } from '$lib/utils/umami';
+import { hexToBinary } from '#lib/logic/hex-to-binary.js';
+import type { BadRequestResponse, InternalServerErrorResponse } from '#lib/schemas/api.js';
+import { hexToBinaryApiSchema, type HexToBinaryApiResponse } from '#lib/schemas/hex-to-binary.js';
+import { createChildLogger } from '#lib/server/logger.js';
+import { umami } from '#lib/utils/umami.js';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

@@ -1,30 +1,30 @@
 <script lang="ts">
-	import CopyButton from '$lib/components/common/copy-button.svelte';
-	import DialogDrawer from '$lib/components/common/dialog-drawer.svelte';
-	import ContentWindow from '$lib/components/layout/content-window.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Form from '$lib/components/ui/form/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Label } from '$lib/components/ui/label/index.js';
-	import * as Select from '$lib/components/ui/select/index.js';
-	import { Separator } from '$lib/components/ui/separator/index.js';
-	import { Switch } from '$lib/components/ui/switch/index.js';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
-	import { convertOBDElevenBackup } from '$lib/logic/backup-converter';
-	import { m } from '$lib/paraglide/messages';
+	import CopyButton from '#lib/components/common/copy-button.svelte';
+	import DialogDrawer from '#lib/components/common/dialog-drawer.svelte';
+	import ContentWindow from '#lib/components/layout/content-window.svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Form from '#lib/components/ui/form/index.js';
+	import { Input } from '#lib/components/ui/input/index.js';
+	import { Label } from '#lib/components/ui/label/index.js';
+	import * as Select from '#lib/components/ui/select/index.js';
+	import { Separator } from '#lib/components/ui/separator/index.js';
+	import { Switch } from '#lib/components/ui/switch/index.js';
+	import { Textarea } from '#lib/components/ui/textarea/index.js';
+	import { convertOBDElevenBackup } from '#lib/logic/backup-converter.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import {
 		backupConverterFormSchema,
 		backupConverterParamsSchema,
 		backupFormatSelectValues,
 		maxFileSizeInBytes,
 		type BackupConverterResult
-	} from '$lib/schemas/backup-converter';
-	import { defaultSearchParamsOptions } from '$lib/search-params';
-	import { cn } from '$lib/utils';
-	import { copyText } from '$lib/utils/copy';
-	import { downloadFile } from '$lib/utils/download';
-	import { toHumanReadable } from '$lib/utils/number';
-	import { scrollIntoView } from '$lib/utils/scroll';
+	} from '#lib/schemas/backup-converter.js';
+	import { defaultSearchParamsOptions } from '#lib/search-params.js';
+	import { cn } from '#lib/utils.js';
+	import { copyText } from '#lib/utils/copy.js';
+	import { downloadFile } from '#lib/utils/download.js';
+	import { toHumanReadable } from '#lib/utils/number.js';
+	import { scrollIntoView } from '#lib/utils/scroll.js';
 	import DownloadSimpleIcon from 'phosphor-svelte/lib/DownloadSimpleIcon';
 	import FileDashedIcon from 'phosphor-svelte/lib/FileDashedIcon';
 	import InfoIcon from 'phosphor-svelte/lib/InfoIcon';

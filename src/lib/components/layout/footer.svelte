@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { version } from '$app/environment';
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
-	import * as Item from '$lib/components/ui/item/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import { m } from '$lib/paraglide/messages';
-	import { cn } from '$lib/utils';
+	import { version } from '$app/env';
+	import { buttonVariants } from '#lib/components/ui/button/index.js';
+	import * as Item from '#lib/components/ui/item/index.js';
+	import * as Popover from '#lib/components/ui/popover/index.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { cn } from '#lib/utils.js';
 	import ArrowSquareOutIcon from 'phosphor-svelte/lib/ArrowSquareOutIcon';
 	import GithubLogoIcon from 'phosphor-svelte/lib/GithubLogoIcon';
 	import GlobeIcon from 'phosphor-svelte/lib/GlobeIcon';

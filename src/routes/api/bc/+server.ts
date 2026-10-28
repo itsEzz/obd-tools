@@ -1,11 +1,11 @@
-import { convertOBDElevenBackup } from '$lib/logic/backup-converter';
-import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
+import { convertOBDElevenBackup } from '#lib/logic/backup-converter.js';
+import type { BadRequestResponse, InternalServerErrorResponse } from '#lib/schemas/api.js';
 import {
 	backupConverterApiSchema,
 	type BackupConverterApiResponse
-} from '$lib/schemas/backup-converter';
-import { createChildLogger } from '$lib/server/logger';
-import { umami } from '$lib/utils/umami';
+} from '#lib/schemas/backup-converter.js';
+import { createChildLogger } from '#lib/server/logger.js';
+import { umami } from '#lib/utils/umami.js';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

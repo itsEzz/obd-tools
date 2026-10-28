@@ -1,5 +1,5 @@
-import { clientEnv } from '$lib/env';
-import { createChildLogger } from '$lib/server/logger';
+import { clientEnv } from '#lib/env.js';
+import { createChildLogger } from '#lib/server/logger.js';
 import { tca } from '@itsezz/try-catch';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

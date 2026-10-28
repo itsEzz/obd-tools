@@ -1,7 +1,7 @@
 import { page } from '$app/state';
-import { m } from '$lib/paraglide/messages';
-import type { HexToBinaryResult } from '$lib/schemas/hex-to-binary';
-import { umami } from '$lib/utils/umami';
+import { m } from '#lib/paraglide/messages.js';
+import type { HexToBinaryResult } from '#lib/schemas/hex-to-binary.js';
+import { umami } from '#lib/utils/umami.js';
 import { tc, type Result } from '@itsezz/try-catch';
 
 export function hexToBinary(
@@ -43,9 +43,9 @@ export function hexToBinary(
 		return results;
 	});
 
-	umami.track(result.ok ? 'htb-success' : 'htb-error', {
+	void umami.track(result.ok ? 'htb-success' : 'htb-error', {
 		input: { value, onlySetBytes },
-		error: result.error ? String(result.error) : undefined
+		error: result.error ? JSON.stringify(result.error) : undefined
 	});
 
 	return result;

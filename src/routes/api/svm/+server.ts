@@ -1,8 +1,8 @@
-import { svmXor } from '$lib/logic/svm';
-import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
-import { svmApiSchema, type SvmApiResponse } from '$lib/schemas/svm';
-import { createChildLogger } from '$lib/server/logger';
-import { umami } from '$lib/utils/umami';
+import { svmXor } from '#lib/logic/svm.js';
+import type { BadRequestResponse, InternalServerErrorResponse } from '#lib/schemas/api.js';
+import { svmApiSchema, type SvmApiResponse } from '#lib/schemas/svm.js';
+import { createChildLogger } from '#lib/server/logger.js';
+import { umami } from '#lib/utils/umami.js';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

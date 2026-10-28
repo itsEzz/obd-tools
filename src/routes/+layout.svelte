@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import AnimatedGridPattern from '$lib/components/layout/animated-grid-pattern.svelte';
-	import Footer from '$lib/components/layout/footer.svelte';
-	import Navbar from '$lib/components/layout/navbar.svelte';
-	import { Toaster } from '$lib/components/ui/sonner';
-	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
-	import { clientEnv } from '$lib/env';
-	import { m } from '$lib/paraglide/messages';
-	import { cn } from '$lib/utils';
+	import AnimatedGridPattern from '#lib/components/layout/animated-grid-pattern.svelte';
+	import Footer from '#lib/components/layout/footer.svelte';
+	import Navbar from '#lib/components/layout/navbar.svelte';
+	import { Toaster } from '#lib/components/ui/sonner/index.js';
+	import * as Tooltip from '#lib/components/ui/tooltip/index.js';
+	import { clientEnv } from '#lib/env.js';
+	import { m } from '#lib/paraglide/messages.js';
+	import { cn } from '#lib/utils.js';
 	import { mode, ModeWatcher } from 'mode-watcher';
 	import SvelteSeo from 'svelte-seo';
 	import './layout.css';

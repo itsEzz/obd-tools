@@ -1,8 +1,11 @@
-import { codingCompare } from '$lib/logic/coding-compare';
-import type { BadRequestResponse, InternalServerErrorResponse } from '$lib/schemas/api';
-import { codingCompareApiSchema, type CodingCompareApiResponse } from '$lib/schemas/coding-compare';
-import { createChildLogger } from '$lib/server/logger';
-import { umami } from '$lib/utils/umami';
+import { codingCompare } from '#lib/logic/coding-compare.js';
+import type { BadRequestResponse, InternalServerErrorResponse } from '#lib/schemas/api.js';
+import {
+	codingCompareApiSchema,
+	type CodingCompareApiResponse
+} from '#lib/schemas/coding-compare.js';
+import { createChildLogger } from '#lib/server/logger.js';
+import { umami } from '#lib/utils/umami.js';
 import { tca } from '@itsezz/try-catch';
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';

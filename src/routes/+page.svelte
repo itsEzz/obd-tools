@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ContentWindow from '$lib/components/layout/content-window.svelte';
-	import Marquee from '$lib/components/magic/marquee/marquee.svelte';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Item from '$lib/components/ui/item/index.js';
-	import { m } from '$lib/paraglide/messages';
+	import ContentWindow from '#lib/components/layout/content-window.svelte';
+	import Marquee from '#lib/components/magic/marquee/marquee.svelte';
+	import { Button } from '#lib/components/ui/button/index.js';
+	import * as Item from '#lib/components/ui/item/index.js';
+	import { m } from '#lib/paraglide/messages.js';
 	import BracketsCurlyIcon from 'phosphor-svelte/lib/BracketsCurlyIcon';
 	import DeviceMobileIcon from 'phosphor-svelte/lib/DeviceMobileIcon';
 	import GitHubLogoIcon from 'phosphor-svelte/lib/GithubLogoIcon';
