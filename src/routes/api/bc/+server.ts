@@ -5,20 +5,17 @@ import {
 	type BackupConverterApiResponse
 } from '#lib/schemas/backup-converter.js';
 import { createChildLogger } from '#lib/server/logger.js';
-import { umami } from '#lib/utils/umami.js';
 import { tca } from '@itsezz/try-catch';
-import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 const logger = createChildLogger('api.bc');
 
 export const POST: RequestHandler = async ({ request }) => {
-	await umami.track({ url: '/api/bc', title: 'Backup Converter' });
 	const formDataResult = await tca(request.formData());
 
 	if (!formDataResult.ok) {
 		logger.error('Failed to parse multipart form data');
-		return json({ error: 'Invalid multipart form data' } satisfies BadRequestResponse, {
+		return Response.json({ error: 'Invalid multipart form data' } satisfies BadRequestResponse, {
 			status: 400
 		});
 	}
@@ -29,7 +26,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	if (!validationResult.success) {
 		logger.error('Form data validation failed');
-		return json(
+		return Response.json(
 			{
 				error: 'Form data validation failed',
 				issues: validationResult.error.issues
@@ -44,12 +41,15 @@ export const POST: RequestHandler = async ({ request }) => {
 			{ ...validationResult.data, err: backupConverterResult.error },
 			'Backup converter failed'
 		);
-		return json({ message: 'Backup converter failed' } satisfies InternalServerErrorResponse, {
-			status: 500
-		});
+		return Response.json(
+			{ message: 'Backup converter failed' } satisfies InternalServerErrorResponse,
+			{
+				status: 500
+			}
+		);
 	}
 
-	return json({
+	return Response.json({
 		result: backupConverterResult.data
 	} satisfies BackupConverterApiResponse);
 };
