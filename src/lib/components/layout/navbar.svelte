@@ -26,7 +26,7 @@
 		{ href: 'htb', label: m.navbar_hex_to_binary_label() },
 		{ href: 'prl', label: m.navbar_pr_codes_lookup_label() },
 		{ href: 'bc', label: m.navbar_backup_converter_label() },
-		{ href: 'api-docs', label: m.navbar_api_docs_label() },
+		{ href: 'api-docs', label: m.navbar_api_docs_label() }
 	];
 </script>
 
@@ -41,14 +41,14 @@
 					<ListIcon
 						class={cn(
 							'h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all!',
-							isNavMenuOpen && 'scale-0 -rotate-90',
+							isNavMenuOpen && 'scale-0 -rotate-90'
 						)}
 						aria-hidden="true"
 					/>
 					<XIcon
 						class={cn(
 							'absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all!',
-							isNavMenuOpen && 'scale-100 rotate-0',
+							isNavMenuOpen && 'scale-100 rotate-0'
 						)}
 						aria-hidden="true"
 					/>
@@ -84,7 +84,7 @@
 										href={resolve(item.href)}
 										class={cn(
 											navigationMenuTriggerStyle(),
-											page.url.pathname === item.href && 'bg-muted',
+											page.url.pathname === item.href && 'bg-muted'
 										)}
 									>
 										{item.label}

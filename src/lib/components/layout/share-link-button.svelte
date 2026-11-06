@@ -31,7 +31,7 @@
 		cc: codingCompareParamsSchema,
 		htb: hexToBinaryParamsSchema,
 		prl: prCodesParamsSchema,
-		bc: backupConverterParamsSchema,
+		bc: backupConverterParamsSchema
 	};
 	let openShareDialog = $state<boolean>(false);
 	let includeParams = $state(true);
@@ -41,7 +41,7 @@
 	const currentSchema = $derived(
 		page.url.pathname in urlSchemaMapping
 			? urlSchemaMapping[page.url.pathname as PathnamesWithParams]
-			: emptySchema,
+			: emptySchema
 	);
 	const defaultValues = $derived(getUrlDefaults(currentSchema));
 	const params = $derived.by(() => {
