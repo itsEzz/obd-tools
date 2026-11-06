@@ -1,7 +1,7 @@
-import { page } from '$app/state';
 import { m } from '#lib/paraglide/messages.js';
 import type { CodingCompareResult } from '#lib/schemas/coding-compare.js';
-import { umami } from '#lib/utils/umami.js';
+import { trackEvent } from '#lib/utils/umami.js';
+import { page } from '$app/state';
 import { tc, type Result } from '@itsezz/try-catch';
 
 export function codingCompare(
@@ -41,10 +41,12 @@ export function codingCompare(
 		return results;
 	});
 
-	void umami.track(result.ok ? 'cc-success' : 'cc-error', {
-		input: { value1, value2, onlyDiff },
-		error: result.error ? JSON.stringify(result.error) : undefined
-	});
+	if (result.ok) void trackEvent('cc-success', { input: { value1, value2, onlyDiff } });
+	else
+		void trackEvent('cc-error', {
+			input: { value1, value2, onlyDiff },
+			error: JSON.stringify(result.error)
+		});
 
 	return result;
 }

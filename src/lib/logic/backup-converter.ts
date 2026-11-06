@@ -2,7 +2,7 @@ import type {
 	BackupConverterFormSchema,
 	BackupConverterResult
 } from '#lib/schemas/backup-converter.js';
-import { umami } from '#lib/utils/umami.js';
+import { trackEvent } from '#lib/utils/umami.js';
 import { failure, tc, type Result } from '@itsezz/try-catch';
 import XRegExp from 'xregexp';
 
@@ -64,10 +64,13 @@ export function convertOBDElevenBackup(
 			? conversionResult
 			: failure(new Error('Converted backup size is too small'));
 
-	void umami.track(result.ok ? 'bc-success' : 'bc-error', {
-		input: { ...options, backupLength: backup.length },
-		error: result.error ? JSON.stringify(result.error) : undefined
-	});
+	if (result.ok)
+		void trackEvent('bc-success', { input: { ...options, backupLength: backup.length } });
+	else
+		void trackEvent('bc-error', {
+			input: { ...options, backupLength: backup.length },
+			error: JSON.stringify(result.error)
+		});
 
 	return result;
 }

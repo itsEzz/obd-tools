@@ -1,5 +1,5 @@
 import type { SvmResult } from '#lib/schemas/svm.js';
-import { umami } from '#lib/utils/umami.js';
+import { trackEvent } from '#lib/utils/umami.js';
 import { failure, tc, type Result } from '@itsezz/try-catch';
 
 export function svmXor(value: string): Result<SvmResult, unknown> {
@@ -11,10 +11,12 @@ export function svmXor(value: string): Result<SvmResult, unknown> {
 		result = tc(() => (parseInt(value, 16) ^ parseInt('C9D2', 16)).toString(16));
 	else result = failure(new Error('Invalid input length'));
 
-	void umami.track(result.ok ? 'svm-success' : 'svm-error', {
-		input: { value },
-		error: result.error ? JSON.stringify(result.error) : undefined
-	});
+	if (result.ok) void trackEvent('svm-success', { input: { value } });
+	else
+		void trackEvent('svm-error', {
+			input: { value },
+			error: JSON.stringify(result.error)
+		});
 
 	return result;
 }
